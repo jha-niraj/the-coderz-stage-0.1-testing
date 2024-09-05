@@ -29,7 +29,7 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailprops) =>
             if (!token) {
                 return NextResponse.json({ message: "No token found" }, { status: 400 });
             }
-            const verifyLink = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/verifyemail?token=${token}`;
+            const verifyLink = `${process.env.NEXT_AUTH_URL}/verifyemail?token=${token}`;
             mailOptions = {
                 from: process.env.SMTP_FROM_EMAIL,
                 to: email,
@@ -48,7 +48,7 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailprops) =>
                                     If the button above doesn't work, you can also copy and paste the link below into your browser:
                                 </p>
                                 <p style="font-size: 14px; color: #007BFF; word-break: break-all;">
-                                    ${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/verifyemail?token=${token}
+                                    ${process.env.NEXT_AUTH_URL}/verifyemail?token=${token}
                                 </p>
                                 <p style="font-size: 14px; color: #777;">
                                     If you did not create an account, please ignore this email.
@@ -65,7 +65,7 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailprops) =>
             if (!token) {
                 return NextResponse.json({ message: "No token found" }, { status: 400 });
             }
-            const resetLink = `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/verifyemail?token=${token}`;
+            const resetLink = `${process.env.NEXT_AUTH_URL}/verifyemail?token=${token}`;
             mailOptions = {
                 from: process.env.SMTP_FROM_EMAIL,
                 to: email,
@@ -87,7 +87,7 @@ export const sendEmail = async ({ email, emailType, userId }: SendEmailprops) =>
                                     If the button above doesn't work, you can also copy and paste the link below into your browser:
                                 </p>
                                 <p style="font-size: 14px; color: #007BFF; word-break: break-all;">
-                                    ${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/resetpassword?token=${token}
+                                    ${process.env.NEXT_AUTH_URL}/resetpassword?token=${token}
                                 </p>
                                 <p style="font-size: 14px; color: #777;">
                                     If you have any questions, feel free to reach out to our support team.

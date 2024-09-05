@@ -1,8 +1,8 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { RequestBody } from "@/types";
-import { sendEmail } from "@/utils/mail";
+import { RequestBody } from "@/app/types";
+import { sendEmail } from "@/app/utils/mail";
 
 export async function POST(request: NextRequest) {
     try {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
         })
 
         // After you have created the user in the database, send an verification email to the user:
-        // await sendEmail({ email, emailType: "VERIFY", userId: user?.id });
+        await sendEmail({ email, emailType: "VERIFY", userId: user?.id });
 
         return NextResponse.json({ message: "Sign Up Successful", user }, { status: 200 });
     } catch(err: any) {
