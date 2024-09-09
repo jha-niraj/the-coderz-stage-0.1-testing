@@ -27,7 +27,7 @@ export const FloatingDock = ({
   mobileClassName?: string;
 }) => {
   return (
-    <div className="fixed bottom-1 bg-black">
+    <div className="fixed bottom-1">
       <FloatingDockDesktop items={items} className={desktopClassName} />
       {/* <FloatingDockMobile items={items} className={mobileClassName} /> */}
     </div>

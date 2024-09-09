@@ -80,8 +80,8 @@ export default function SignInForm() {
 							Sign up
 						</Link>
 					</div>
-				</div>
-			</div>
+				</div>	
+			</div>	
 		</div>
 	);
 }

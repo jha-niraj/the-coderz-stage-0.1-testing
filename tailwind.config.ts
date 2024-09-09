@@ -91,13 +91,19 @@ const config = {
           to: {
             "backgroundPosition": "-200% 0"
           }
-        }
+        },
+        "gradientAnimation": {
+          '0%': { 'background-position': '0% 0%' },
+          '50%': { 'background-position': '100% 100%' },
+          '100%': { 'background-position': '0% 0%' },
+        },
       },
       animation: {
         "shimmer": "shimmer 2s linear infinite",
         "aurora": "aurora 60s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'gradient': 'gradientAnimation 5s ease infinite'
       },
       boxShadow: {
         input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
