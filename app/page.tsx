@@ -1,12 +1,3 @@
-"use client"
-
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-
-import { useRouter } from "next/navigation";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { StarsBackground } from "@/components/ui/stars-background";
-
 import SmoothScroll from "@/components/smoothscroll";
 import SupportSection from "@/components/homepage/supportsection";
 import FeedbackSection from "@/components/homepage/feedbacksection";
@@ -16,12 +7,9 @@ import OpenSourceContribution from "@/components/homepage/opensource";
 import MainPage from "@/components/homepage/mainpage";
 
 export default function Home() {
-	const session = useSession();
-	const router = useRouter();
-
 	return (
 		<SmoothScroll>
-			<main className="bg-neutral-900 flex flex-col items-center justify-center w-full">
+			<main className="h-full w-full dark:bg-black bg-black dark:bg-dot-white/[0.2] bg-dot-white/[0.2] relative flex flex-col items-center justify-center lg:pt-20">
 				<MainPage />
 				<ExploreResourcesSection />
 				<OpenSourceContribution />
@@ -29,8 +17,8 @@ export default function Home() {
 				<SupportSection />
 				<ContactSection />
 			</main>
-			<ShootingStars />
-			<StarsBackground />
+			{/* <ShootingStars />
+			<StarsBackground /> */}
 		</SmoothScroll>
 	);
 };

@@ -11,23 +11,23 @@ const MainPage = () => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-            className="container mx-auto px-4 py-24 sm:py-28"
+            className="container mx-auto p-4 py-8 mb-10"
         >
             <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-                <div className="flex flex-col items-center md:items-start justify-center gap-8 md:w-1/2">
-                    <h1 className="text-4xl md:text-5xl text-white font-bold text-center md:text-left leading-tight">
+                <div className="flex flex-col items-center justify-center gap-8 w-full">
+                    <h1 className="text-4xl md:text-5xl flex flex-col gap-4 text-white font-bold text-center leading-tight">
                         Your One-Stop Platform for
                         <Cover className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
                             {' '}Knowledge and Support
                         </Cover>
                     </h1>
-                    <p className="text-lg text-gray-300 text-center md:text-left max-w-xl">
+                    <p className="text-lg text-gray-300 text-center max-w-xl">
                         Join our vibrant community of learners and gain access to a vast library of resources, expert guidance, and collaborative support. Unlock your full potential and achieve your goals with confidence.
                     </p>
-                    <button onClick={() => router.push("/allresources")} className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block">
+                    <button onClick={() => router.push("/resources")} className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block">
                         <span className="absolute inset-0 overflow-hidden rounded-full">
                             <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                         </span>
@@ -53,18 +53,6 @@ const MainPage = () => {
                         </div>
                         <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
                     </button>
-                </div>
-                <div className="w-full md:w-1/2 max-w-2xl">
-                    <div className="relative w-full pt-[56.25%] rounded-2xl overflow-hidden shadow-xl">
-                        <Image
-                            src={mainImage}
-                            layout="fill"
-                            objectFit="cover"
-                            className="rounded-2xl transition-all duration-300 hover:scale-105"
-                            alt="Resource Platform Preview"
-                            priority
-                        />
-                    </div>
                 </div>
             </div>
         </motion.div>

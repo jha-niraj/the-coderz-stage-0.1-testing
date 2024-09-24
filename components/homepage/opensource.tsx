@@ -37,19 +37,19 @@ const OpenSourceContribution = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mx-auto mt-16 max-w-2xl flex items-center justify-center flex-col sm:flex-row rounded-3xl ring-1 ring-indigo-500 bg-slate-800 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none"
+                    className="mx-auto mt-16 max-w-2xl flex items-center justify-center flex-col md:flex-row rounded-3xl ring-1 ring-indigo-500 bg-slate-800 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none"
                 >
                     <div className="p-8 sm:p-10 lg:flex-auto">
                         <h3 className="text-2xl font-bold tracking-tight text-white">
                             Contribute to Our Codebase
                         </h3>
                         <p className="mt-6 text-base leading-7 text-indigo-200">
-                            Whether you're a seasoned developer or just starting out, there's a place for
+                            Whether you&apos;re a seasoned developer or just starting out, there&apos;s a place for
                             you in our community. Help us build tools that empower the next generation of coders.
                         </p>
                         <div className="mt-10 flex items-center gap-x-4">
                             <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-300">
-                                What you'll gain
+                                What you&apos;ll gain
                             </h4>
                             <div className="h-px flex-auto bg-indigo-500" />
                         </div>
@@ -85,7 +85,7 @@ const OpenSourceContribution = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+                    <div className="-mt-2 p-2 lg:mt-0 sm:w-full lg:max-w-md lg:flex-shrink-0">
                         <div className="rounded-2xl bg-slate-700 py-10 text-center ring-1 ring-inset ring-indigo-500 lg:flex lg:flex-col lg:justify-center lg:py-16">
                             <div className="mx-auto max-w-xs px-8">
                                 <p className="text-base font-semibold text-white">Start Contributing Today</p>
@@ -107,7 +107,7 @@ const OpenSourceContribution = () => {
                                         rel="noopener noreferrer"
                                         className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >
-                                        Fork the Project
+                                        Wanna Contribute?
                                     </Link>
                                 </motion.div>
                                 <p className="mt-6 text-xs leading-5 text-indigo-200">

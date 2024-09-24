@@ -16,7 +16,7 @@ function SmoothScroll({ children } : LenisProps) {
             lenis?.stop();
             lenis?.start();
         })
-    }, []);
+    }, [lenis]);
 
     return (
         <ReactLenis

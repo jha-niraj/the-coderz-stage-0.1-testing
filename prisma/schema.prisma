@@ -15,14 +15,47 @@ datasource db {
 
 model User {
 	id					String 		@id 		@default(uuid())
-	fullname			String?		
+	name				String?		
 	email				String		@unique
-	emailVerified		Boolean		@default(false)
+	emailVerified		Boolean?				@default(false)
 	hashedPassword		String?		
-	image             	String?           @default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+	image             	String?           		@default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+	aboutme				String?
+	github				String?
+	linkedin			String?
+	twitter				String?
+	leetcode			String?
+	website				String?
+	interests			String[]
+	skills				String[]
 	verifyToken       	String?
   	verifyTokenExpiry 	DateTime?
 	resetToken			String?
 	restTokenExpiry		DateTime?
-	isAdmin				Boolean		@default(false)	
+	createdAt			DateTime	@default(now())
+	isAdmin				Boolean		@default(false)
+	accounts			Account[]
+}
+
+model Account {
+	id 					String	@id @default(uuid())
+	userId				String
+	type				String
+	provider			String
+	providerAccountId	String
+	refresh_token		String?
+	access_token		String?
+	expires_at			Int?
+	token_type			String?
+	scope				String?
+	id_token			String?
+	session_state		String?
+
+	createdAt			DateTime	@default(now())
+	updatedAt			DateTime	@updatedAt
+
+	user				User 		@relation(fields: [userId], references: [id], onDelete: Cascade)
+
+	@@unique([provider, providerAccountId])
+	@@map("accounts")
 }

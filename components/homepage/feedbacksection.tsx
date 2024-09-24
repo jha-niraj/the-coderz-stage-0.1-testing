@@ -14,7 +14,7 @@ const FeedbackItem = ({ name, role, feedback }: FeedbackItemProps) => (
 		animate={{ opacity: 1, y: 0 }}
 		transition={{ duration: 0.5 }}
 	>
-		<p className="text-gray-600 italic mb-4">"{feedback}"</p>
+		<p className="text-gray-600 italic mb-4">&quot;{feedback}&quot;</p>
 		<div className="flex items-center">
 			<div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
 				{name[0]}
@@ -37,7 +37,7 @@ const FeedbackSection = () => {
 	return (
 		<section className="w-full sm:w-[90%]">
 			<div className="container mx-auto px-4">
-				<h2 className="text-3xl font-bold text-center text-white mb-12">What Our Coder'z Say</h2>
+				<h2 className="text-3xl font-bold text-center text-white mb-12">What Our Coder&apos;z Say</h2>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{feedbacks.map((item, index) => (
 						<FeedbackItem key={index} {...item} />

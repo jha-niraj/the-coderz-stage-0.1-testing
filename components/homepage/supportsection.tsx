@@ -34,53 +34,43 @@ const SupportSection = () => {
     };
 
     return (
-        <section className="text-white w-[90%] rounded-lg py-20">
+        <section className="text-white w-[90%] rounded-2xl py-16">
             <Toaster />
-            <div className="mx-auto px-4 w-full flex flex-col md:flex-row items-center justify-around">
-                <div className="flex flex-col items-center justify-center md:items-start mb-8 md:mb-0">
+            <motion.section
+                className="bg-gray-900 py-8 flex items-center justify-center flex-col w-full"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+            >
+                <div className="container mx-auto px-4">
                     <motion.h2
-                        className="text-4xl font-bold mb-6 text-center md:text-left"
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        className="text-4xl font-bold text-center mb-8"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.7 }}
                     >
-                        Support Our Mission
+                        Support Our Learning Community
                     </motion.h2>
                     <motion.p
-                        className="text-xl mb-8 text-center md:text-left"
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="text-center text-lg mb-8 text-gray-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.9 }}
                     >
-                        Help us empower more developers by sharing our platform. Together, we can build a stronger coding community.
+                        Help us grow by sharing this website with your friends and colleagues!
                     </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="mt-auto flex justify-center w-full md:justify-start"
-                    >
-                        <button onClick={() => setIsDialogOpen(c => !c)} className="shadow-[0_0_0_3px_#000000_inset] text-white px-6 py-2 bg-transparent border border-white dark:border-white dark:text-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-                            Support Us
-                        </button>
-                    </motion.div>
                 </div>
-                <div className="flex justify-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                    >
-                        <Image
-                            src={supportsectionimage}
-                            alt="Support Us"
-                            width={600}
-                            height={600}
-                            className="rounded-lg"
-                        />
-                    </motion.div>
-                </div>
-            </div>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="mt-auto flex justify-center w-full"
+                >
+                    <button onClick={() => setIsDialogOpen(c => !c)} className="shadow-[0_0_0_3px_#000000_inset] text-white px-6 py-2 bg-transparent border border-white dark:border-white dark:text-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+                        Support Us
+                    </button>
+                </motion.div>
+            </motion.section>
 
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="sm:max-w-md">

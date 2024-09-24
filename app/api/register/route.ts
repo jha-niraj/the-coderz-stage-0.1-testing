@@ -7,7 +7,7 @@ import { sendEmail } from "@/app/utils/mail";
 export async function POST(request: NextRequest) {
     try {
         const body: RequestBody = await request.json();
-        const { fullname, email, password } = body;
+        const { name, email, password } = body;
 
         console.log(body);
 
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         // Now create a new user in the database:
         const user = await prisma.user.create({
             data: {
-                fullname,
+                name,
                 email,
                 hashedPassword,
                 verifyToken,
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
         })
 
         // After you have created the user in the database, send an verification email to the user:
-        await sendEmail({ email, emailType: "VERIFY", userId: user?.id });
+        // await sendEmail({ email, emailType: "VERIFY", userId: user?.id });
 
         return NextResponse.json({ message: "Sign Up Successful", user }, { status: 200 });
     } catch(err: any) {

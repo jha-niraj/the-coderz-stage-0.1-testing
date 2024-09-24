@@ -10,12 +10,14 @@ const Footer = () => {
     };
 
     return (
-        <footer className="text-white bg-black py-12">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="col-span-1 md:col-span-2">
-                        <h3 className="text-2xl font-bold mb-4">The Coder'z</h3>
-                        <p className="mb-4">Empowering developers with cutting-edge resources and a supportive community.</p>
+        <footer className="text-white bg-black py-4">
+            <div className="container mx-auto px-4 mb-2">
+                <div className="flex flex-col gap-8 mb-8">
+                    <div className="flex items-start sm:items-center gap-3 flex-col sm:flex-row sm:justify-between">
+                        <div className="flex flex-col">
+                            <h3 className="text-2xl font-bold">The Coder&apos;z</h3>
+                            <p className="">Empowering developers with cutting-edge resources and a supportive community.</p>
+                        </div>
                         <div className="flex space-x-4">
                             <Link href="#" className="hover:text-blue-400 transition-colors">
                                 <Github className="w-6 h-6" />
@@ -28,7 +30,9 @@ const Footer = () => {
                             </Link>
                         </div>
                     </div>
-                    <div>
+                </div>
+                <div className="flex items-start sm:items-center sm:justify-between gap-4 flex-col sm:flex-row">
+                    <div className="">
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2">
                             <li>
@@ -45,9 +49,9 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div>
+                    <div className="">
                         <h4 className="text-lg font-semibold mb-4">Support</h4>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 sm:text-right">
                             <li>
                                 <Link href="#" className="hover:text-blue-400 transition-colors">FAQ</Link>
                             </li>
@@ -63,8 +67,8 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="mt-8 pt-8 border-t border-gray-700 flex justify-between items-center">
-                    <p>&copy; 2024 The Coder'z. All rights reserved.</p>
+                <div className="mt-8 pt-2 border-t border-gray-700 flex justify-between items-center">
+                    <p>&copy; 2024 The Coder&apos;z. All rights reserved.</p>
                     <motion.button
                         onClick={scrollToTop}
                         className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors"

@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 export default function SignIn() {
     
     return (
-        <div className="">
+        <div className="w-full">
             <Toaster />
             <SignInForm />
         </div>

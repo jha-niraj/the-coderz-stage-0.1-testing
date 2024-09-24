@@ -1,47 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/app/lib/utils";
-import {
-	IconBrandGithub,
-	IconBrandGoogle,
-	IconBrandOnlyfans,
-} from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandGoogle, IconBrandOnlyfans } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+import { useAppContext } from "@/app/context/usercontext";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { Adapter } from "next-auth/adapters";
+
 export default function SignInForm() {
-	const [signIn, setSignIn] = useState({
-        email: "",
-        password: ""
-    })
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const { status } = useSession();
+	const router = useRouter();
+	const { email, setEmail, password, setPassword, image, setImage } = useAppContext();
+
+	useEffect(() => {
+		if(status === "authenticated") {
+			router.push("/profile");
+		}
+	}, [router, status]);
+
+	const handleSignInWithGoogle = async() => {
+		try {
+			const callback = await signIn("google", { callbackUrl: "/dashboard" });
+
+			if(callback?.error) {
+				toast.error("Email not registered");
+				router.push("/register");
+			}
+		} catch(err: any) {
+			console.error("Google sign-in error: " + err);
+		}
+	}
+
+	const handleSignInWithGitHub = async() => {
+		try {
+			const callback = await signIn("github", { callbackUrl: "/dashboard" });
+			if(callback?.error) {
+				toast.error("Email not registered");
+				router.push("/register");
+			}
+		} catch(err: any) {
+			console.error("Github sign-in error: " + err);
+		}
+	}
+
+	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log("Form submitted");
+		
+		const response = await signIn("credentials", {
+			email, password, image,
+			redirect: false
+		})
+
+		if(response?.error) {
+			toast.error(response?.error);
+		}
+		if(response?.ok && !response?.error) {
+			toast.success("Logged in Successfully");
+			router.push("/profile");
+		}
 	};
 
 	return (
-		<div className="flex flex-col pt-10 bg-black text-white h-screen gap-2 items-center justify-center">
+		<div className="flex flex-col pt-10 bg-black text-white w-full h-screen gap-2 items-center justify-center">
 			<h1 className="relative z-10 text-md text-3xl w-[85%] sm:w-[65%] md:w-[50%] lg:w-[30%] bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
 				Welcome Back
 			</h1>
 			<div className="flex flex-col p-5 rounded-lg gap-5 w-[85%] sm:w-[65%] md:w-[50%] lg:w-[30%]">
 				<form onSubmit={handleSubmit} className="flex w-full flex-col gap-3">
 					<div className="flex flex-col gap-1">
-						<label className="text-md font-medium">Username</label>
-						<Input type="text" placeholder="user1@gmail.com" onChange={(e: any) => setSignIn(c => ({
-							...c,
-							email: e.target.value
-						}))} />
+						<label className="text-md font-medium">Email</label>
+						<Input type="text" placeholder="user1@gmail.com" onChange={(e: any) => setEmail(e.target.value)} />
 					</div>
 					<div className="flex flex-col gap-1">
 						<label className="text-md font-medium">Password</label>
-						<Input type="password" placeholder="********" onChange={(e: any) => setSignIn(c => ({
-							...c,
-							password: e.target.value
-						}))} />
+						<Input type="password" placeholder="********" onChange={(e: any) => setPassword(e.target.value)} />
 					</div>
 					<Button type="submit" className="w-full">Sign In</Button>
 				</form>
@@ -52,6 +92,7 @@ export default function SignInForm() {
 					<button
 						className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
 						type="submit"
+						onClick={handleSignInWithGoogle}
 					>
 						<IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
 						<span className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -62,6 +103,7 @@ export default function SignInForm() {
 					<button
 						className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
 						type="submit"
+						onClick={handleSignInWithGitHub}
 					>
 						<IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
 						<span className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -75,7 +117,7 @@ export default function SignInForm() {
 
 				<div className="text-center">
 					<div className="text-sm text-white flex gap-2 items-center justify-center">
-						<h1 className="text-sm lg:font-bold font-medium">Don't have an account?</h1>
+						<h1 className="text-sm lg:font-bold font-medium">Don&apos;t have an account?</h1>
 						<Link href="/register" className="font-medium lg:font-bold text-sm text-sky-600 hover:text-indigo-500">
 							Sign up
 						</Link>
