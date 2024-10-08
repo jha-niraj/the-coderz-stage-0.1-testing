@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { Chilanka, Poppins } from "next/font/google";
 import { Providers } from "@/app/providers/providers";
-import { AppProvider } from "./context/usercontext";
+import Footer from "@/components/footer";
+import { AppProvider } from "../context/usercontext";
+import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
@@ -28,9 +30,11 @@ export default function RootLayout({
 				>
 					<Providers>
 						<AppProvider>
-							{
-                                children
-                            }
+							<ClientLayout>
+								{
+									children
+								}
+							</ClientLayout>
 						</AppProvider>
 					</Providers>
 				</ThemeProvider>

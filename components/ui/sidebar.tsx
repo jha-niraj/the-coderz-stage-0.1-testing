@@ -4,6 +4,7 @@ import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
+import { ModeToggle } from "../modetoggle";
 
 interface Links {
 	label: string;
@@ -120,19 +121,19 @@ export const MobileSidebar = ({
 		<>
 			<div
 				className={cn(
-					"fixed h-10 px-4 py-8 flex flex-row md:hidden items-center z-50 justify-between bg-neutral-900 dark:bg-neutral-800 w-full", 	
+					"fixed h-10 px-4 py-8 flex flex-row md:hidden items-center z-50 justify-between w-full",
 				)}
 				{...props}
 			>
 				<div className="flex items-center justify-between z-20 w-full">
 					<Link
 						href="/"
-						className="font-bold flex space-x-2 items-center text-lg text-black py-1 relative z-20"
+						className="font-bold flex space-x-2 items-center text-lg py-1 relative z-20"
 					>
 						<motion.span
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
-							className="font-semibold text-2xl text-white dark:text-white whitespace-pre"
+							className="font-semibold text-2xl whitespace-pre"
 							onClick={handleSetOpen}
 						>
 							The Coder&apos;z
@@ -141,12 +142,13 @@ export const MobileSidebar = ({
 					<motion.span
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						className="font-bold text-white dark:text-white whitespace-pre"
+						className="font-bold flex gap-2 items-center justify-center whitespace-pre"
 					>
+						<ModeToggle />
 						<IconMenu2
-							className="text-white cursor-pointer"
+							className="cursor-pointer"
 							onClick={() => setOpen(!open)}
-							size={32}
+							size={40}
 						/>
 					</motion.span>
 				</div>
@@ -161,7 +163,7 @@ export const MobileSidebar = ({
 								ease: "easeInOut",
 							}}
 							className={cn(
-								"fixed h-full w-full inset-0 bg-neutral-900 dark:bg-neutral-900 p-10 z-[50] flex flex-col justify-between",
+								"fixed h-full w-full inset-0 bg-black dark:bg-black p-10 z-[50] flex flex-col justify-between",
 								className
 							)}
 							onClick={handleSetOpen}
