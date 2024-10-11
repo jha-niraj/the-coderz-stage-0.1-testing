@@ -10,7 +10,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="text-white bg-black py-4">
+        <footer className="text-black dark:text-white mx-auto py-4 max-w-xl md:max-w-3xl lg:max-w-7xl">
             <div className="container mx-auto px-4 mb-2">
                 <div className="flex flex-col gap-8 mb-8">
                     <div className="flex items-start sm:items-center gap-3 flex-col sm:flex-row sm:justify-between">
@@ -50,7 +50,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="">
-                        <h4 className="text-lg font-semibold mb-4">Support</h4>
+                        <h4 className="text-lg text-right font-semibold mb-4">Support</h4>
                         <ul className="space-y-2 sm:text-right">
                             <li>
                                 <Link href="#" className="hover:text-blue-400 transition-colors">FAQ</Link>

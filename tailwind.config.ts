@@ -20,122 +20,172 @@ const config = {
 	],
 	prefix: "",
 	theme: {
-		container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
-		},
-		extend: {
-			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
-				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
-				}
-			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
-			},
-			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
-				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				},
-				aurora: {
-					from: {
-						backgroundPosition: '50% 50%, 50% 50%'
-					},
-					to: {
-						backgroundPosition: '350% 50%, 350% 50%'
-					}
-				},
-				shimmer: {
-					from: {
-						backgroundPosition: '0 0'
-					},
-					to: {
-						backgroundPosition: '-200% 0'
-					}
-				},
-				gradientAnimation: {
-					'0%': {
-						'background-position': '0% 0%'
-					},
-					'50%': {
-						'background-position': '100% 100%'
-					},
-					'100%': {
-						'background-position': '0% 0%'
-					}
-				},
-				spotlight: {
-					"0%": {
-						opacity: '0',
-						transform: "translate(-72%, -62%) scale(0.5)",
-					},
-					"100%": {
-						opacity: '1',
-						transform: "translate(-50%,-40%) scale(1)",
-					},
-				},
-			},
-			animation: {
-				shimmer: 'shimmer 2s linear infinite',
-				aurora: 'aurora 60s linear infinite',
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				gradient: 'gradientAnimation 5s ease infinite',
-				spotlight: "spotlight 2s ease .75s 1 forwards",
-			},
-			boxShadow: {
-				input: '`0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`'
-			}
-		}
-	},
+    	container: {
+    		center: 'true',
+    		padding: '2rem',
+    		screens: {
+    			'2xl': '1400px'
+    		}
+    	},
+    	extend: {
+    		colors: {
+    			border: 'hsl(var(--border))',
+    			input: 'hsl(var(--input))',
+    			ring: 'hsl(var(--ring))',
+    			background: 'hsl(var(--background))',
+    			foreground: 'hsl(var(--foreground))',
+    			primary: {
+    				DEFAULT: 'hsl(var(--primary))',
+    				foreground: 'hsl(var(--primary-foreground))'
+    			},
+    			secondary: {
+    				DEFAULT: 'hsl(var(--secondary))',
+    				foreground: 'hsl(var(--secondary-foreground))'
+    			},
+    			destructive: {
+    				DEFAULT: 'hsl(var(--destructive))',
+    				foreground: 'hsl(var(--destructive-foreground))'
+    			},
+    			muted: {
+    				DEFAULT: 'hsl(var(--muted))',
+    				foreground: 'hsl(var(--muted-foreground))'
+    			},
+    			accent: {
+    				DEFAULT: 'hsl(var(--accent))',
+    				foreground: 'hsl(var(--accent-foreground))'
+    			},
+    			popover: {
+    				DEFAULT: 'hsl(var(--popover))',
+    				foreground: 'hsl(var(--popover-foreground))'
+    			},
+    			card: {
+    				DEFAULT: 'hsl(var(--card))',
+    				foreground: 'hsl(var(--card-foreground))'
+    			}
+    		},
+    		borderRadius: {
+    			lg: 'var(--radius)',
+    			md: 'calc(var(--radius) - 2px)',
+    			sm: 'calc(var(--radius) - 4px)'
+    		},
+    		keyframes: {
+    			'accordion-down': {
+    				from: {
+    					height: '0'
+    				},
+    				to: {
+    					height: 'var(--radix-accordion-content-height)'
+    				}
+    			},
+    			'accordion-up': {
+    				from: {
+    					height: 'var(--radix-accordion-content-height)'
+    				},
+    				to: {
+    					height: '0'
+    				}
+    			},
+    			aurora: {
+    				from: {
+    					backgroundPosition: '50% 50%, 50% 50%'
+    				},
+    				to: {
+    					backgroundPosition: '350% 50%, 350% 50%'
+    				}
+    			},
+    			shimmer: {
+    				from: {
+    					backgroundPosition: '0 0'
+    				},
+    				to: {
+    					backgroundPosition: '-200% 0'
+    				}
+    			},
+    			gradientAnimation: {
+    				'0%': {
+    					'background-position': '0% 0%'
+    				},
+    				'50%': {
+    					'background-position': '100% 100%'
+    				},
+    				'100%': {
+    					'background-position': '0% 0%'
+    				}
+    			},
+    			spotlight: {
+    				'0%': {
+    					opacity: '0',
+    					transform: 'translate(-72%, -62%) scale(0.5)'
+    				},
+    				'100%': {
+    					opacity: '1',
+    					transform: 'translate(-50%,-40%) scale(1)'
+    				}
+    			},
+    			ripple: {
+    				'0%, 100%': {
+    					transform: 'translate(-50%, -50%) scale(1)'
+    				},
+    				'50%': {
+    					transform: 'translate(-50%, -50%) scale(0.9)'
+    				}
+    			},
+    			marquee: {
+    				from: {
+    					transform: 'translateX(0)'
+    				},
+    				to: {
+    					transform: 'translateX(calc(-100% - var(--gap)))'
+    				}
+    			},
+    			'marquee-vertical': {
+    				from: {
+    					transform: 'translateY(0)'
+    				},
+    				to: {
+    					transform: 'translateY(calc(-100% - var(--gap)))'
+    				}
+    			},
+    			orbit: {
+    				'0%': {
+    					transform: 'rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)'
+    				},
+    				'100%': {
+    					transform: 'rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)'
+    				}
+    			},
+    			gradient: {
+    				to: {
+    					backgroundPosition: 'var(--bg-size) 0'
+    				}
+    			},
+    			'shiny-text': {
+    				'0%, 90%, 100%': {
+    					'background-position': 'calc(-100% - var(--shiny-width)) 0'
+    				},
+    				'30%, 60%': {
+    					'background-position': 'calc(100% + var(--shiny-width)) 0'
+    				}
+    			}
+    		},
+    		animation: {
+    			shimmer: 'shimmer 2s linear infinite',
+    			aurora: 'aurora 60s linear infinite',
+    			'accordion-down': 'accordion-down 0.2s ease-out',
+    			'accordion-up': 'accordion-up 0.2s ease-out',
+    			gradient: 'gradient 8s linear infinite',
+    			spotlight: 'spotlight 2s ease .75s 1 forwards',
+    			ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite',
+    			marquee: 'marquee var(--duration) infinite linear',
+    			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+    			orbit: 'orbit calc(var(--duration)*1s) linear infinite',
+    			'shiny-text': 'shiny-text 8s infinite'
+    		},
+    		boxShadow: {
+    			input: '`0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`'
+    		}
+    	}
+    },
 	plugins: [require("tailwindcss-animate"), addVariablesForColors,
 	function ({ matchUtilities, theme }: any) {
 		matchUtilities(

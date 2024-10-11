@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input"
 import { motion, AnimatePresence } from 'framer-motion'
 import SmoothScroll from '@/components/smoothscroll'
 import Link from 'next/link'
-import SupportSection from '@/app/(landingpage)/_components/supportsection'
+import SupportSection from '@/components/homepage/supportsection'
 import IconCloud from '@/components/ui/icon-cloud'
+import Ripple from '@/components/ui/ripple'
 
 const categories = [
 	{
@@ -311,9 +312,9 @@ export default function ResourcesPage() {
 		'jest', 'docker', 'aws', 'firebase', 'redux', 'graphql'
 	];
 
-    const handleThemes = () => {
-        setIsDarkMode(c => !c);
-    }
+	const handleThemes = () => {
+		setIsDarkMode(c => !c);
+	}
 
 	useEffect(() => {
 		const filtered = categories.map(category => ({
@@ -327,39 +328,27 @@ export default function ResourcesPage() {
 
 	return (
 		<SmoothScroll>
-			<div className="min-h-screen pt-20 md:pt-8">
-				<main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+			<div className="min-h-screen md:pt-8">
+				<main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 pt-32">
 					<AnimatePresence>
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5 }}
-							viewport={{ once: true }}
-							className="mb-8 text-center relative overflow-hidden rounded-xl shadow-2xl"
-						>
-							<div className="absolute inset-0"></div>
-							<div
-								className="absolute inset-0 bg-cover bg-center"
-							></div>
-							<div className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
-								<h2 className="text-5xl font-extrabold mb-6 shadow-text">Discover Resources</h2>
-								<p className="text-xl dark:text-gray-100 mb-8 max-w-3xl mx-auto shadow-text">
-									Explore our curated collection of learning materials to enhance your skills in programming, web development, and DevOps.
-								</p>
-								<div className="max-w-md mx-auto relative">
-									<Input
-										type="text"
-										placeholder="Search resources..."
-										value={searchTerm}
-										onChange={(e) => setSearchTerm(e.target.value)}
-										className="w-full bg-black bg-opacity-100 placeholder:text-white border-gray-500 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-full py-3 px-6 pr-12 shadow-inner"
-									/>
-									<Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300 dark:text-gray-100" />
-									<BottomGradient />
-								</div>
-								<IconCloud iconSlugs={iconSlugs} />
+						<div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden">
+							<h2 className="text-5xl font-extrabold mb-6 shadow-text">Discover Resources</h2>
+							<p className="text-xl text-center dark:text-gray-100 mb-8 max-w-3xl mx-auto shadow-text">
+								Explore our curated collection of learning materials to enhance your skills in programming, web development, and DevOps.
+							</p>
+							<div className="max-w-md mx-auto relative z-50">
+								<Input
+									type="text"
+									placeholder="Search resources..."
+									value={searchTerm}
+									onChange={(e) => setSearchTerm(e.target.value)}
+									className="w-full bg-black bg-opacity-100 placeholder:text-white border-gray-500 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-full py-3 px-6 pr-12 shadow-inner"
+								/>
+								<Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-300 dark:text-gray-100" />
+								<BottomGradient />
 							</div>
-						</motion.div>
+							<Ripple />
+						</div>
 					</AnimatePresence>
 
 					<AnimatePresence>

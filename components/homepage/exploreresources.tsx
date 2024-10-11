@@ -40,7 +40,7 @@ const ExploreResourcesSection = () => {
     const router = useRouter();
 
     return (
-        <div className="mx-auto px-4 flex z-40 flex-col gap-8 w-full">
+        <div className="mx-auto px-4 flex z-40 flex-col gap-4 w-full">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

@@ -1,13 +1,13 @@
 "use client"
 
 import { useParams, useSearchParams } from "next/navigation";
-import { lessonData } from "@/app/(main_app)/resources/data/cpp";
+import { lessonData } from "@/app/resources/data/cpp";
 import { useEffect, useState } from "react";
 import SmoothScroll from "@/components/smoothscroll";
 import { Toaster } from "react-hot-toast";
-import MainContent from "@/app/(main_app)/resources/_components/maincontent";
-import PracticeQuestion from "@/app/(main_app)/resources/_components/practice";
-import NextChapter from "@/app/(main_app)/resources/_components/nextchapter";
+import MainContent from "@/app/resources/_components/maincontent";
+import PracticeQuestion from "@/app/resources/_components/practice";
+import NextChapter from "@/app/resources/_components/nextchapter";
 import { motion } from "framer-motion";
 import FullScreenMessage from "@/components/spinners";
 

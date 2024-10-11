@@ -3,7 +3,9 @@ import "./globals.css";
 import { Chilanka, Poppins } from "next/font/google";
 import { Providers } from "@/app/providers/providers";
 import { AppProvider } from "./context/usercontext";
+import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
+import MainLayout from "./mainlayout";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -28,9 +30,11 @@ export default function RootLayout({
 				>
 					<Providers>
 						<AppProvider>
-							{
-                                children
-                            }
+							<MainLayout>
+								{
+									children
+								}
+							</MainLayout>
 						</AppProvider>
 					</Providers>
 				</ThemeProvider>

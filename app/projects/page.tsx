@@ -27,7 +27,7 @@ export default function ProjectsPage() {
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen text-white pt-4">
+            <div className="min-h-screen text-white pt-20">
                 <header className="sticky top-0 shadow-md z-10">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                         <div className="flex flex-col sm:flex-row gap-4 justify-between">

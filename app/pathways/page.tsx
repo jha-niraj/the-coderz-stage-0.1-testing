@@ -6,7 +6,7 @@ import { ChevronRight, Code, Server, Globe, Database, ShieldCheck, Brain, Cpu, C
 import { Button } from "@/components/ui/button"
 import SmoothScroll from '@/components/smoothscroll'
 import { pathways } from './pathwaysdata'
-import { Pathway } from '../../types'
+import { Pathway } from '../types'
 import PathwayDetails from './_components/pathwaydetails'
 
 export default function PathwaysPage() {

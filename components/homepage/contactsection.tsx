@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../ui/button";
 
 const ContactSection = () => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
