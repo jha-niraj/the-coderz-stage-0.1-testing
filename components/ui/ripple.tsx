@@ -18,7 +18,7 @@ const Ripple = React.memo(function Ripple({
   return (
     <div
       className={cn(
-        "absolute inset-0 bg-white/5 [mask-image:linear-gradient(to_bottom,white,transparent)]",
+        "absolute inset-0 [mask-image:linear-gradient(to_bottom,white,transparent)]",
         className,
       )}
     >
@@ -32,7 +32,7 @@ const Ripple = React.memo(function Ripple({
         return (
           <div
             key={i}
-            className={`absolute animate-ripple rounded-full bg-foreground/25 shadow-xl border [--i:${i}]`}
+            className={`absolute animate-ripple rounded-full shadow-xl [--i:${i}]`}
             style={
               {
                 width: `${size}px`,

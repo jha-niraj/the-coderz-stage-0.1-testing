@@ -8,7 +8,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -19,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from '@/components/ui/checkbox'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
+import { RainbowButton } from '@/components/ui/rainbow-button'
 
 const MotionCard = motion(Card)
 
@@ -156,11 +156,11 @@ export default function StudentProfile() {
     const renderSocialIcon = (platform: string) => {
         switch (platform) {
             case 'github':
-                return <Github className="h-6 w-6 text-gray-900" />
+                return <Github className="h-6 w-6 text-white" />
             case 'linkedin':
-                return <Linkedin className="h-6 w-6 text-blue-700" />
+                return <Linkedin className="h-6 w-6 text-blue-200" />
             case 'twitter':
-                return <X className="h-6 w-6 text-blue-400" />
+                return <X className="h-6 w-6 text-blue-100" />
             case 'leetcode':
                 return <Code className="h-6 w-6 text-yellow-500" />
             case 'website':
@@ -194,10 +194,10 @@ export default function StudentProfile() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-1 overflow-y-auto text-white p-4 sm:p-6 lg:p-8 pt-8 w-full"
+                className="flex-1 text-black dark:text-white p-4 sm:p-6 lg:p-8 py-8 w-[90%] mx-auto"
             >
                 <div className="flex justify-between items-start sm:items-center mb-6">
-                    <h1 className="text-3xl font-bold text-white mb-4 sm:mb-0">
+                    <h1 className="text-3xl font-bold mb-4 sm:mb-0">
                         Your Profile
                     </h1>
                     <Dialog>
@@ -209,9 +209,9 @@ export default function StudentProfile() {
                                 Edit Profile
                             </Button>
                         </DialogTrigger>
-                        <DialogContent className="w-[80vw] h-[80vh] max-w-none max-h-none bg-white text-black overflow-hidden flex flex-col">
+                        <DialogContent className="w-[80vw] h-[80vh] max-w-none max-h-none bg-black dark:bg-white text-white dark:text-black overflow-hidden flex flex-col">
                             <DialogHeader className="flex justify-between w-full">
-                                <DialogTitle className="text-2xl font-bold text-white">Edit Profile</DialogTitle>
+                                <DialogTitle className="text-2xl font-bold">Edit Profile</DialogTitle>
                             </DialogHeader>
                             <div className="flex-grow overflow-y-auto px-6 w-full">
                                 <div className="flex flex-col lg:flex-row gap-6 py-4 w-full">
@@ -221,7 +221,7 @@ export default function StudentProfile() {
                                             <textarea
                                                 rows={10}
                                                 cols={30}
-                                                className="border-2 border-black rounded-lg p-4"
+                                                className="border-2 border-black text-black dark:text-white rounded-lg p-4"
                                                 onChange={(e) => setAboutMe(e.target.value)}
                                                 value={aboutme}
                                             ></textarea>
@@ -290,6 +290,7 @@ export default function StudentProfile() {
                                                             id={interest}
                                                             checked={selectedInterests.includes(interest)}
                                                             onCheckedChange={() => handleInterestChange(interest)}
+                                                            className="ring-2"
                                                         />
                                                         <label
                                                             htmlFor={interest}
@@ -305,9 +306,7 @@ export default function StudentProfile() {
                                 </div>
                             </div>
                             <div className="flex justify-end px-6 py-4 bg-black border-t border-gray-700">
-                                <Button onClick={handleSaveChanges} className="bg-white hover:bg-black text-black hover:text-white">
-                                    Save All Changes
-                                </Button>
+                                <RainbowButton onClick={handleSaveChanges}>Save all changes</RainbowButton>
                             </div>
                         </DialogContent>
                     </Dialog>
@@ -318,7 +317,7 @@ export default function StudentProfile() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="w-full shadow-lg dark:bg-gray-800"
+                        className="w-full shadow-lg text-black dark:text-white"
                     >
                         <CardContent className="p-6">
                             <div className="flex flex-col md:flex-row gap-6">
@@ -332,11 +331,11 @@ export default function StudentProfile() {
                                         <AvatarImage src={session?.user?.image!} alt="Student" />
                                         <AvatarFallback className="font-bold text-white text-4xl">{session?.user?.name?.slice(0, 1)}</AvatarFallback>
                                     </Avatar>
-                                    <h2 className="text-2xl font-bold text-white text-center dark:text-white">{session?.user?.name}</h2>
-                                    <p className="text-gray-200 dark:text-gray-400 text-center mb-4">Computer Science Student</p>
+                                    <h2 className="text-2xl font-bold text-center dark:text-white">{session?.user?.name}</h2>
+                                    <p className="text-gray-600 dark:text-gray-400 text-center mb-4">Computer Science Student</p>
                                     <div className="flex items-center">
                                         <Mail className="h-5 w-5 text-blue-500 dark:text-blue-400 mr-3" />
-                                        <span className="text-gray-200 dark:text-gray-300">{session?.user?.email}</span>
+                                        <span className="text-gray-800 dark:text-gray-300">{session?.user?.email}</span>
                                     </div>
                                     <div className="flex mt-4 space-x-4">
                                         {Object.entries(socialHandles).map(([platform, handle]) => (
@@ -345,7 +344,7 @@ export default function StudentProfile() {
                                                 href={`${handle}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`p-2 rounded-full ${handle ? "bg-white hover:bg-gray-200" : "bg-gray-700 cursor-not-allowed"} transition-colors duration-200`}
+                                                className={`p-2 rounded-full ${handle ? "bg-black hover:bg-gray-500 rounded-lg p-2" : "bg-gray-700 cursor-not-allowed"} transition-colors duration-200`}
                                                 aria-label={`${platform} profile`}
                                             >
                                                 {renderSocialIcon(platform)}
@@ -361,16 +360,23 @@ export default function StudentProfile() {
                                     className="md:w-[40%]"
                                 >
                                     <div>
-                                        <h3 className="text-xl font-semibold mb-4 text-white dark:text-white">About Me</h3>
-                                        <p className="text-gray-200 dark:text-gray-300 mb-6">
+                                        <h3 className="text-xl font-semibold mb-4">About Me</h3>
+                                        <p className="text-gray-600 dark:text-gray-300 mb-6">
                                             {
                                                 aboutme || "Please update about yourself"
                                             }
                                         </p>
                                     </div>
 
-                                    <h3 className="text-xl font-semibold mb-4 text-white dark:text-white">Interests</h3>
+                                    <h3 className="text-xl font-semibold mb-4">Interests</h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {/* {
+                                            !selectedInterests && (
+                                                <div>
+                                                    <p>Please update this section</p>
+                                                </div>
+                                            )
+                                        }
                                         {
                                             selectedInterests && selectedInterests.map((interest, index) => (
                                                 <motion.div
@@ -382,11 +388,33 @@ export default function StudentProfile() {
                                                 >
                                                     <div className="absolute inset-0 bg-blue-500 dark:bg-blue-400 opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
                                                     <div className="relative p-4 flex items-center justify-start">
-                                                        <h4 className="text-sm font-semibold text-gray-800 dark:text-white">{interest || "Please update this section"}</h4>
+                                                        <h4 className="text-sm font-semibold text-gray-800 dark:text-white">{interest}</h4>
                                                     </div>
                                                     <div className="absolute bottom-0 left-0 h-1 w-full bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                                                 </motion.div>
                                             ))
+                                        } */}
+                                        {
+                                            selectedInterests ?
+                                                    selectedInterests.map((interest, index) => (
+                                                        <motion.div
+                                                            key={interest}
+                                                            initial={{ opacity: 0, y: 20 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                                                            className="group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 transition-all duration-300 hover:shadow-xl"
+                                                        >
+                                                            <div className="absolute inset-0 bg-blue-500 dark:bg-blue-400 opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
+                                                            <div className="relative p-4 flex items-center justify-start">
+                                                                <h4 className="text-sm font-semibold">{interest}</h4>
+                                                            </div>
+                                                            <div className="absolute bottom-0 left-0 h-1 w-full bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                                                        </motion.div>
+                                                    ))
+                                                :
+                                                    <div>
+                                                        <p>Please update this section</p>
+                                                    </div>
                                         }
                                     </div>
                                 </motion.div>
@@ -398,7 +426,7 @@ export default function StudentProfile() {
                                     className="md:w-[30%] flex flex-col gap-12"
                                 >
                                     <div>
-                                        <h3 className="text-xl font-semibold mb-4 text-white">Technical Skills</h3>
+                                        <h3 className="text-xl font-semibold mb-4">Technical Skills</h3>
                                         <motion.div
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
@@ -406,18 +434,23 @@ export default function StudentProfile() {
                                             className="flex flex-wrap gap-2"
                                         >
                                             {
-                                                selectedSkills.map((skill) => (
-                                                    <Badge key={skill} variant="secondary" className="bg-white w-[45%] flex items-center justify-center text-black hover:bg-sky-500 hover:text-white cursor-pointer">
-                                                        {skill || "Please update the skill section"}
-                                                    </Badge>
-                                                ))
+                                                selectedSkills ? 
+                                                        selectedSkills.map((skill) => (
+                                                            <Badge key={skill} variant="secondary" className="bg-white w-[45%] flex items-center justify-center text-black hover:bg-sky-500 hover:text-white cursor-pointer">
+                                                                {skill || "Please update the skill section"}
+                                                            </Badge>
+                                                        ))
+                                                    :
+                                                        <div>
+                                                            <p>Please update the technical section</p>
+                                                        </div>
                                             }
 
                                         </motion.div>
                                     </div>
-                                    <div>
-                                        <h3 className="text-xl font-semibold mb-4 text-white">Your Resume</h3>
-                                        <p className="text-white">
+                                    <div className="">
+                                        <h3 className="text-xl font-semibold mb-4">Your Resume</h3>
+                                        <p className="bg-yellow-400 dark:text-black p-4 rounded-lg">
                                             We are working on integrating this, so that anyone can look up your resume and you can showcase your resume to others...
                                         </p>
                                     </div>
@@ -427,19 +460,19 @@ export default function StudentProfile() {
                         </CardContent>
                     </MotionCard>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-white">Security Settings</CardTitle>
-                                <CardDescription className="text-gray-300">Manage your account security</CardDescription>
+                                <CardTitle className="">Security Settings</CardTitle>
+                                <CardDescription className="text-gray-800 dark:text-gray-300">Manage your account security</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="current-password" className="text-white">Current Password</Label>
+                                    <Label htmlFor="current-password" className="">Current Password</Label>
                                     <Input id="current-password" placeholder='Current Password' type="password" />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="new-password" className="text-white">New Password</Label>
+                                    <Label htmlFor="new-password" className="">New Password</Label>
                                     <Input id="new-password" placeholder='New Password' type="password" />
                                 </div>
                             </CardContent>
@@ -449,13 +482,13 @@ export default function StudentProfile() {
                         </Card>
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-white">Danger Zone</CardTitle>
-                                <CardDescription className="text-gray-300">Irreversible account actions</CardDescription>
+                                <CardTitle className="">Danger Zone</CardTitle>
+                                <CardDescription className="text-gray-800 dark:text-gray-300">Irreversible account actions</CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="space-y-6">
                                 <div className="space-y-2">
                                     <Label>Delete Account</Label>
-                                    <p className="text-sm text-gray-300">Once you delete your account, there is no going back. Please be certain.</p>                                    <Dialog>
+                                    <p className="text-sm text-gray-800 dark:text-gray-300">Once you delete your account, there is no going back. Please be certain.</p>                                    <Dialog>
                                         <DialogTrigger>
                                             <Button variant="destructive">Delete My Account</Button>
                                         </DialogTrigger>

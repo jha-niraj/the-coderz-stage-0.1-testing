@@ -33,7 +33,7 @@ const CommunityPlatform = ({ logo, title, description, color, buttonText, button
 				</div>
 				<p className="text-gray-600 mb-6">{description}</p>
 				<Button
-					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white w-full`}
+					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white hover:text-black w-full`}
 					onClick={() => window.open(buttonLink, '_blank')}
 				>
 					{buttonText} <ExternalLink className="w-4 h-4 ml-2" />
@@ -62,8 +62,8 @@ const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => (
 export default function CommunityPage() {
 	return (
 		<SmoothScroll>
-			<div className="min-h-screen bg-black dark:bg-dot-white/[0.2] bg-dot-white/[0.2] text-white">
-				<main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+			<div className="min-h-screen text-black dark:text-white">
+				<main className="max-w-7xl mx-auto py-32 px-4 sm:px-6 lg:px-8">
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
@@ -142,7 +142,7 @@ export default function CommunityPage() {
 						className="text-center bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-8 shadow-lg"
 					>
 						<h3 className="text-3xl font-bold mb-4 text-white">Ready to Level Up Your Coding Journey?</h3>
-						<p className="text-xl text-white text-opacity-90 mb-8">Join CodeCraft today and unlock a world of opportunities!</p>
+						<p className="text-xl text-white text-opacity-90 mb-8">Join The Coder&apos;z today and unlock a world of opportunities!</p>
 						<Button
 							className="bg-white text-indigo-600 hover:bg-indigo-100 text-lg px-8 py-3"
 							onClick={() => {

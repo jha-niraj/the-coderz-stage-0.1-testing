@@ -50,7 +50,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="">
-                        <h4 className="text-lg text-right font-semibold mb-4">Support</h4>
+                        <h4 className="text-lg text-left sm:text-right font-semibold mb-4">Support</h4>
                         <ul className="space-y-2 sm:text-right">
                             <li>
                                 <Link href="#" className="hover:text-blue-400 transition-colors">FAQ</Link>

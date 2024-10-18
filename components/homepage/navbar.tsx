@@ -20,13 +20,36 @@ export default function Navbar({ className }: { className?: string }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const toggleMobileMenu = () => setIsMobileMenuOpen(c => !c);
 
+    const mobileLinks = [
+        {
+            name: "Projects",
+            href: "/projects"
+        },
+        {
+            name: "Pathways",
+            href: "pathways"
+        },
+        {
+            name: "Communities",
+            href: "/communities"
+        },
+        {
+            name: "Services",
+            href: "/services"
+        },
+        {
+            name: "About Us",
+            href: "/aboutus"
+        },
+    ]
+
     return (
         <div
-            className={cn("fixed top-5 inset-x-0 max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto z-50 transition-all duration-200", className)}
+            className={cn("fixed top-5 inset-x-0 max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto z-50 transition-all duration-200", className)}
         >
             <Menu setActive={setActive}>
                 <Link href="/" className="flex gap-2 items-center justify-center">
-                    <Image 
+                    <Image
                         src={mainWebLogo}
                         alt="Main Web Logo"
                         height={40}
@@ -35,14 +58,19 @@ export default function Navbar({ className }: { className?: string }) {
                     />
                     <h1 className="">The Coder&apos;z</h1>
                 </Link>
-                <div className="hidden md:flex items-center justify-center gap-10">
-                    <MenuItem setActive={setActive} active={active} item="Exclusives">
-                        <div className="flex flex-col space-y-4 text-sm">
-                            <HoveredLink href="/projects">Projects</HoveredLink>
-                            <HoveredLink href="/pathways">Pathways</HoveredLink>
-                            <HoveredLink href="">Open Source(coming soon)</HoveredLink>
-                        </div>
-                    </MenuItem>
+                <div className="hidden md:flex items-center justify-center gap-5">
+                    {
+                        status === "authenticated" ?
+                            <MenuItem setActive={setActive} active={active} item="Exclusives">
+                                <div className="flex flex-col space-y-4 text-sm">
+                                    <HoveredLink href="/projects">Projects</HoveredLink>
+                                    <HoveredLink href="/pathways">Pathways</HoveredLink>
+                                    <HoveredLink href="">Open Source(coming soon)</HoveredLink>
+                                </div>
+                            </MenuItem>
+                            :
+                            ""
+                    }
                     <Link href="/aboutus">
                         About Us
                     </Link>
@@ -77,14 +105,6 @@ export default function Navbar({ className }: { className?: string }) {
                             />
                         </div>
                     </MenuItem>
-                    <MenuItem setActive={setActive} active={active} item="Pricing">
-                        <div className="flex flex-col space-y-4 text-sm">
-                            <HoveredLink href="/hobby">Hobby</HoveredLink>
-                            <HoveredLink href="/individual">Individual</HoveredLink>
-                            <HoveredLink href="/team">Team</HoveredLink>
-                            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-                        </div>
-                    </MenuItem>
                 </div>
                 <div className="hidden md:flex gap-2 items-center justify-center">
                     <div>
@@ -100,7 +120,7 @@ export default function Navbar({ className }: { className?: string }) {
                                     </Avatar>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end" className="w-36">
-                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuLabel>{ session?.user?.name }</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem>Dashboard</DropdownMenuItem>
                                     <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -114,7 +134,7 @@ export default function Navbar({ className }: { className?: string }) {
                             </Link>
                     }
                 </div>
-                <div className="md:hidden flex gap-3 items-center justify-center">
+                <div className="md:hidden flex gap-3 items-center justify-center cursor-pointer">
                     <ModeToggle />
                     <div onClick={toggleMobileMenu}>
                         <MenuIcon size={36} />
@@ -133,7 +153,7 @@ export default function Navbar({ className }: { className?: string }) {
                                 ease: "easeInOut",
                             }}
                             className={cn(
-                                "fixed h-full w-full inset-0 bg-black dark:bg-black p-10 z-[50] flex flex-col justify-between",
+                                "fixed h-full w-full inset-0 p-10 z-[50] bg-black text-white dark:text-black dark:bg-background flex flex-col justify-between",
                                 className
                             )}
                         >
@@ -144,23 +164,23 @@ export default function Navbar({ className }: { className?: string }) {
                                 <X size={32} />
                             </div>
                             <div className="flex flex-col space-y-6 pt-4">
-                                <Link href="/web-dev" className="text-lg">Web Development</Link>
-                                <Link href="/interface-design" className="text-lg">Interface Design</Link>
-                                <Link href="/seo" className="text-lg">Search Engine Optimization</Link>
-                                <Link href="/branding" className="text-lg">Branding</Link>
-                                <Link href="/aboutus" className="text-lg">About Us</Link>
-                                <Link href="/services" className="text-lg">Services</Link>
-                                <Link href="/pricing" className="text-lg">Communities</Link>
+                                {
+                                    mobileLinks.map((link, index) => {
+                                        return (
+                                            <Link onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{ link.name }</Link>
+                                        )
+                                    })
+                                }
                                 {
                                     status === "authenticated" ? (
                                         <>
-                                            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                                                <User size={24} className="text-gray-600" />
-                                                <h1>{session?.user?.name}</h1>
+                                            <div className="flex items-center justify-center gap-10">
+                                                <User size={32} className="rounded-full bg-gray-200 text-gray-600" />
+                                                <h1 className="text-white">{session?.user?.name}</h1>
                                             </div>
                                         </>
                                     ) : (
-                                        <Link href="/signin" className="w-full flex items-center justify-center">
+                                        <Link href="/signin" className="w-full flex items-center bg-background rounded-lg justify-center">
                                             <ShinyButton className="w-full">Sign In</ShinyButton>
                                         </Link>
                                     )

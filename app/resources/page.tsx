@@ -1,14 +1,14 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { Search } from 'lucide-react'
-import { Input } from "@/components/ui/input"
-import { motion, AnimatePresence } from 'framer-motion'
-import SmoothScroll from '@/components/smoothscroll'
-import Link from 'next/link'
-import SupportSection from '@/components/homepage/supportsection'
-import IconCloud from '@/components/ui/icon-cloud'
-import Ripple from '@/components/ui/ripple'
+import { useState, useEffect } from 'react';
+import { Search } from 'lucide-react';
+import { Input } from "@/components/ui/input";
+import { motion, AnimatePresence } from 'framer-motion';
+import SmoothScroll from '@/components/smoothscroll';
+import Link from 'next/link';
+import SupportSection from '@/components/homepage/supportsection';
+import IconCloud from '@/components/ui/icon-cloud';
+import Ripple from '@/components/ui/ripple';
 
 const categories = [
 	{
@@ -20,42 +20,48 @@ const categories = [
 				url: '/resources/programminglanguages/c',
 				icon: 'C',
 				description: 'A high-performance, compiled language that provides low-level memory management.',
-				color: 'from-blue-500 to-blue-300'
+				color: 'from-blue-500 to-blue-300',
+				status: "live"
 			},
 			{
 				name: 'C++',
 				url: '/resources/programminglanguages/cpp',
 				icon: 'C++',
 				description: 'Widely used for system/application software, game development, and more.',
-				color: 'from-blue-600 to-blue-400'
+				color: 'from-blue-600 to-blue-400',
+				status: "live"
 			},
 			{
 				name: 'Java',
 				url: '/resources/programminglanguages/java',
 				icon: '☕',
 				description: 'A popular language for building large-scale enterprise applications and Android apps.',
-				color: 'from-red-500 to-red-300'
+				color: 'from-red-500 to-red-300',
+				status: "live"
 			},
 			{
 				name: 'Python',
 				url: '/resources/programminglanguages/python',
 				icon: '🐍',
 				description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
-				color: 'from-green-500 to-green-300'
+				color: 'from-green-500 to-green-300',
+				status: "live"
 			},
 			{
 				name: 'Go',
 				url: '/resources/programminglanguages/go',
 				icon: 'Go',
 				description: 'A statically typed, compiled language designed for simplicity and efficiency.',
-				color: 'from-cyan-500 to-cyan-300'
+				color: 'from-cyan-500 to-cyan-300',
+				status: "coming"
 			},
 			{
 				name: 'Rust',
 				url: '/resources/programminglanguages/rust',
 				icon: '🦀',
 				description: 'A systems programming language focused on safety, concurrency, and performance.',
-				color: 'from-orange-500 to-orange-300'
+				color: 'from-orange-500 to-orange-300',
+				status: "coming"
 			},
 		]
 	},
@@ -68,28 +74,32 @@ const categories = [
 				url: '/resources/foundations/html',
 				icon: '</>',
 				description: 'The standard markup language for creating web pages and web applications.',
-				color: 'from-orange-500 to-orange-300'
+				color: 'from-orange-500 to-orange-300',
+				status: "live"
 			},
 			{
 				name: 'CSS',
 				url: '/resources/foundations/css',
 				icon: '🎨',
 				description: 'A style sheet language used for describing the presentation of a document written in HTML.',
-				color: 'from-blue-500 to-blue-300'
+				color: 'from-blue-500 to-blue-300',
+				status: "live"
 			},
 			{
 				name: 'JavaScript',
 				url: '/resources/foundations/javascript',
 				icon: 'JS',
 				description: 'A high-level, interpreted programming language that is a core technology of the World Wide Web.',
-				color: 'from-yellow-500 to-yellow-300'
+				color: 'from-yellow-500 to-yellow-300',
+				status: "live"
 			},
 			{
 				name: 'TypeScript',
 				url: '/resources/foundations/typescript',
 				icon: 'TS',
 				description: 'A typed superset of JavaScript that compiles to plain JavaScript.',
-				color: 'from-blue-700 to-blue-500'
+				color: 'from-blue-700 to-blue-500',
+				status: "coming"
 			},
 		]
 	},
@@ -109,7 +119,8 @@ const categories = [
 				url: '/resources/tailwindcss',
 				icon: '🎨',
 				description: 'A utility-first CSS framework for rapidly building custom user interfaces.',
-				color: 'from-teal-500 to-teal-300'
+				color: 'from-teal-500 to-teal-300',
+				status: "coming"
 			}
 		]
 	},
@@ -122,50 +133,54 @@ const categories = [
 				url: '/resources/nodejs',
 				icon: '🟢',
 				description: 'A JavaScript runtime built on Chrome\'s V8 JavaScript engine for server-side programming.',
-				color: 'from-green-500 to-green-300'
+				color: 'from-green-500 to-green-300',
+				status: "coming"
 			},
 			{
 				name: 'Express.js',
 				url: '/resources/expressjs',
 				icon: '🚂',
 				description: 'A minimal and flexible Node.js web application framework.',
-				color: 'from-gray-500 to-gray-300'
+				color: 'from-gray-500 to-gray-300',
+				status: "coming"
 			},
 			{
 				name: 'Django',
 				url: '/resources/django',
 				icon: '🐍',
 				description: 'A high-level Python web framework that encourages rapid development and clean, pragmatic design.',
-				color: 'from-green-700 to-green-500'
+				color: 'from-green-700 to-green-500',
+				status: "coming"
 			},
 			{
 				name: 'Flask',
 				url: '/resources/flask',
 				icon: '🌶️',
 				description: 'A lightweight WSGI web application framework in Python.',
-				color: 'from-red-500 to-red-300'
-			},
-			{
-				name: 'Ruby on Rails',
-				url: '/resources/rails',
-				icon: '🛤️',
-				description: 'A server-side web application framework written in Ruby.',
-				color: 'from-red-700 to-red-500'
-			},
-			{
-				name: 'Spring Boot',
-				url: '/resources/spring-boot',
-				icon: '🍃',
-				description: 'An extension of the Spring framework for creating stand-alone, production-grade Spring-based Applications.',
-				color: 'from-green-500 to-green-300'
-			},
-			{
-				name: 'ASP.NET Core',
-				url: '/resources/aspnet-core',
-				icon: '🔷',
-				description: 'A cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.',
-				color: 'from-purple-500 to-purple-300'
-			},
+				color: 'from-red-500 to-red-300',
+				status: "coming"
+			}
+			// {
+			// 	name: 'Ruby on Rails',
+			// 	url: '/resources/rails',
+			// 	icon: '🛤️',
+			// 	description: 'A server-side web application framework written in Ruby.',
+			// 	color: 'from-red-700 to-red-500'
+			// },
+			// {
+			// 	name: 'Spring Boot',
+			// 	url: '/resources/spring-boot',
+			// 	icon: '🍃',
+			// 	description: 'An extension of the Spring framework for creating stand-alone, production-grade Spring-based Applications.',
+			// 	color: 'from-green-500 to-green-300'
+			// },
+			// {
+			// 	name: 'ASP.NET Core',
+			// 	url: '/resources/aspnet-core',
+			// 	icon: '🔷',
+			// 	description: 'A cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications.',
+			// 	color: 'from-purple-500 to-purple-300'
+			// },
 		]
 	},
 	{
@@ -177,43 +192,38 @@ const categories = [
 				url: '/resources/mern',
 				icon: '🌐',
 				description: 'A JavaScript stack that includes MongoDB, Express.js, React, and Node.js.',
-				color: 'from-green-500 to-green-300'
+				color: 'from-green-500 to-green-300',
+				status: "coming"
 			},
 			{
 				name: 'Next.js',
 				url: '/resources/nextjs',
 				icon: '▲',
 				description: 'A React framework that enables server-side rendering and generating static websites.',
-				color: 'from-gray-300 to-gray-600'
+				color: 'from-gray-300 to-gray-600',
+				status: "coming"
 			},
-			{
-				name: 'MEAN Stack',
-				url: '/resources/mean',
-				icon: '🅰️',
-				description: 'A JavaScript stack that includes MongoDB, Express.js, Angular, and Node.js.',
-				color: 'from-red-500 to-red-300'
-			},
-			{
-				name: 'Ruby on Rails',
-				url: '/resources/rails-fullstack',
-				icon: '💎',
-				description: 'A full-stack web application framework that includes everything needed to create database-backed web applications.',
-				color: 'from-red-700 to-red-500'
-			},
-			{
-				name: 'Django Full Stack',
-				url: '/resources/django-fullstack',
-				icon: '🐍',
-				description: 'A high-level Python web framework that encourages rapid development and clean, pragmatic design for full-stack applications.',
-				color: 'from-green-700 to-green-500'
-			},
-			{
-				name: 'Laravel',
-				url: '/resources/laravel',
-				icon: '🐘',
-				description: 'A PHP web application framework with expressive, elegant syntax for full-stack development.',
-				color: 'from-red-500 to-red-300'
-			},
+			// {
+			// 	name: 'MEAN Stack',
+			// 	url: '/resources/mean',
+			// 	icon: '🅰️',
+			// 	description: 'A JavaScript stack that includes MongoDB, Express.js, Angular, and Node.js.',
+			// 	color: 'from-red-500 to-red-300'
+			// },
+			// {
+			// 	name: 'Ruby on Rails',
+			// 	url: '/resources/rails-fullstack',
+			// 	icon: '💎',
+			// 	description: 'A full-stack web application framework that includes everything needed to create database-backed web applications.',
+			// 	color: 'from-red-700 to-red-500'
+			// },
+			// {
+			// 	name: 'Django Full Stack',
+			// 	url: '/resources/django-fullstack',
+			// 	icon: '🐍',
+			// 	description: 'A high-level Python web framework that encourages rapid development and clean, pragmatic design for full-stack applications.',
+			// 	color: 'from-green-700 to-green-500'
+			// }
 		]
 	},
 	{
@@ -225,50 +235,54 @@ const categories = [
 				url: '/resources/docker',
 				icon: '🐳',
 				description: 'A platform for developing, shipping, and running applications in containers.',
-				color: 'from-blue-500 to-blue-300'
+				color: 'from-blue-500 to-blue-300',
+				status: "coming"
 			},
 			{
 				name: 'Kubernetes',
 				url: '/resources/kubernetes',
 				icon: '☸️',
 				description: 'An open-source system for automating deployment, scaling, and management of containerized applications.',
-				color: 'from-blue-700 to-blue-500'
+				color: 'from-blue-700 to-blue-500',
+				status: "coming"
 			},
 			{
 				name: 'Jenkins',
 				url: '/resources/jenkins',
 				icon: '🤵',
 				description: 'An open-source automation server that enables developers to build, test, and deploy their software.',
-				color: 'from-red-500 to-red-300'
+				color: 'from-red-500 to-red-300',
+				status: "coming"
 			},
 			{
 				name: 'GitLab CI/CD',
 				url: '/resources/gitlab-cicd',
 				icon: '🦊',
 				description: 'A tool built into GitLab for software development through the continuous methodologies.',
-				color: 'from-orange-500 to-orange-300'
+				color: 'from-orange-500 to-orange-300',
+				status: "coming"
 			},
-			{
-				name: 'Ansible',
-				url: '/resources/ansible',
-				icon: '📚',
-				description: 'An open-source software provisioning, configuration management, and application-deployment tool.',
-				color: 'from-red-700 to-red-500'
-			},
-			{
-				name: 'Terraform',
-				url: '/resources/terraform',
-				icon: '🏗️',
-				description: 'An open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure.',
-				color: 'from-purple-500 to-purple-300'
-			},
-			{
-				name: 'Prometheus',
-				url: '/resources/prometheus',
-				icon: '🔥',
-				description: 'An open-source systems monitoring and alerting toolkit.',
-				color: 'from-orange-500 to-orange-300'
-			},
+			// {
+			// 	name: 'Ansible',
+			// 	url: '/resources/ansible',
+			// 	icon: '📚',
+			// 	description: 'An open-source software provisioning, configuration management, and application-deployment tool.',
+			// 	color: 'from-red-700 to-red-500'
+			// },
+			// {
+			// 	name: 'Terraform',
+			// 	url: '/resources/terraform',
+			// 	icon: '🏗️',
+			// 	description: 'An open-source infrastructure as code software tool that enables you to safely and predictably create, change, and improve infrastructure.',
+			// 	color: 'from-purple-500 to-purple-300'
+			// },
+			// {
+			// 	name: 'Prometheus',
+			// 	url: '/resources/prometheus',
+			// 	icon: '🔥',
+			// 	description: 'An open-source systems monitoring and alerting toolkit.',
+			// 	color: 'from-orange-500 to-orange-300'
+			// },
 		]
 	}
 ]
@@ -280,7 +294,7 @@ function ResourceCard({ resource }: any) {
 			initial={{ opacity: 0, y: 50 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+			className={`${ resource.status === "coming soon" ? "bg-gray-300 " : "" } rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300`}
 		>
 			<div className="p-6 flex flex-col justify-between h-full">
 				<div>
@@ -289,9 +303,11 @@ function ResourceCard({ resource }: any) {
 				</div>
 				<Link
 					href={resource.url}
-					className={`block w-full bg-gradient-to-r ${resource.color} text-black px-4 py-2 rounded-full text-center font-bold hover:opacity-90 transition-opacity`}
+					className={`block w-full bg-gradient-to-r ${resource.color} disabled:${resource.status === "coming soon"} text-black px-4 py-2 rounded-full text-center font-bold hover:opacity-90 transition-opacity`}
 				>
-					Explore Resources
+					{
+						resource.status === "live" ? "Explore resources" : "Coming Soon"
+					}
 				</Link>
 			</div>
 		</motion.div>
@@ -328,11 +344,11 @@ export default function ResourcesPage() {
 
 	return (
 		<SmoothScroll>
-			<div className="min-h-screen md:pt-8">
+			<div className="min-h-screen">
 				<main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 pt-32">
 					<AnimatePresence>
 						<div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden">
-							<h2 className="text-5xl font-extrabold mb-6 shadow-text">Discover Resources</h2>
+							<h2 className="text-5xl font-extrabold mb-6 shadow-text text-center">Discover Resources</h2>
 							<p className="text-xl text-center dark:text-gray-100 mb-8 max-w-3xl mx-auto shadow-text">
 								Explore our curated collection of learning materials to enhance your skills in programming, web development, and DevOps.
 							</p>

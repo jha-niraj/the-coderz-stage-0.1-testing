@@ -87,7 +87,7 @@ const SupportSection = () => {
                         ].map((platform, index) => (
                             <motion.button
                                 key={index}
-                                className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors duration-300"
+                                className="p-2 rounded-full transition-colors duration-300"
                                 onClick={() => handleShare(platform.name)}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}

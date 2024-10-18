@@ -133,12 +133,12 @@ export function FeedbackSection() {
 	return (
 		<div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg">
 			<h2 className="text-3xl font-bold text-center mb-12">What Our Coder&apos;z Say</h2>
-			<Marquee pauseOnHover className="[--duration:20s]">
+			<Marquee reverse pauseOnHover className="[--duration:20s]">
 				{firstRow.map((review) => (
 					<ReviewCard key={review.username} {...review} />
 				))}
 			</Marquee>
-			<Marquee reverse pauseOnHover className="[--duration:20s]">
+			<Marquee pauseOnHover className="[--duration:20s]">
 				{secondRow.map((review) => (
 					<ReviewCard key={review.username} {...review} />
 				))}

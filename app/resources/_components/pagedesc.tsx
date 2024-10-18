@@ -37,11 +37,11 @@ export default function PageDescription({ title, description, onClick, isEnrolle
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="rounded-lg p-6 mb-8 border border-gray-700 dark:bg-gray-900 flex flex-col gap-4"
             >
-                <div className="flex justify-between">
-                    <h2 className="text-2xl font-semibold mb-4">Key Highlights</h2>
+                <div className="flex justify-between items-center gap-4">
+                    <h2 className="text-xl font-semibold">Key Highlights</h2>
                     <Button
                         onClick={() => onClick()}
-                        className={`px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-300 ${isEnrolled
+                        className={`px-2 text-md font-semibold text-white rounded-lg transition-all duration-300 ${isEnrolled
                             ? "bg-green-500 cursor-default"
                             : "bg-blue-600 hover:bg-blue-700"
                             }`}

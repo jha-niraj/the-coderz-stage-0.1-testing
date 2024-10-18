@@ -1,7 +1,7 @@
 "use client"
 
 import { useParams, useSearchParams } from "next/navigation";
-import { lessonData } from "@/app/resources/data/cpp";
+import { lessonData } from "@/app/resources/data/c";
 import { useEffect, useState } from "react";
 import SmoothScroll from "@/components/smoothscroll";
 import { Toaster } from "react-hot-toast";
@@ -43,7 +43,7 @@ export default function LessonPage() {
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen py-28 px-4 sm:px-6 lg:px-8">
                 <Toaster />
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}

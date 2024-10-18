@@ -6,14 +6,14 @@ import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import SmoothScroll from '@/components/smoothscroll';
 import PageDescription from '../../_components/pagedesc';
-import { units } from '../../data/cpp';
+import { units } from '../../data/python';
 
 const pageDescription = {
-    title: "C++ Learning Path",
-    description: "Master C++ with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
+    title: "Python Learning Path",
+    description: "Master Python with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
 }
 
-const CppResourcePage = () => {
+const CResourcePage = () => {
     const router = useRouter();
     const [isEnrolled, setIsEnrolled] = useState(false);
 
@@ -38,4 +38,4 @@ const CppResourcePage = () => {
     );
 };
 
-export default CppResourcePage;
+export default CResourcePage;
