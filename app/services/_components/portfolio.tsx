@@ -24,7 +24,7 @@ const portfolioItems = [
 
 export default function Portfolio() {
     return (
-        <section id="portfolio" className="py-20">
+        <section id="portfolio" className="py-20 w-full">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.h2
                     className="text-3xl font-extrabold text-center text-foreground mb-12"

@@ -27,13 +27,13 @@ export default function ContactSection() {
 	return (
 		<section className="max-w-6xl mx-auto px-4 py-20">
 			<h1 className="text-4xl md:text-6xl font-bold mb-12">
-				Hey! Are <span className="text-gray-400">ready</span><br />
-				to <span className="text-blue-400">contribute</span> <span className="text-purple-400">or Join Us?</span>
+				Hello! Are you <span className="text-gray-400">ready</span><br />
+				to <span className="text-blue-400">collaborate</span> <span className="text-purple-400">with us?</span>
 			</h1>
 			<form onSubmit={handleSubmit} className="space-y-8">
 				<div>
 					<label htmlFor="name" className="text-2xl md:text-3xl font-bold">
-						My name is 
+						My name is
 						<input
 							type="text"
 							id="name"
@@ -41,9 +41,9 @@ export default function ContactSection() {
 							value={formData.name}
 							onChange={handleChange}
 							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
-							placeholder="first and last name"
+							placeholder="First and Last Name"
 							required
-						/> and I'm interested in 
+						/> and I'm interested in
 						<input
 							type="text"
 							id="service"
@@ -51,17 +51,17 @@ export default function ContactSection() {
 							value={formData.service}
 							onChange={handleChange}
 							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
-							placeholder="service name"
+							placeholder="Service or Project Type"
 							required
 						/>.
 					</label>
 				</div>
 				<div>
 					<label htmlFor="budget" className="text-2xl md:text-4xl font-bold">
-						My project budget
+						What is your project budget?
 					</label>
 					<div className="flex flex-wrap gap-4 mt-4">
-						{['$1-5K', '$5-10K', '$10-20K', '$20-50K', '>50K'].map((option) => (
+						{['$1,000 - $5,000', '$5,000 - $10,000', '$10,000 - $20,000', '$20,000 - $50,000', 'Over $50,000'].map((option) => (
 							<label key={option} className="inline-flex items-center cursor-pointer">
 								<input
 									type="radio"
@@ -80,21 +80,22 @@ export default function ContactSection() {
 				</div>
 				<div>
 					<label htmlFor="email" className="text-2xl md:text-4xl font-bold">
-						Please, contact me at <input
+						You can reach me at
+						<input
 							type="email"
 							id="email"
 							name="email"
 							value={formData.email}
 							onChange={handleChange}
 							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
-							placeholder="name@example.com"
+							placeholder="yourname@example.com"
 							required
 						/>.
 					</label>
 				</div>
 				<div>
 					<label htmlFor="details" className="text-2xl md:text-4xl font-bold">
-						You can share more:
+						Additional Information:
 					</label>
 					<textarea
 						id="details"
@@ -102,7 +103,7 @@ export default function ContactSection() {
 						value={formData.details}
 						onChange={handleChange}
 						className="mt-4 w-full border-2 focus:border-black rounded-xl bg-background outline-none p-2 h-32"
-						placeholder="Tell us something more about yourself..."
+						placeholder="Please share any details about your project..."
 					/>
 				</div>
 				<RainbowButton type="submit">Send Request</RainbowButton>

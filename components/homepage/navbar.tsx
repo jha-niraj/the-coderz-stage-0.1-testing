@@ -6,7 +6,7 @@ import { cn } from "@/app/lib/utils";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { MenuIcon, User, X } from "lucide-react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import ShinyButton from "@/components/ui/shiny-button";
 import { ModeToggle } from "@/components/modetoggle";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,6 +21,10 @@ export default function Navbar({ className }: { className?: string }) {
     const toggleMobileMenu = () => setIsMobileMenuOpen(c => !c);
 
     const mobileLinks = [
+        {
+            name: "Resources",
+            href: "/resources"
+        },
         {
             name: "Projects",
             href: "/projects"
@@ -120,16 +124,20 @@ export default function Navbar({ className }: { className?: string }) {
                                     </Avatar>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end" className="w-36">
-                                    <DropdownMenuLabel>{ session?.user?.name }</DropdownMenuLabel>
+                                    <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    <Link href="/dashboard">
+                                        <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                                    </Link>
+                                    <Link href="/profile">
+                                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                                    </Link>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem className="text-red-500">Log Out</DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => signOut()} className="text-red-500">Log Out</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                             :
-                            <Link href="/signin" className="w-full mx-auto">
+                            <Link href="/signin" className="w-full">
                                 <ShinyButton>Sign In</ShinyButton>
                             </Link>
                     }
@@ -163,18 +171,18 @@ export default function Navbar({ className }: { className?: string }) {
                             >
                                 <X size={32} />
                             </div>
-                            <div className="flex flex-col space-y-6 pt-4">
+                            <div className="flex flex-col space-y-6 pt-10">
                                 {
                                     mobileLinks.map((link, index) => {
                                         return (
-                                            <Link onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{ link.name }</Link>
+                                            <Link onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{link.name}</Link>
                                         )
                                     })
                                 }
                                 {
                                     status === "authenticated" ? (
                                         <>
-                                            <div className="flex items-center justify-center gap-10">
+                                            <div className="flex items-center justify-center gap-4">
                                                 <User size={32} className="rounded-full bg-gray-200 text-gray-600" />
                                                 <h1 className="text-white">{session?.user?.name}</h1>
                                             </div>

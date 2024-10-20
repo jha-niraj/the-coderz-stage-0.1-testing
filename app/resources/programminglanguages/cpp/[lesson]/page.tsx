@@ -17,6 +17,7 @@ interface CurrentLessonProps {
     sections: {
         title: string;
         content: string;
+        points?: string;
         code?: string;
     }[];
     practiceQuestions: {
@@ -43,7 +44,7 @@ export default function LessonPage() {
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen pt-28 px-4 sm:px-6 lg:px-8">
                 <Toaster />
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -55,7 +56,7 @@ export default function LessonPage() {
                     <p className="text-lg mb-8 text-center">{currentLesson.description}</p>
 
                     {currentLesson.sections.map((section, index) => (
-                        <MainContent key={index} index={index} title={section.title} content={section.content} code={section?.code} />
+                        <MainContent key={index} index={index} title={section.title} content={section.content} points={section.points} code={section?.code} />
                     ))}
 
                     <PracticeQuestion language='C++' practiceQuestions={currentLesson.practiceQuestions} />

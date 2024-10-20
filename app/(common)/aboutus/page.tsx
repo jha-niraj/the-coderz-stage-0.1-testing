@@ -4,9 +4,9 @@ import React from 'react'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Instagram } from 'lucide-react';
+import { Github, Linkedin, Instagram, BringToFront, Target, Users, Rocket, RefreshCcw, LucideIcon } from 'lucide-react';
 import SmoothScroll from '@/components/smoothscroll';
 import teamImage from "./images/nirajjha (copy).jpeg";
 import { RainbowButton } from '@/components/ui/rainbow-button';
@@ -33,6 +33,15 @@ const theCoderzFamily = [
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
     {
+        name: "Niraj Jha",
+        role: "Lead Dveloper",
+        img: teamImage,
+        linkedin: "https://linkedin.com/in/janedoe",
+        github: "https://github.com/jha-niraj",
+        instagram: "https://instagram.com/janedoe",
+        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+    },
+    {
         name: "Tejasvi Sinha",
         role: "Social Media Management Head",
         img: teamImage,
@@ -42,8 +51,8 @@ const theCoderzFamily = [
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
     {
-        name: "",
-        role: "Founder & CEO",
+        name: "Vaishnavi",
+        role: "Social Media Team",
         img: teamImage,
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
@@ -51,8 +60,8 @@ const theCoderzFamily = [
         bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
     },
     {
-        name: "Jane Doe",
-        role: "Founder & CEO",
+        name: "Ansh",
+        role: "Content Creation & PR Team",
         img: teamImage,
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
@@ -130,7 +139,7 @@ const ReviewCard = ({
 
 const TheCoderZFamily = () => {
     return (
-        <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+        <div className="relative flex h-[450px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
             <Marquee reverse pauseOnHover className="[--duration:20s]">
                 {firstRow.map((review) => (
                     <ReviewCard key={review.role} {...review} />
@@ -147,23 +156,59 @@ const TheCoderZFamily = () => {
     );
 }
 
-const AboutUsSection = ({ title, content, index }: any) => {
-    const isEven = index % 2 === 0;
+interface AboutUsSectionProps {
+    title: string;
+    content: string;
+    index: number;
+}
 
+const AboutUsSection: React.FC<AboutUsSectionProps> = ({ title, content, index }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-16`}
+            className="mb-16"
         >
-            <div className={`w-full md:w-1/2 ${isEven ? 'md:pr-8' : 'md:pl-8'}`}>
-                <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">{title}</h2>
-                <p className="text-lg">{content}</p>
-            </div>
+            <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-102 border-l-4 border-blue-500 dark:border-blue-400">
+                <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-6">
+                    <CardTitle className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">
+                        <span className="bg-clip-text text-black dark:text-white bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+                            {title}
+                        </span>
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 bg-white dark:bg-gray-800">
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">{content}</p>
+                </CardContent>
+            </Card>
         </motion.div>
-    )
+    );
+};
+
+const goalIcons = [Target, Users, BringToFront, Rocket, RefreshCcw];
+interface GoalCardProps {
+    goal: string;
+    icon: LucideIcon;
+    index: number;
 }
+const GoalCard = ({ goal, icon: Icon, index }: GoalCardProps) => (
+    <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="w-full"
+    >
+        <Card className="h-full transition-all duration-300 hover:shadow-lg hover:scale-105">
+            <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
+                <div className="mb-4 p-2 sm:p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                </div>
+                <p className="text-sm sm:text-base lg:text-lg font-medium">{goal}</p>
+            </CardContent>
+        </Card>
+    </motion.div>
+);
 
 const ourgoals = [
     "Provide comprehensive, up-to-date computer science education",
@@ -175,58 +220,56 @@ const ourgoals = [
 export default function AboutUs() {
     return (
         <SmoothScroll>
-            <div className="min-h-screen text-black dark:text-white pt-28 py-16 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen text-black dark:text-white pt-32 py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     <motion.h1
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-6xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500"
+                        className="text-6xl font-bold text-center mb-8"
                     >
                         About Us
                     </motion.h1>
-
-                    <AboutUsSection
-                        title="Our Mission"
-                        content="We are on a mission to revolutionize computer science education by providing a comprehensive, accessible, and engaging platform for students to learn, grow, and thrive in the world of technology. Our goal is to empower the next generation of tech innovators and problem-solvers."
-                        index={0}
-                    />
-
-                    <AboutUsSection
-                        title="What We Do"
-                        content="Our platform is a one-stop solution for computer science enthusiasts. We offer interactive courses, challenging quizzes, and opportunities for open-source contributions. Our vibrant WhatsApp and Discord communities foster collaboration and peer learning, creating a supportive environment for growth."
-                        index={1}
-                    />
-
-                    <AboutUsSection
-                        title="Our Vision"
-                        content="We envision a world where quality computer science education is accessible to everyone, regardless of their background or location. By bridging the gap between theoretical knowledge and practical skills, we aim to prepare students for real-world challenges in the ever-evolving tech industry."
-                        index={2}
-                    />
-
-                    <AboutUsSection
-                        title="Freelance Agency"
-                        content="As part of our commitment to practical learning, we run a freelance agency that provides students with real-world experience and income opportunities. By distributing client projects to deserving students, we help them build impressive portfolios, develop crucial professional skills, and earn while they learn."
-                        index={3}
-                    />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                        <div className='"'>
+                            <AboutUsSection
+                                title="Our Mission"
+                                content="We are on a mission to revolutionize computer science education by providing a comprehensive, accessible, and engaging platform for students to learn, grow, and thrive in the world of technology. Our goal is to empower the next generation of tech innovators and problem-solvers."
+                                index={0}
+                            />
+                            <AboutUsSection
+                                title="What We Do"
+                                content="Our platform is a one-stop solution for computer science enthusiasts. We offer interactive courses, challenging quizzes, and opportunities for open-source contributions. Our vibrant WhatsApp and Discord communities foster collaboration and peer learning, creating a supportive environment for growth."
+                                index={1}
+                            />
+                        </div>
+                        <div>
+                            <AboutUsSection
+                                title="Our Vision"
+                                content="We envision a world where quality computer science education is accessible to everyone, regardless of their background or location. By bridging the gap between theoretical knowledge and practical skills, we aim to prepare students for real-world challenges in the ever-evolving tech industry."
+                                index={2}
+                            />
+                            <AboutUsSection
+                                title="Freelance Agency"
+                                content="As part of our commitment to practical learning, we run a freelance agency that provides students with real-world experience and income opportunities. By distributing client projects to deserving students, we help them build impressive portfolios, develop crucial professional skills, and earn while they learn."
+                                index={3}
+                            />
+                        </div>
+                    </div>
 
                     <Card className="border-gray-800 mb-16">
                         <CardContent className="p-6">
-                            <h2 className="text-3xl font-bold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">Our Goals</h2>
-                            <ul className="list-disc pl-6 space-y-2 flex flex-col gap-2">
+                            <h2 className="text-4xl font-bold mb-4 text-center ">Our Goals</h2>
+                            <ul className="list-disc pl-6 space-y-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 {
                                     ourgoals.map((goal, index) => {
                                         return (
-                                            <motion.li
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.1 }}
-                                                className="font-md text-xl text-center sm:text-left"
-                                            >
-                                                {
-                                                    goal
-                                                }
-                                            </motion.li>
+                                            <GoalCard
+                                                key={index}
+                                                goal={goal}
+                                                icon={goalIcons[index]}
+                                                index={index}
+                                            />
                                         )
                                     })
                                 }

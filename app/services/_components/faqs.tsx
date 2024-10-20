@@ -7,6 +7,37 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
+const data = [
+    {
+        question: "What services does our agency offer?",
+        answer: "We offer a wide range of services including digital marketing, web development, graphic design, branding, and content creation tailored to meet your business needs."
+    },
+    {
+        question: "How can I get started with our agency?",
+        answer: "Getting started is easy! Simply fill out our contact form, and one of our team members will reach out to discuss your project and how we can assist you."
+    },
+    {
+        question: "What is the typical project timeline?",
+        answer: "Project timelines can vary based on the scope and complexity of the work. Generally, we aim to complete projects within 4 to 12 weeks. We'll provide a detailed timeline during our initial consultation."
+    },
+    {
+        question: "Can you work within my budget?",
+        answer: "Absolutely! We understand that every project has a budget. During our consultation, we will discuss your goals and find a solution that fits within your financial parameters."
+    },
+    {
+        question: "Will I have a dedicated point of contact?",
+        answer: "Yes! You will be assigned a dedicated project manager who will be your main point of contact throughout the project. They will keep you updated on progress and address any questions you may have."
+    },
+    {
+        question: "Do you provide ongoing support after project completion?",
+        answer: "Yes, we offer ongoing support and maintenance packages to ensure that your project continues to run smoothly after launch. We’re here to help with any updates or issues that may arise."
+    },
+    {
+        question: "How do you measure the success of a project?",
+        answer: "We measure success through key performance indicators (KPIs) defined at the start of each project. This may include metrics like website traffic, conversion rates, or social media engagement, depending on your goals."
+    }
+];
+
 const FaqsAccrodian = () => {
     return (
         <motion.div
@@ -18,51 +49,29 @@ const FaqsAccrodian = () => {
             <div className="flex flex-col lg:flex-row gap-10 w-full justify-around">
                 <div className="flex flex-col gap-4 w-full lg:w-1/3">
                     <Badge>FAQ</Badge>
-                    <h1 className="font-medium text-4xl">What would you like to know about Coder'z?</h1>
+                    <h1 className="font-medium text-4xl">What would you like to know about Our Agency?</h1>
                     <Button className="flex gap-2"><MessageCircle /> Talk to us</Button>
                 </div>
                 <div className="w-full lg:w-2/3">
                     <Accordion type="multiple" className="gap-3 rounded-lg flex flex-col">
-                        <AccordionItem value="item-1" className="rounded-lg">
-                            <AccordionTrigger className="text-left px-6">
-                                How do I get started with TechEd?
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6">
-                                Getting started is easy! Simply sign up for an account, browse our course catalog, and enroll in any course that interests you. You can begin learning immediately after enrollment.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2" className="rounded-lg">
-                            <AccordionTrigger className="text-left px-6">
-                                What types of courses does TechEd offer?
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6">
-                                TechEd offers a wide range of tech-focused courses, including web development, mobile app development, data science, machine learning, cybersecurity, and more. Our courses cater to beginners, intermediate learners, and advanced professionals.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-3"  className="rounded-lg">
-                            <AccordionTrigger className="text-left px-6">
-                                Are the certifications recognized in the industry?
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6">
-                                Yes, our certifications are widely recognized in the tech industry. We partner with leading companies and organizations to ensure our certifications meet industry standards and are valued by employers.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-4" className="rounded-lg">
-                            <AccordionTrigger className="text-left px-6">
-                                How does the mentorship program work?
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6">
-                                Our mentorship program connects you with experienced professionals in your field of interest. You can schedule one-on-one sessions, get personalized advice, and receive guidance on your projects and career path. Mentorship is available as part of our premium subscription plans.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-5" className="rounded-lg">
-                            <AccordionTrigger className="text-left px-6">
-                                Can I access course materials offline?
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6">
-                                Yes, many of our courses offer downloadable materials that you can access offline. This includes lecture notes, exercises, and some video content. However, interactive elements and assessments typically require an internet connection.
-                            </AccordionContent>
-                        </AccordionItem>
+                        {
+                            data.map((faq, index) => {
+                                return (
+                                    <AccordionItem value={`item-${index}`} className="rounded-lg">
+                                        <AccordionTrigger className="text-left px-6">
+                                            {
+                                                faq.question
+                                            }
+                                        </AccordionTrigger>
+                                        <AccordionContent className="px-6">
+                                            {
+                                                faq.answer
+                                            }
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                )
+                            })
+                        }
                     </Accordion>
                 </div>
             </div>

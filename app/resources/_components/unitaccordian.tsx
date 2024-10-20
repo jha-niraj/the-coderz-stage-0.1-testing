@@ -1,36 +1,81 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Youtube, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronUp, Youtube } from 'lucide-react';
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import SlideInModal from "./slideinmodal";
 
-interface UnitAccordionProps {
-    unit: {
-        title: string,
-        lessons: Array<{
-            name: string,
-            href: string,
-            youtube: string
-        }>
-    },
-    unitIndex: number
+interface Lesson {
+    title: string;
+    description: string;
+    sections: {
+        title: string;
+        content: string;
+        points?: string[];
+        code?: string;
+    }[];
+    practiceQuestions: {
+        question: string;
+        hint: string;
+    }[];
+    nextChapter: string;
 }
 
-const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex }) => {
+interface UnitLessonProps {
+    name: string;
+    lessonkey: string;
+    youtube: string;
+}
+interface UnitAccordianSeconProps {
+    title: string;
+    lessons: UnitLessonProps[];
+}
+
+interface UnitAccordionProps {
+    unit: UnitAccordianSeconProps;
+    unitIndex: number;
+    lessonData: { [key: string]: any };
+}
+
+const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonData }) => {
     const [expanded, setExpanded] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
+
+    // Effect to handle scroll lock
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        // Cleanup when the component unmounts or modal closes
+        return () => {
+            document.body.classList.remove("overflow-hidden");
+        };
+    }, [isModalOpen]);
+
+    const handleLessonClick = (lesson: UnitLessonProps) => {
+        const lessonKey = lesson.lessonkey;
+        const detailedLessonData = lessonData[lessonKey];
+        setSelectedLesson({ ...lesson, ...detailedLessonData });
+        setIsModalOpen(true);
+    };
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: unitIndex * 0.1 }}
+            className="w-full overflow-hidden"
         >
             <Card className="mb-4 bg-black dark:bg-white border-gray-700">
-                <CardHeader 
-                    className="cursor-pointer" 
+                <CardHeader
+                    className="cursor-pointer"
                     onClick={() => setExpanded(!expanded)}
                 >
                     <div className="flex justify-between items-center">
@@ -41,12 +86,11 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex }) => {
                             <Badge variant="secondary" className="bg-gray-700 text-gray-300 w-2/3 text-center">
                                 {unit.lessons.length} lessons
                             </Badge>
-                            {
-                                expanded ? 
-                                    <ChevronUp className="text-gray-300" /> 
-                                        : 
-                                    <ChevronDown className="text-gray-300" />
-                            }
+                            {expanded ? (
+                                <ChevronUp className="text-gray-200 dark:text-gray-600" />
+                            ) : (
+                                <ChevronDown className="text-gray-200 dark:text-gray-600" />
+                            )}
                         </div>
                     </div>
                 </CardHeader>
@@ -63,9 +107,12 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex }) => {
                                     {unit.lessons.map((lesson, lessonIndex) => (
                                         <Card key={lessonIndex} className="bg-gray-700">
                                             <CardContent className="p-4 flex justify-between items-center">
-                                                <Link href={lesson.href} className="text-white hover:text-blue-300">
+                                                <button
+                                                    onClick={() => handleLessonClick(lesson)}
+                                                    className="text-white hover:text-blue-300 text-left"
+                                                >
                                                     <span className="font-medium">{lesson.name}</span>
-                                                </Link>
+                                                </button>
                                                 <div className="flex space-x-2">
                                                     <Link href={lesson.youtube} target="_blank" rel="noopener noreferrer">
                                                         <Youtube className="text-red-400 hover:text-red-300" />
@@ -80,94 +127,13 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex }) => {
                     )}
                 </AnimatePresence>
             </Card>
+            <SlideInModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                lessonData={selectedLesson}
+            />
         </motion.div>
     );
 };
 
 export default UnitAccordion;
-
-// "use client"
-
-// import { useState } from "react";
-// import { AnimatePresence, motion } from "framer-motion";
-// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-// import { ChevronDown, ChevronUp, Youtube, FileText, ExternalLink } from 'lucide-react';
-// import Link from "next/link";
-
-// interface UnitAccordionProps {
-//     unit: {
-//         title: string,
-//         lessons: Array<{
-//             name: string,
-//             href: string,
-//             youtube: string
-//         }>
-//     },
-//     unitIndex: number
-// }
-
-// const UnitAccordion = ({ unit, unitIndex }: UnitAccordionProps) => {
-//     const [expanded, setExpanded] = useState(false);
-
-//     return (
-//         <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.5, delay: unitIndex * 0.1 }}
-//             className="bg-gray-900 rounded-lg overflow-hidden mb-4 border border-gray-700"
-//         >
-//             <div
-//                 className="p-4 flex justify-between items-center cursor-pointer bg-gray-800"
-//                 onClick={() => setExpanded(!expanded)}
-//             >
-//                 <h3 className="text-md sm:text-xl font-semibold text-white">{unit.title}</h3>
-//                 <div className="flex items-center">
-//                     <span className="text-sm mr-2 text-center text-gray-300">{unit.lessons.length} lessons</span>
-//                     {expanded ? <ChevronUp className="text-gray-300" /> : <ChevronDown className="text-gray-300" />}
-//                 </div>
-//             </div>
-
-//             <AnimatePresence>
-//                 {expanded && (
-//                     <motion.div
-//                         initial={{ opacity: 0, height: 0 }}
-//                         animate={{ opacity: 1, height: 'auto' }}
-//                         exit={{ opacity: 0, height: 0 }}
-//                         transition={{ duration: 0.3 }}
-//                     >
-//                         <div className="p-4">
-//                             <Table>
-//                                 <TableHeader>
-//                                     <TableRow className="border-b">
-//                                         <TableHead className="text-gray-300">Lesson</TableHead>
-//                                         <TableHead className="text-center text-gray-300">Resources</TableHead>
-//                                     </TableRow>
-//                                 </TableHeader>
-//                                 <TableBody>
-//                                     {
-//                                         unit.lessons.map((lesson, lessonIndex) => (
-//                                             <TableRow key={lessonIndex} className="border-b border-gray-700">
-//                                                 <TableCell>
-//                                                     <Link href={lesson?.href} className="text-white hover:text-blue-300 underline">
-//                                                         {lesson.name}
-//                                                     </Link>
-//                                                 </TableCell>
-//                                                 <TableCell className="text-center">
-//                                                     <Link href={lesson?.youtube} target="_blank" rel="noopener noreferrer">
-//                                                         <Youtube className="inline text-red-400 hover:scale-110" />
-//                                                     </Link>
-//                                                 </TableCell>
-//                                             </TableRow>
-//                                         ))
-//                                     }
-//                                 </TableBody>
-//                             </Table>
-//                         </div>
-//                     </motion.div>
-//                 )}
-//             </AnimatePresence>
-//         </motion.div>
-//     );
-// };
-
-// export default UnitAccordion;

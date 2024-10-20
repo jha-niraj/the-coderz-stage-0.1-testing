@@ -5,9 +5,12 @@ interface MainContentProps {
     index: number;
     title: string;
     content: string;
+    points?: string;
     code?: string;
 }
-export default function MainContent({ index, title, content, code }: MainContentProps) {
+export default function MainContent({ index, title, content, points, code }: MainContentProps) {
+    const bulletPoints = points?.split('\n');
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -17,10 +20,18 @@ export default function MainContent({ index, title, content, code }: MainContent
         >
             <div className="p-6">
                 <h2 className="text-xl font-bold text-black mb-2">
-                    { index + 1}. {title}
+                    {index + 1}. {title}
                 </h2>
-                <p className="text-black mb-6 text-lg">{ content }</p>
-                { code && <CodeBlock language="C++" code={ code } />}
+                <p className="text-black mb-6 text-lg">{content}</p>
+                {
+                    bulletPoints && (
+                        <ul className="list-disc pl-5 text-black">
+                        {bulletPoints && bulletPoints.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+                    )}
+                {code && <CodeBlock language="C++" code={code} />}
             </div>
         </motion.div>
     )

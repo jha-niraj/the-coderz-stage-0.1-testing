@@ -57,6 +57,7 @@ export default function StudentProfile() {
     const [selectedSkills, setSelectedSkills] = useState(initialState.selectedSkills);
     const [selectedInterests, setSelectedInterests] = useState(initialState.selectedInterests);
     const [aboutme, setAboutMe] = useState(initialState.aboutme);
+    const [ dialogOpen, setDialogOpen ] = useState(false);
 
     useEffect(() => {
         const fetchedUserData = async () => {
@@ -132,6 +133,7 @@ export default function StudentProfile() {
             try {
                 const response = await axios.put('/api/update-profile', changedData);
                 toast.success("Profile updated successfully");
+                setDialogOpen(c => !c);
                 setInitialState(prev => ({ ...prev, ...changedData }));
             } catch (error) {
                 console.error('Error updating profile:', error);
@@ -370,30 +372,6 @@ export default function StudentProfile() {
 
                                     <h3 className="text-xl font-semibold mb-4">Interests</h3>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        {/* {
-                                            !selectedInterests && (
-                                                <div>
-                                                    <p>Please update this section</p>
-                                                </div>
-                                            )
-                                        }
-                                        {
-                                            selectedInterests && selectedInterests.map((interest, index) => (
-                                                <motion.div
-                                                    key={interest}
-                                                    initial={{ opacity: 0, y: 20 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                                                    className="group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 transition-all duration-300 hover:shadow-xl"
-                                                >
-                                                    <div className="absolute inset-0 bg-blue-500 dark:bg-blue-400 opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
-                                                    <div className="relative p-4 flex items-center justify-start">
-                                                        <h4 className="text-sm font-semibold text-gray-800 dark:text-white">{interest}</h4>
-                                                    </div>
-                                                    <div className="absolute bottom-0 left-0 h-1 w-full bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                                                </motion.div>
-                                            ))
-                                        } */}
                                         {
                                             selectedInterests ?
                                                     selectedInterests.map((interest, index) => (
