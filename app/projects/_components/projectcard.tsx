@@ -34,7 +34,7 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
                     </span>
                 </div>
                 <div className="flex justify-end">
-                    <Button variant="outline" className="text-black hover:text-sky-800">
+                    <Button variant="outline" className="text-black dark:text-white hover:text-sky-800">
                         View Details
                     </Button>
                 </div>

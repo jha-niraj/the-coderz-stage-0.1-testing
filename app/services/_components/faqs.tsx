@@ -48,7 +48,7 @@ const FaqsAccrodian = () => {
         >
             <div className="flex flex-col lg:flex-row gap-10 w-full justify-around">
                 <div className="flex flex-col gap-4 w-full lg:w-1/3">
-                    <Badge>FAQ</Badge>
+                    <Badge className="w-14">FAQ&apos;s</Badge>
                     <h1 className="font-medium text-4xl">What would you like to know about Our Agency?</h1>
                     <Button className="flex gap-2"><MessageCircle /> Talk to us</Button>
                 </div>
@@ -57,7 +57,7 @@ const FaqsAccrodian = () => {
                         {
                             data.map((faq, index) => {
                                 return (
-                                    <AccordionItem value={`item-${index}`} className="rounded-lg">
+                                    <AccordionItem value={`item-${index}`} className="rounded-lg" key={index}>
                                         <AccordionTrigger className="text-left px-6">
                                             {
                                                 faq.question

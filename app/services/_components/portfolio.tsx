@@ -3,24 +3,29 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import p1 from "./_images/p1.jpg";
+import p2 from "./_images/p2.jpg";
+import p3 from "./_images/p3.jpg";
+import p4 from "./_images/p4.jpg";
+import p5 from "./_images/p5.jpg";
 
 const portfolioItems = [
     {
-      title: 'Travel Vlog Editing',
-      image: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?auto=format&fit=crop&w=800&q=80',
-      category: 'Video Editing',
+        title: 'Travel Vlog Editing',
+        image: 'https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?auto=format&fit=crop&w=800&q=80',
+        category: 'Video Editing',
     },
     {
-      title: 'Tech Review Thumbnail',
-      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
-      category: 'Thumbnail Design',
+        title: 'Tech Review Thumbnail',
+        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+        category: 'Thumbnail Design',
     },
     {
-      title: 'E-commerce Website',
-      image: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=80',
-      category: 'Web Development',
+        title: 'E-commerce Website',
+        image: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=80',
+        category: 'Web Development',
     },
-  ];
+];
 
 export default function Portfolio() {
     return (
@@ -34,7 +39,23 @@ export default function Portfolio() {
                 >
                     Our Portfolio
                 </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id='images' className='my-10 mx-32'>
+                    <div id='line1' className='flex justify-center gap-7'>
+                        <Image data-aos="flip-left" data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000" className='w-[50%] h-[50%] rounded-2xl' src={p1} alt="" />
+                        <Image data-aos="flip-right" data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000" className='w-[50%] h-[50%] rounded-2xl' src={p2} alt="" />
+                    </div>
+                    <div id='line2' className='flex justify-center gap-5 my-7'>
+                        <Image data-aos="flip-up" data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000" className='w-[33%] h-[40%] rounded-2xl' src={p3} alt="" />
+                        <Image data-aos="flip-down" data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000" className='w-[33%] h-[40%] rounded-2xl' src={p4} alt="" />
+                        <Image data-aos="flip-up" data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000" className='w-[33%] h-[40%] rounded-2xl' src={p5} alt="" />
+                    </div>
+                </div>
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {portfolioItems.map((item, index) => (
                         <motion.div
                             key={index}
@@ -62,7 +83,7 @@ export default function Portfolio() {
                             </Card>
                         </motion.div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     )

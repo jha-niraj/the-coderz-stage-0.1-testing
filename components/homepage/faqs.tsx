@@ -17,8 +17,8 @@ const FaqsAccrodian = () => {
         >
             <div className="flex flex-col lg:flex-row gap-10 w-full justify-around">
                 <div className="flex flex-col gap-4 w-full lg:w-1/3">
-                    <Badge>FAQ</Badge>
-                    <h1 className="font-medium text-4xl">What would you like to know about Coder'z?</h1>
+                    <Badge className="w-12">FAQ</Badge>
+                    <h1 className="font-medium text-4xl">What would you like to know about Coder&apos;z?</h1>
                     <Button className="flex gap-2"><MessageCircle /> Talk to us</Button>
                 </div>
                 <div className="w-full lg:w-2/3">

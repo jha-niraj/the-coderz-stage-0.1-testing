@@ -31,7 +31,6 @@ interface SlideInModalProps {
 
 const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData }) => {
     if (!lessonData) return null;
-    const [showPractice, setShowPractice] = useState(false);
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
@@ -47,36 +46,37 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                 <div className="mt-6">
                     {
                         lessonData?.sections ?
-                    (lessonData.sections.map((section, index) => (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="mb-4 bg-gray-100 rounded-lg shadow-lg border border-gray-200"
-                        >
-                            <div className="p-6">
-                                <h2 className="text-xl font-bold text-black mb-2">
-                                    {index + 1}. {section.title}
-                                </h2>
-                                <p className="text-black mb-6 text-lg">{section.content}</p>
-                                {
-                                    section.points && (
-                                        <ul className="list-disc pl-5 text-black">
-                                            {
-                                                section?.points.map((item, index) => (
-                                                    <li key={index}>{item}</li>
-                                                ))
-                                            }
-                                        </ul>
-                                    )}
-                                {section.code && <CodeBlock language="C++" code={section.code} />}
-                            </div>
-                        </motion.div>
-                    ))
-                ) : (
-                    <div>We are working on this</div>
-                )
-            }
+                            (lessonData.sections.map((section, index) => (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="mb-4 bg-gray-100 rounded-lg shadow-lg border border-gray-200"
+                                    key={index}
+                                >
+                                    <div className="p-6">
+                                        <h2 className="text-xl font-bold text-black mb-2">
+                                            {index + 1}. {section.title}
+                                        </h2>
+                                        <p className="text-black mb-6 text-lg">{section.content}</p>
+                                        {
+                                            section.points && (
+                                                <ul className="list-disc pl-5 text-black">
+                                                    {
+                                                        section?.points.map((item, index) => (
+                                                            <li key={index}>{item}</li>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            )}
+                                        {section.code && <CodeBlock language="C++" code={section.code} />}
+                                    </div>
+                                </motion.div>
+                            ))
+                            ) : (
+                                <div>We are working on this</div>
+                            )
+                    }
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -123,22 +123,22 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                                 transition={{ duration: 0.3 }}
                             >
                                 {
-                                    lessonData.practiceQuestions ? 
-                                    (
-                                lessonData.practiceQuestions.map((q, index) => (
-                                    <div key={index} className="mb-8 p-6 bg-gray-100 rounded-lg">
-                                        <h3 className="text-xl font-semibold text-black mb-3">Question {index + 1}:</h3>
-                                        <p className="text-gray-700 mb-4 text-lg">{q.question}</p>
-                                        <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-r-lg">
-                                            <p className="font-semibold mb-2">Hint:</p>
-                                            <p>{q.hint}</p>
-                                        </div>
-                                    </div>
-                                ))
-                            ) : (
-                                <div>We are working on this</div>
-                            )
-                        }
+                                    lessonData.practiceQuestions ?
+                                        (
+                                            lessonData.practiceQuestions.map((q, index) => (
+                                                <div key={index} className="mb-8 p-6 bg-gray-100 rounded-lg">
+                                                    <h3 className="text-xl font-semibold text-black mb-3">Question {index + 1}:</h3>
+                                                    <p className="text-gray-700 mb-4 text-lg">{q.question}</p>
+                                                    <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-r-lg">
+                                                        <p className="font-semibold mb-2">Hint:</p>
+                                                        <p>{q.hint}</p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div>We are working on this</div>
+                                        )
+                                }
                             </motion.div>
                         </AnimatePresence>
                     </motion.div>

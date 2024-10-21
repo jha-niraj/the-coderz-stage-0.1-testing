@@ -40,7 +40,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         <Image 
                             src={project.desktopImage} 
                             alt="Desktop view" 
-                            className="w-full h-auto rounded-lg" 
+                            className="w-full h-auto rounded-lg"
+                            width={100}
+                            height={100} 
                         />
                     </div>
                     <div>
@@ -49,6 +51,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             src={project.mobileImage} 
                             alt="Mobile view" 
                             className="w-full h-auto rounded-lg" 
+                            width={100}
+                            height={100} 
                         />
                     </div>
                 </div>

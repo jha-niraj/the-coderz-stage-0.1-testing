@@ -26,9 +26,9 @@ export default function ProjectsPage() {
     console.log(filteredProjects);
 
     return (
-        <SmoothScroll>
-            <div className="min-h-screen text-white pt-20">
-                <header className="shadow-md z-10">
+        // <SmoothScroll>
+            <div className="min-h-screen text-white pt-28">
+                <header className="z-10 text-black dark:text-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                         <div className="flex flex-col sm:flex-row gap-4 justify-between">
                             <h1 className="text-3xl font-bold">Projects</h1>
@@ -58,17 +58,16 @@ export default function ProjectsPage() {
                     </div>
                 </header>
 
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <motion.div layout className="flex flex-wrap items-center justify-center gap-4 mb-8">
                         {
                             categories.map((category) => (
                                 <Button
                                     key={category.name}
                                     onClick={() => setActiveCategory(category.name)}
-                                    variant={activeCategory === category.name ? "default" : "outline"}
                                     className={`flex items-center space-x-2 ${activeCategory === category.name
                                         ? 'bg-gray-700 text-white'
-                                        : 'bg-gray-800 text-white hover:bg-black hover:text-white'
+                                        : 'bg-gray-800 text-white'
                                         }`}
                                 >
                                     {typeof category.icon === 'string' ? (
@@ -134,6 +133,6 @@ export default function ProjectsPage() {
                     )}
                 </AnimatePresence>
             </div>
-        </SmoothScroll>
+        // {/* </SmoothScroll> */}
     )
 }

@@ -10,8 +10,8 @@ import ShinyButton from '@/components/ui/shiny-button';
 const HeroSection = () => {
 	return (
 		<section className="h-screen flex flex-col items-center justify-center overflow-hidden">
-			<div className="container pt-12 flex flex-col gap-2 sm:pt-20 mx-auto px-4 sm:px-6 lg:px-8">
-				<ShinyButton>
+			<div className="container pt-12 flex flex-col gap-3 sm:pt-20 mx-auto px-4 sm:px-6 lg:px-8">
+				<ShinyButton className="w-[65%] mx-auto">
 					<p className="text-small font-medium">
 						Work on your ideas, leave the technicalities to us.
 					</p>

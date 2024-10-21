@@ -43,7 +43,7 @@ export default function ContactSection() {
 							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
 							placeholder="First and Last Name"
 							required
-						/> and I'm interested in
+						/> and I&apos;m interested in
 						<input
 							type="text"
 							id="service"

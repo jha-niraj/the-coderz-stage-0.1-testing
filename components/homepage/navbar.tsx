@@ -49,7 +49,7 @@ export default function Navbar({ className }: { className?: string }) {
 
     return (
         <div
-            className={cn("fixed top-5 inset-x-0 max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto z-50 transition-all duration-200", className)}
+            className={cn("fixed top-5 inset-x-0 max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto z-50 transition-all duration-200", className)}
         >
             <Menu setActive={setActive}>
                 <Link href="/" className="flex gap-2 items-center justify-center">
@@ -58,7 +58,7 @@ export default function Navbar({ className }: { className?: string }) {
                         alt="Main Web Logo"
                         height={40}
                         width={40}
-                        className="rounded-full"
+                        className="rounded-full scale-120"
                     />
                     <h1 className="">The Coder&apos;z</h1>
                 </Link>
@@ -69,6 +69,7 @@ export default function Navbar({ className }: { className?: string }) {
                                 <div className="flex flex-col space-y-4 text-sm">
                                     <HoveredLink href="/projects">Projects</HoveredLink>
                                     <HoveredLink href="/pathways">Pathways</HoveredLink>
+                                    <HoveredLink href="/buildxscratch">Build from Scratch</HoveredLink>
                                     <HoveredLink href="">Open Source(coming soon)</HoveredLink>
                                 </div>
                             </MenuItem>
@@ -175,7 +176,7 @@ export default function Navbar({ className }: { className?: string }) {
                                 {
                                     mobileLinks.map((link, index) => {
                                         return (
-                                            <Link onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{link.name}</Link>
+                                            <Link key={index} onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{link.name}</Link>
                                         )
                                     })
                                 }

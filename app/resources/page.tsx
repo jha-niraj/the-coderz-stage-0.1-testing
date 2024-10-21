@@ -352,7 +352,7 @@ export default function ResourcesPage() {
 							<p className="text-xl text-center dark:text-gray-100 mb-8 max-w-3xl mx-auto shadow-text">
 								Explore our curated collection of learning materials to enhance your skills in programming, web development, and DevOps.
 							</p>
-							<div className="max-w-md mx-auto relative z-50">
+							<div className="max-w-md mx-auto relative z-20">
 								<Input
 									type="text"
 									placeholder="Search resources..."

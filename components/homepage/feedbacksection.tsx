@@ -51,6 +51,7 @@ interface FeedbackItemProps {
 
 import { cn } from "@/app/lib/utils";
 import Marquee from "@/components/ui/marquee";
+import Image from "next/image";
 
 const reviews = [
 	{
@@ -116,7 +117,7 @@ const ReviewCard = ({
 			)}
 		>
 			<div className="flex flex-row items-center gap-2">
-				<img className="rounded-full" width="32" height="32" alt="" src={img} />
+				<Image className="rounded-full" width="32" height="32" alt="Feedback Giving user name" src={img} />
 				<div className="flex flex-col">
 					<figcaption className="text-sm font-medium dark:text-white">
 						{name}
