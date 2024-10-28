@@ -1,95 +1,251 @@
+// "use client"
+
+// import { motion } from "framer-motion";
+// import Link from "next/link";
+// import { Code, Globe, Database, Cpu, Server, Terminal, Braces, Layers } from 'lucide-react'
+// import { useRouter } from "next/navigation";
+// import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
+
+// const resources = [
+//     // {
+//     //     name: 'C',
+//     //     url: '/resources/programminglanguages/c',
+//     //     icon: 'C',
+//     //     description: 'A high-performance, compiled language that provides low-level memory management.',
+//     //     color: 'from-blue-500 to-blue-300'
+//     // },
+//     {
+//         name: 'CPP',
+//         url: '/resources/programminglanguages/cpp',
+//         icon: 'C++',
+//         description: 'Widely used for system/application software, game development, and more.',
+//         color: 'from-blue-600 to-blue-400'
+//     },
+//     // {
+//     //     name: 'Java',
+//     //     url: '/resources/programminglanguages/java',
+//     //     icon: '☕',
+//     //     description: 'A popular language for building large-scale enterprise applications and Android apps.',
+//     //     color: 'from-red-500 to-red-300'
+//     // },
+//     {
+//         name: 'Python',
+//         url: '/resources/programminglanguages/python',
+//         icon: '🐍',
+//         description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
+//         color: 'from-green-500 to-green-300'
+//     },
+//     {
+//         name: 'React',
+//         url: '/resources/frontend/react',
+//         icon: '🐍',
+//         description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
+//         color: 'from-green-500 to-green-300'
+//     }
+// ]
+
+// const ExploreResourcesSection = () => {
+//     const router = useRouter();
+
+//     return (
+//         <div className="mx-auto px-4 flex z-40 flex-col gap-4 w-full">
+//             <motion.div
+//                 initial={{ opacity: 0, y: 20 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.5 }}
+//                 viewport={{ once: true }}
+//                 className="text-center mb-8"
+//             >
+//                 <h2 className="text-3xl font-bold w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-[length:400%] animate-gradient text-transparent bg-clip-text mb-4">Explore Computer Science Resources</h2>
+//                 <p className="text-small max-w-2xl mx-auto">
+//                     Dive into a world of knowledge with our curated collection of computer science topics.
+//                     From coding basics to advanced concepts, we&apos;ve got you covered.
+//                 </p>
+//             </motion.div>
+//             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//                 {
+//                     resources.map((resource, index) => {
+//                         return (
+//                             <motion.div
+//                                 key={resource.name}
+//                                 initial={{ opacity: 0, y: 20 }}
+//                                 whileInView={{ opacity: 1, y: 0 }}
+//                                 transition={{ duration: 0.5, delay: index * 0.1 }}
+//                                 viewport={{ once: true }}
+//                             >
+//                                 <Link href={resource.url!}>
+//                                     <CardContainer className="inter-var w-full" key={index}>
+//                                         <CardBody className={`bg-gradient-to-r ${resource.color} relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[30rem] h-auto rounded-xl p-4 border"`}>
+//                                             <CardItem
+//                                                 translateZ="50"
+//                                                 className="text-xl font-bold text-neutral-600 dark:text-white"
+//                                             >
+//                                                 {
+//                                                     resource.name
+//                                                 }
+//                                             </CardItem>
+//                                             <CardItem
+//                                                 as="p"
+//                                                 translateZ="60"
+//                                                 className="text-sm max-w-sm mt-2 dark:text-black"
+//                                             >
+//                                                 {
+//                                                     resource.description
+//                                                 }
+//                                             </CardItem>
+//                                         </CardBody>
+//                                     </CardContainer>
+//                                 </Link>
+//                             </motion.div>
+//                         )
+//                     })
+//                 }
+//             </div>
+//             <motion.div
+//                 initial={{ opacity: 0, y: 20 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.5 }}
+//                 viewport={{ once: true }}
+//                 className="text-center mb-4"
+//                 onClick={() => router.push("/resources")}
+//             >
+//                 <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-white dark:border-white dark:text-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+//                     Explore all Resources
+//                 </button>
+//             </motion.div>
+//         </div>
+//     )
+// };
+
+// export default ExploreResourcesSection;
+
 "use client"
 
+import React from 'react';
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Code, Globe, Database, Cpu, Server, Terminal, Braces, Layers } from 'lucide-react'
+import { Code, Braces, Atom, Database } from 'lucide-react';
 import { useRouter } from "next/navigation";
+import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 
 const resources = [
     {
-        name: 'C',
-        url: '/resources/programminglanguages/c',
-        icon: 'C',
-        description: 'A high-performance, compiled language that provides low-level memory management.',
-        color: 'from-blue-500 to-blue-300'
-    },
-    {
-        name: 'CPP',
-        url: '/resources/programminglanguages/cpp',
-        icon: 'C++',
-        description: 'Widely used for system/application software, game development, and more.',
-        color: 'from-blue-600 to-blue-400'
-    },
-    {
-        name: 'Java',
-        url: '/resources/programminglanguages/java',
-        icon: '☕',
-        description: 'A popular language for building large-scale enterprise applications and Android apps.',
-        color: 'from-red-500 to-red-300'
-    },
-    {
         name: 'Python',
         url: '/resources/programminglanguages/python',
-        icon: '🐍',
-        description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
-        color: 'from-green-500 to-green-300'
+        icon: <Code className="w-6 h-6" />,
+        description: 'Learn Python programming from basics to advanced concepts. Perfect for beginners and data science enthusiasts.',
+        color: 'from-blue-600 to-green-400',
+        categories: ['Data Science', 'Web Dev', 'Automation', 'AI']
     },
-]
+    {
+        name: 'C++',
+        url: '/resources/programminglanguages/cpp',
+        icon: <Braces className="w-6 h-6" />,
+        description: 'Master C++ for high-performance computing, game development, and system programming.',
+        color: 'from-purple-600 to-blue-400',
+        categories: ['Games', 'Systems', 'DSA', 'OOP']
+    },
+    {
+        name: 'React',
+        url: '/resources/frontend/react',
+        icon: <Atom className="w-6 h-6" />,
+        description: 'Build modern user interfaces with React. Learn components, hooks, Rendering, Virtuial DOM and state management.',
+        color: 'from-cyan-600 to-blue-400',
+        categories: ['Frontend', 'UI/UX', 'JavaScript', 'Components']
+    },
+    {
+        name: 'PHP',
+        url: '/resources/programminglanguages/php',
+        icon: <Database className="w-6 h-6" />,
+        description: 'Develop dynamic web applications with PHP. Focus on backend development and database integration.',
+        color: 'from-indigo-600 to-purple-400',
+        categories: ['Backend', 'WordPress', 'MySQL', 'APIs']
+    }
+];
 
 const ExploreResourcesSection = () => {
     const router = useRouter();
 
     return (
-        <div className="mx-auto px-4 flex z-40 flex-col gap-4 w-full">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-center mb-8"
-            >
-                <h2 className="text-3xl font-bold w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-[length:400%] animate-gradient text-transparent bg-clip-text mb-4">Explore Computer Science Resources</h2>
-                <p className="text-small max-w-2xl mx-auto">
-                    Dive into a world of knowledge with our curated collection of computer science topics.
-                    From coding basics to advanced concepts, we&apos;ve got you covered.
-                </p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {resources.map((resource, index) => (
-                    <motion.div
-                        key={resource.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
+        <section className="py-16 px-4">
+            <div className="max-w-7xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-12"
+                >
+                    <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Explore Computer Science Resources
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        Dive into our comprehensive collection of computer science topics. Whether you're a beginner or an expert,
+                        discover resources tailored to your learning journey.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {resources.map((resource, index) => (
+                        <motion.div
+                            key={resource.name}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                        >
+                            <Link href={resource.url}>
+                                <CardContainer className="w-full">
+                                    <CardBody className={`bg-gradient-to-br ${resource.color} relative group/card dark:hover:shadow-2xl dark:hover:shadow-white/[0.1] dark:bg-gray-900 border-2 border-gray-100 dark:border-gray-800 w-full h-full rounded-xl p-6 transition-all duration-300 hover:scale-[1.02]`}>
+                                        <div className="flex items-center mb-4">
+                                            <CardItem translateZ="50" className="bg-white dark:bg-gray-800 p-2 rounded-lg">
+                                                {resource.icon}
+                                            </CardItem>
+                                            <CardItem translateZ="50" className="ml-4 text-xl font-bold text-white">
+                                                {resource.name}
+                                            </CardItem>
+                                        </div>
+                                        <CardItem
+                                            as="p"
+                                            translateZ="60"
+                                            className="text-sm text-white/90 mb-4"
+                                        >
+                                            {resource.description}
+                                        </CardItem>
+                                        <CardItem translateZ="50" className="flex flex-wrap gap-2">
+                                            {resource.categories.map((category) => (
+                                                <span
+                                                    key={category}
+                                                    className="text-xs bg-white/20 text-white px-2 py-1 rounded-full"
+                                                >
+                                                    {category}
+                                                </span>
+                                            ))}
+                                        </CardItem>
+                                    </CardBody>
+                                </CardContainer>
+                            </Link>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-center mt-12"
+                >
+                    <button
+                        onClick={() => router.push("/resources")}
+                        className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold transform hover:-translate-y-1 transition duration-300 hover:shadow-lg"
                     >
-                        <Link href={resource.url!}>
-                            <div className={`bg-gradient-to-r ${resource.color} rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl`}>
-                                <div className="p-4">
-                                    <h3 className="text-lg font-semibold mb-2">{resource.name}</h3>
-                                    {
-                                        <p className="">{ resource.description }</p>
-                                    }
-                                </div>
-                            </div>
-                        </Link>
-                    </motion.div>
-                ))}
+                        Explore All Resources
+                    </button>
+                </motion.div>
             </div>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-center mb-4"
-                onClick={() => router.push("/resources")}
-            >
-                <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-white dark:border-white dark:text-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-                    Explore all Resources
-                </button>
-            </motion.div>
-        </div>
-    )
+        </section>
+    );
 };
 
 export default ExploreResourcesSection;

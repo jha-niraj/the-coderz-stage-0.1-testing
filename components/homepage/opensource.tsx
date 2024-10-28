@@ -14,7 +14,7 @@ const OpenSourceContribution = () => {
     ];
 
     return (
-        <div className="relative py-16 sm:py-28 overflow-hidden w-full" id="contribute">
+        <div className="relative py-16 sm:py-20 overflow-hidden w-full" id="contribute">
             <div className="mx-auto w-full px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -85,7 +85,7 @@ const OpenSourceContribution = () => {
                         </ul>
                     </div>
                     <div className="-mt-2 p-2 lg:mt-0 sm:w-full lg:max-w-md lg:flex-shrink-0">
-                        <div className="rounded-2xl bg-gray-950 dark:bg-background text-black dark:text-white py-10 text-center ring-1 ring-inset ring-indigo-500 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                        <div className="rounded-2xl bg-gray-950 dark:bg- text-white py-10 text-center ring-1 ring-inset ring-indigo-500 lg:flex lg:flex-col lg:justify-center lg:py-16">
                             <div className="mx-auto max-w-xs px-8">
                                 <p className="text-base font-semibold">Start Contributing Today</p>
                                 <p className="mt-6 flex items-baseline justify-center gap-x-2">

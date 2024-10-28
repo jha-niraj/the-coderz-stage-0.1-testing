@@ -33,7 +33,7 @@ const CommunityPlatform = ({ logo, title, description, color, buttonText, button
 				</div>
 				<p className="text-gray-600 mb-6">{description}</p>
 				<Button
-					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white hover:text-black w-full`}
+					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white hover:text-white w-full`}
 					onClick={() => window.open(buttonLink, '_blank')}
 				>
 					{buttonText} <ExternalLink className="w-4 h-4 ml-2" />
@@ -104,7 +104,7 @@ export default function CommunityPage() {
 								description="Dive into our Discord server for in-depth discussions, collaborative projects, and regular tech workshops."
 								color="border-indigo-500"
 								buttonText="Join Discord Server"
-								buttonLink="https://discord.gg/CxdzvhGG"
+								buttonLink="https://discord.gg/e96wYKBY"
 							/>
 						</div>
 					</motion.div>

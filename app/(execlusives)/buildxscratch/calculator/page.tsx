@@ -15,7 +15,6 @@ export default async function CalculatorPage() {
             </div>
             <div>
                 <h2 className="text-2xl font-bold mb-4">Calculator</h2>
-                {/* <Calculator /> */}
             </div>
         </div>
     );

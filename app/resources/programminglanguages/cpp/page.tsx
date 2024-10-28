@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
-import SmoothScroll from '@/components/smoothscroll';
 import PageDescription from '../../_components/pagedesc';
 import { lessonData, units } from '../../data/cpp';
 
@@ -22,19 +21,19 @@ const CppResourcePage = () => {
     }
 
     return (
-        // <SmoothScroll>
-            <div className="min-h-screen overflow-hidden w-full py-32 flex flex-col items-center justify-center p-8">
-                <div className="w-full max-w-4xl mx-auto">
-                    <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
-                    {
-                        units.map((unit, index) => (
+        <div className="min-h-screen overflow-hidden w-full py-32 flex flex-col items-center justify-center p-8">
+            <div className="w-full max-w-4xl mx-auto">
+                <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
+                {
+                    units.map((unit, index) => (
+                        <div className="">
                             <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
-                        ))
-                    }
-                    <QuizAndContribute quizlink='https://www.google.com' contributelink='#' />
-                </div>
+                        </div>
+                    ))
+                }
+                <QuizAndContribute contributelink='#' />
             </div>
-        // </SmoothScroll>
+        </div>
     );
 };
 

@@ -14,7 +14,7 @@ export default function PathwaysPage() {
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen text-white pt-4">
+            <div className="min-h-screen dark:text-white text-black pt-32">
                 <header className="">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         <h1 className="text-3xl font-bold">Computer Science Career Pathways</h1>

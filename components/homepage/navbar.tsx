@@ -70,7 +70,7 @@ export default function Navbar({ className }: { className?: string }) {
                                     <HoveredLink href="/projects">Projects</HoveredLink>
                                     <HoveredLink href="/pathways">Pathways</HoveredLink>
                                     <HoveredLink href="/buildxscratch">Build from Scratch</HoveredLink>
-                                    <HoveredLink href="">Open Source(coming soon)</HoveredLink>
+                                    <HoveredLink href="/opensource">Open Source(coming soon)</HoveredLink>
                                 </div>
                             </MenuItem>
                             :

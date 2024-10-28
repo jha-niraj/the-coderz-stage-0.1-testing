@@ -6,16 +6,18 @@ import FeedbackSection from "../components/homepage/feedbacksection";
 import SupportSection from "../components/homepage/supportsection";
 import ContactSection from "../components/homepage/contactsection";
 import FaqsAccrodian from "../components/homepage/faqs";
-import Navbar from "../components/homepage/navbar";
-import Footer from "../components/footer";
+import StudentServices from "@/components/homepage/studentservices";
+import StatsSection from "@/components/homepage/datacount";
 
 export  default function LandingPage() {
     return (
         <SmoothScroll>
-			<main className={`h-full w-[95%] sm:w-[80%] relative flex flex-col items-center justify-center mx-auto pt-24 sm:pt-32`}>
+			<main className={`h-full w-[95%] sm:w-[80%] relative flex flex-col items-center justify-center mx-auto pt-20 sm:pt-32`}>
 				<MainPage />
 				<ExploreResourcesSection />
+				<StudentServices />
 				<OpenSourceContribution />
+				<StatsSection />
 				<FeedbackSection />
 				<FaqsAccrodian />
 				<SupportSection />

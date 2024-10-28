@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SmoothScroll from '@/components/smoothscroll';
 import Link from 'next/link';
 import SupportSection from '@/components/homepage/supportsection';
-import IconCloud from '@/components/ui/icon-cloud';
 import Ripple from '@/components/ui/ripple';
 
 const categories = [
@@ -15,6 +14,14 @@ const categories = [
 		name: 'Programming Languages',
 		icon: '💻',
 		resources: [
+			{
+				name: 'Python',
+				url: '/resources/programminglanguages/python',
+				icon: '🐍',
+				description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
+				color: 'from-green-500 to-green-300',
+				status: "live"
+			},
 			{
 				name: 'C',
 				url: '/resources/programminglanguages/c',
@@ -24,7 +31,7 @@ const categories = [
 				status: "live"
 			},
 			{
-				name: 'C++',
+				name: 'C++/CPP',
 				url: '/resources/programminglanguages/cpp',
 				icon: 'C++',
 				description: 'Widely used for system/application software, game development, and more.',
@@ -37,15 +44,7 @@ const categories = [
 				icon: '☕',
 				description: 'A popular language for building large-scale enterprise applications and Android apps.',
 				color: 'from-red-500 to-red-300',
-				status: "live"
-			},
-			{
-				name: 'Python',
-				url: '/resources/programminglanguages/python',
-				icon: '🐍',
-				description: 'Known for its simplicity and wide range of applications, from web dev to data science.',
-				color: 'from-green-500 to-green-300',
-				status: "live"
+				status: "coming"
 			},
 			{
 				name: 'Go',
@@ -71,7 +70,7 @@ const categories = [
 		resources: [
 			{
 				name: 'HTML',
-				url: '/resources/foundations/html',
+				url: '/resources/development/htmlcss',
 				icon: '</>',
 				description: 'The standard markup language for creating web pages and web applications.',
 				color: 'from-orange-500 to-orange-300',
@@ -79,7 +78,7 @@ const categories = [
 			},
 			{
 				name: 'CSS',
-				url: '/resources/foundations/css',
+				url: '/resources/development/css',
 				icon: '🎨',
 				description: 'A style sheet language used for describing the presentation of a document written in HTML.',
 				color: 'from-blue-500 to-blue-300',
@@ -87,7 +86,7 @@ const categories = [
 			},
 			{
 				name: 'JavaScript',
-				url: '/resources/foundations/javascript',
+				url: '/resources/development/javascript',
 				icon: 'JS',
 				description: 'A high-level, interpreted programming language that is a core technology of the World Wide Web.',
 				color: 'from-yellow-500 to-yellow-300',
@@ -95,7 +94,7 @@ const categories = [
 			},
 			{
 				name: 'TypeScript',
-				url: '/resources/foundations/typescript',
+				url: '/resources/development/typescript',
 				icon: 'TS',
 				description: 'A typed superset of JavaScript that compiles to plain JavaScript.',
 				color: 'from-blue-700 to-blue-500',
@@ -294,21 +293,34 @@ function ResourceCard({ resource }: any) {
 			initial={{ opacity: 0, y: 50 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className={`${ resource.status === "coming soon" ? "bg-gray-300 " : "" } rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300`}
+			className={`rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300`}
 		>
 			<div className="p-6 flex flex-col justify-between h-full">
 				<div>
 					<h2 className="text-2xl font-bold mb-2">{resource.name}</h2>
-					<p className=" dark:text-gray-100 text-sm mb-4">{resource.description}</p>
+					<p className="dark:text-gray-100 text-sm mb-4">{resource.description}</p>
 				</div>
-				<Link
-					href={resource.url}
-					className={`block w-full bg-gradient-to-r ${resource.color} disabled:${resource.status === "coming soon"} text-black px-4 py-2 rounded-full text-center font-bold hover:opacity-90 transition-opacity`}
-				>
-					{
-						resource.status === "live" ? "Explore resources" : "Coming Soon"
-					}
-				</Link>
+				{resource.status === "coming" ? (
+					// Disabled button for coming soon resources
+					<button
+						disabled
+						className={`w-full bg-gradient-to-r from-gray-400 to-gray-300 
+                        text-gray-600 px-4 py-2 rounded-full text-center font-bold 
+                        cursor-not-allowed opacity-70`}
+					>
+						Coming Soon
+					</button>
+				) : (
+					// Active link for live resources
+					<Link
+						href={resource.url}
+						className={`block w-full bg-gradient-to-r ${resource.color} 
+                        text-black px-4 py-2 rounded-full text-center font-bold 
+                        hover:opacity-90 transition-opacity`}
+					>
+						Explore resources
+					</Link>
+				)}
 			</div>
 		</motion.div>
 	)

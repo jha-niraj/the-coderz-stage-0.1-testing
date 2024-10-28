@@ -6,7 +6,7 @@ import QuizAndContribute from '../../_components/quizcontribute';
 import UnitAccordion from '../../_components/unitaccordian';
 import SmoothScroll from '@/components/smoothscroll';
 import PageDescription from '../../_components/pagedesc';
-import { units } from '../../data/python';
+import { units, lessonData } from '../../data/python';
 
 const pageDescription = {
     title: "Python Learning Path",
@@ -22,19 +22,17 @@ const CResourcePage = () => {
     }
 
     return (
-        <SmoothScroll>
         <div className="min-h-screen w-full py-32 flex flex-col items-center justify-center p-8">
             <div className="w-full max-w-4xl mx-auto">
                 <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
                 {
                     units.map((unit, index) => (
-                        <UnitAccordion key={index} unit={unit} unitIndex={index} />
+                        <UnitAccordion key={index} unit={unit} lessonData={lessonData} unitIndex={index} />
                     ))
                 }
-                <QuizAndContribute quizlink='https://www.google.com' contributelink='#' />
+                <QuizAndContribute contributelink='#' />
             </div>
         </div>
-        </SmoothScroll>
     );
 };
 

@@ -6,6 +6,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "
 import CodeBlock from './codeblock';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import SmoothScroll from '@/components/smoothscroll';
 
 interface LessonDataProps {
     title: string;
@@ -69,7 +72,22 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                                                     }
                                                 </ul>
                                             )}
-                                        {section.code && <CodeBlock language="C++" code={section.code} />}
+                                        {
+                                            section.code && <CodeBlock language="C++" code={section.code} />
+
+                                        }
+                                        {
+                                            section.code && <SyntaxHighlighter
+                                                language="C++"
+                                                style={nightOwl}
+                                                className="rounded-lg !mt-4"
+                                                showLineNumbers
+                                            >
+                                                {
+                                                    section.code
+                                                }
+                                            </SyntaxHighlighter>
+                                        }
                                     </div>
                                 </motion.div>
                             ))
@@ -77,24 +95,6 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                                 <div>We are working on this</div>
                             )
                     }
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="mt-12 bg-gray-900 rounded-lg p-6 border border-gray-700"
-                    >
-                        <h2 className="text-2xl font-semibold mb-6 text-white">Test Your Knowledge</h2>
-                        <p className="text-gray-300 mb-4">
-                            If you have completed the course or want to test your knowledge, please take our comprehensive quiz.
-                        </p>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center p-2 w-[60%] sm:w-[30%] sm:mx-auto bg-transparent border border-white dark:border-white dark:text-white text-white rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
-                        >
-                            Take the Quiz <ExternalLink className="ml-2 h-4 w-4" />
-                        </Link>
-                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
