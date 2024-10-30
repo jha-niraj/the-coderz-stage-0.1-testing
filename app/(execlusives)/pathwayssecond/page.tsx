@@ -18,8 +18,8 @@ const PathwaysPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background">
-            <section className="relative py-24 px-4 md:px-6 overflow-hidden">
+        <div className="min-h-screen">
+            <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-3xl"></div>
 

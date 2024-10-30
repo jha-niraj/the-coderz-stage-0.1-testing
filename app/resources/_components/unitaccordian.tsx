@@ -79,7 +79,10 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
                 <CardHeader
                     className="cursor-pointer flex flex-col sm:flex-row items-center gap-4 sm:gap-2 justify-between"
                 >
-                    <div className="flex justify-between items-center w-full">
+                    <div 
+                        className="flex justify-between items-center w-full"
+                        onClick={() => setExpanded(!expanded)}
+                    >
                         <CardTitle className="text-md sm:text-xl font-semibold text-white dark:text-black">
                             {unit.title}
                         </CardTitle>

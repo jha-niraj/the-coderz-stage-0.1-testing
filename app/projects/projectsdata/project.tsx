@@ -15,132 +15,494 @@ export const categories = [
 export const projects = [
     {
         id: 1,
-        name: 'Responsive Portfolio',
-        category: 'Front-End',
-        group: 'Foundation',
-        level: 'beginner',
-        language: 'HTML/CSS',
-        description: 'A personal portfolio website that adapts to various screen sizes, showcasing responsive design techniques.',
-        features: ['Mobile-first design', 'Flexbox layout', 'CSS Grid', 'Media queries'],
-        learningOutcomes: ['Understanding of responsive design principles', 'Proficiency in CSS layout techniques', 'Basic SEO optimization'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        title: "E-commerce Dashboard",
+        description: "Build a modern e-commerce admin dashboard with real-time analytics and inventory management.",
+        difficulty: "Intermediate",
+        category: "Front-End",
+        tags: ["React", "TypeScript", "Tailwind"],
+        guide: {
+            description: "This project will teach you modern React patterns, state management, and real-time data handling.",
+            learningOutcomes: ['Understanding of responsive design principles', 'Proficiency in CSS layout techniques', 'Basic SEO optimization'],
+            mobileImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+            desktopImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+            steps: [
+                "Set up a new React project with Vite",
+                "Implement authentication flow",
+                "Create dashboard layout",
+                "Add real-time charts and analytics"
+            ]
+        }
     },
     {
         id: 2,
-        name: 'Task Manager CLI',
-        category: 'Back-End',
-        group: 'Python',
-        level: 'beginner',
-        language: 'Python',
-        description: 'A command-line interface application for managing tasks and to-do lists.',
-        features: ['Add, remove, and mark tasks as complete', 'Save tasks to a file', 'List all tasks', 'Priority levels for tasks'],
-        learningOutcomes: ['Basic Python programming', 'File I/O operations', 'Command-line argument parsing', 'Data structures in Python'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        title: "E-commerce Dashboard",
+        description: "Build a modern e-commerce admin dashboard with real-time analytics and inventory management.",
+        difficulty: "Intermediate",
+        category: "Back-End",
+        tags: ["React", "TypeScript", "Tailwind"],
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+        guide: {
+            description: "This project will teach you modern React patterns, state management, and real-time data handling.",
+            learningOutcomes: ['Understanding of responsive design principles', 'Proficiency in CSS layout techniques', 'Basic SEO optimization'],
+            mobileImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+            desktopImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+            steps: [
+                "Set up a new React project with Vite",
+                "Implement authentication flow",
+                "Create dashboard layout",
+                "Add real-time charts and analytics"
+            ]
+        }
+    }
+];
+
+export const realProjects = [
+    {
+        id: "html-1",
+        title: "Personal Blog Structure",
+        description: "Create a multi-page blog structure focusing on semantic HTML elements",
+        difficulty: "Beginner",
+        tags: ["HTML"],
+        guide: {
+            description: "Learn proper HTML structure and semantic markup without styling",
+            learningOutcomes: [
+                "Understanding semantic HTML5 elements",
+                "Proper document structure",
+                "Accessibility best practices"
+            ],
+            keyFeatures: [
+                "Blog posts list",
+                "Individual post pages",
+                "About page",
+                "Contact form structure"
+            ],
+            prerequisites: ["Basic understanding of web concepts"],
+            skillsGained: [
+                "Semantic markup",
+                "HTML5 form elements",
+                "Document structuring",
+                "SEO basics"
+            ],
+            steps: [
+                "Plan website structure",
+                "Create homepage with article previews",
+                "Build individual blog post template",
+                "Add contact form structure"
+            ],
+            resources: {
+                documentation: ["MDN HTML Guide", "W3C HTML Specification"],
+                tools: ["VS Code", "HTML Validator"]
+            }
+        }
     },
     {
-        id: 3,
-        name: 'Weather Dashboard',
-        category: 'Front-End',
-        group: 'JavaScript',
-        level: 'intermediate',
-        language: 'JavaScript/API',
-        description: 'An interactive weather dashboard that displays current weather and forecasts for multiple cities.',
-        features: ['API integration', 'Dynamic UI updates', 'Local storage for saved cities', 'Responsive design'],
-        learningOutcomes: ['Working with APIs', 'Asynchronous JavaScript', 'DOM manipulation', 'Local storage usage'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "html-2",
+        title: "Restaurant Menu System",
+        description: "Build a structured menu system for a restaurant with multiple sections",
+        difficulty: "Beginner",
+        tags: ["HTML"],
+        guide: {
+            description: "Create a well-structured menu system using proper HTML elements and attributes",
+            learningOutcomes: [
+                "Table structure usage",
+                "List implementation",
+                "Content organization"
+            ],
+            keyFeatures: [
+                "Multiple menu categories",
+                "Special items highlighting",
+                "Nutritional information table",
+                "Allergen information"
+            ],
+            prerequisites: ["HTML basics"],
+            skillsGained: [
+                "Table structures",
+                "List types usage",
+                "Content hierarchy",
+                "HTML entities"
+            ],
+            steps: [
+                "Create menu sections",
+                "Build item lists",
+                "Add nutritional tables",
+                "Implement allergen information"
+            ]
+        }
     },
     {
-        id: 4,
-        name: 'Inventory Management System',
-        category: 'Full Stack',
-        group: 'Java',
-        level: 'intermediate',
-        language: 'Java/Spring Boot',
-        description: 'A web-based inventory management system for small businesses.',
-        features: ['CRUD operations for inventory items', 'User authentication', 'Reporting functionality', 'RESTful API'],
-        learningOutcomes: ['Spring Boot framework', 'Database design and ORM', 'RESTful API development', 'Java web application architecture'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "html-3",
+        title: "Educational Course Catalog",
+        description: "Develop a course catalog structure with detailed course information",
+        difficulty: "Intermediate",
+        tags: ["HTML"],
+        guide: {
+            description: "Build a comprehensive course catalog focusing on content organization",
+            learningOutcomes: [
+                "Complex content structuring",
+                "Description lists usage",
+                "Table layouts"
+            ],
+            keyFeatures: [
+                "Course listings",
+                "Detailed descriptions",
+                "Prerequisites display",
+                "Schedule tables"
+            ],
+            prerequisites: ["Basic HTML knowledge"],
+            skillsGained: [
+                "Advanced HTML elements",
+                "Content organization",
+                "Data presentation",
+                "Accessibility features"
+            ]
+        }
     },
     {
-        id: 5,
-        name: 'Data Structures Library',
-        category: 'Foundation',
-        group: 'C++',
-        level: 'intermediate',
-        language: 'C++',
-        description: 'A comprehensive library implementing various data structures in C++.',
-        features: ['Linked lists', 'Trees (Binary, AVL, Red-Black)', 'Graphs', 'Hash tables'],
-        learningOutcomes: ['Advanced C++ programming', 'Data structure implementation', 'Algorithm complexity analysis', 'Template metaprogramming'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "htmlcss-1",
+        title: "Portfolio Gallery",
+        description: "Create a responsive image gallery with hover effects",
+        difficulty: "Beginner",
+        tags: ["HTML", "CSS"],
+        guide: {
+            description: "Build a beautiful gallery with modern CSS features",
+            learningOutcomes: [
+                "CSS Grid mastery",
+                "Responsive design",
+                "Animation effects"
+            ],
+            keyFeatures: [
+                "Responsive grid layout",
+                "Image hover effects",
+                "Lightbox functionality",
+                "Filter categories"
+            ],
+            prerequisites: ["Basic HTML", "CSS fundamentals"],
+            skillsGained: [
+                "CSS Grid",
+                "Flexbox",
+                "Transitions",
+                "Media Queries"
+            ],
+            steps: [
+                "Design grid layout",
+                "Implement responsive design",
+                "Add hover effects",
+                "Create lightbox feature"
+            ],
+            resources: {
+                documentation: ["MDN CSS Guide", "CSS-Tricks Grid Guide"],
+                tools: ["VS Code", "Chrome DevTools"]
+            }
+        }
     },
     {
-        id: 6,
-        name: 'E-commerce Platform',
-        category: 'Full Stack',
-        group: 'JavaScript',
-        level: 'advanced',
-        language: 'React/Node.js',
-        description: 'A full-featured e-commerce platform with user authentication, product catalog, and payment integration.',
-        features: ['User authentication', 'Product search and filtering', 'Shopping cart', 'Payment gateway integration'],
-        learningOutcomes: ['Full-stack JavaScript development', 'State management in React', 'RESTful API design', 'Database modeling'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "htmlcss-2",
+        title: "Product Landing Page",
+        description: "Design a modern product showcase page with animations",
+        difficulty: "Intermediate",
+        tags: ["HTML", "CSS"],
+        guide: {
+            description: "Create a professional product page with advanced CSS features",
+            learningOutcomes: [
+                "Advanced layouts",
+                "Custom animations",
+                "Responsive design patterns"
+            ],
+            keyFeatures: [
+                "Hero section",
+                "Feature showcase",
+                "Animated elements",
+                "Contact form styling"
+            ],
+            skillsGained: [
+                "CSS animations",
+                "Layout techniques",
+                "Typography",
+                "Color theory"
+            ]
+        }
     },
     {
-        id: 7,
-        name: 'Compiler Design',
-        category: 'Foundation',
-        group: 'C',
-        level: 'advanced',
-        language: 'C',
-        description: 'A basic compiler for a simple programming language, implemented in C.',
-        features: ['Lexical analysis', 'Syntax parsing', 'Semantic analysis', 'Code generation'],
-        learningOutcomes: ['Compiler theory and design', 'Advanced C programming', 'Formal language theory', 'Low-level code generation'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "js-1",
+        title: "Interactive Form Validator",
+        description: "Build a real-time form validation system",
+        difficulty: "Beginner",
+        tags: ["JavaScript"],
+        guide: {
+            description: "Create a comprehensive form validation system with immediate feedback",
+            learningOutcomes: [
+                "DOM manipulation",
+                "Regular expressions",
+                "Event handling"
+            ],
+            keyFeatures: [
+                "Real-time validation",
+                "Custom error messages",
+                "Password strength meter",
+                "Form submission handling"
+            ],
+            prerequisites: ["Basic JavaScript knowledge"],
+            skillsGained: [
+                "Form handling",
+                "Validation logic",
+                "RegEx usage",
+                "Event delegation"
+            ]
+        }
     },
     {
-        id: 8,
-        name: 'Machine Learning Model Deployment',
-        category: 'Back-End',
-        group: 'Python',
-        level: 'advanced',
-        language: 'Python/Flask/TensorFlow',
-        description: 'A web service that deploys a pre-trained machine learning model for real-time predictions.',
-        features: ['RESTful API for predictions', 'Model versioning', 'Input validation', 'Scalable architecture'],
-        learningOutcomes: ['Machine learning deployment strategies', 'Web service development with Flask', 'API design for ML models', 'Scalability in ML applications'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "js-2",
+        title: "Kanban Board",
+        description: "Create a drag-and-drop task management system",
+        difficulty: "Intermediate",
+        tags: ["JavaScript"],
+        guide: {
+            description: "Build a Trello-like task management system with drag-and-drop",
+            learningOutcomes: [
+                "Drag and Drop API",
+                "State management",
+                "Local storage"
+            ],
+            keyFeatures: [
+                "Task creation",
+                "Drag-drop functionality",
+                "Data persistence",
+                "Task categories"
+            ],
+            skillsGained: [
+                "Advanced DOM manipulation",
+                "State handling",
+                "Event handling",
+                "Data persistence"
+            ]
+        }
     },
     {
-        id: 9,
-        name: 'Distributed Key-Value Store',
-        category: 'Back-End',
-        group: 'Java',
-        level: 'advanced',
-        language: 'Java',
-        description: 'A distributed key-value store with support for replication and partitioning.',
-        features: ['Consistent hashing', 'Replication for fault tolerance', 'Partitioning for scalability', 'Gossip protocol for cluster membership'],
-        learningOutcomes: ['Distributed systems design', 'Network programming in Java', 'Consistency models in distributed databases', 'Fault tolerance strategies'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "react-1",
+        title: "Weather Dashboard",
+        description: "Build a weather application with location-based forecasts",
+        difficulty: "Intermediate",
+        tags: ["React"],
+        guide: {
+            description: "Create a weather dashboard using React hooks and external APIs",
+            learningOutcomes: [
+                "React hooks usage",
+                "API integration",
+                "State management"
+            ],
+            keyFeatures: [
+                "Current weather",
+                "5-day forecast",
+                "Location search",
+                "Weather maps"
+            ],
+            prerequisites: ["JavaScript", "Basic React"],
+            skillsGained: [
+                "React hooks",
+                "API handling",
+                "Component design",
+                "Props management"
+            ]
+        }
     },
     {
-        id: 10,
-        name: 'Real-time Collaborative Editor',
-        category: 'Full Stack',
-        group: 'JavaScript',
-        level: 'advanced',
-        language: 'React/Node.js/WebSocket',
-        description: 'A web-based collaborative text editor supporting real-time editing by multiple users.',
-        features: ['Real-time synchronization', 'Operational transformation', 'Presence awareness', 'Version history'],
-        learningOutcomes: ['Real-time web technologies', 'Conflict resolution in distributed systems', 'Scalable WebSocket architectures', 'Advanced state management in React'],
-        desktopImage: '/placeholder.svg?height=300&width=400',
-        mobileImage: '/placeholder.svg?height=400&width=200',
+        id: "react-2",
+        title: "E-commerce Product Page",
+        description: "Create a dynamic product page with cart functionality",
+        difficulty: "Intermediate",
+        tags: ["React"],
+        guide: {
+            description: "Build a full-featured product page with shopping cart",
+            learningOutcomes: [
+                "Complex state management",
+                "Cart functionality",
+                "Image galleries"
+            ],
+            keyFeatures: [
+                "Product variants",
+                "Shopping cart",
+                "Image zoom",
+                "Size selector"
+            ],
+            skillsGained: [
+                "Context API",
+                "Custom hooks",
+                "Effect handling",
+                "Component composition"
+            ]
+        }
     },
-]
+    {
+        id: "php-1",
+        title: "Content Management System",
+        description: "Build a basic CMS with user authentication",
+        difficulty: "Intermediate",
+        tags: ["PHP", "MySQL"],
+        guide: {
+            description: "Create a CMS with user roles and content management",
+            learningOutcomes: [
+                "Database design",
+                "Authentication",
+                "CRUD operations"
+            ],
+            keyFeatures: [
+                "User authentication",
+                "Content creation",
+                "Role management",
+                "Media uploads"
+            ],
+            prerequisites: ["Basic PHP", "MySQL basics"],
+            skillsGained: [
+                "PHP security",
+                "Database management",
+                "Session handling",
+                "File operations"
+            ]
+        }
+    },
+    {
+        id: "php-2",
+        title: "Event Booking System",
+        description: "Develop an event registration and management system",
+        difficulty: "Advanced",
+        tags: ["PHP", "MySQL"],
+        guide: {
+            description: "Build a complete event management system with booking functionality",
+            learningOutcomes: [
+                "Complex database relations",
+                "Payment integration",
+                "Email handling"
+            ],
+            keyFeatures: [
+                "Event creation",
+                "Ticket booking",
+                "Payment processing",
+                "Email notifications"
+            ],
+            skillsGained: [
+                "Transaction handling",
+                "API integration",
+                "Email systems",
+                "Security practices"
+            ]
+        }
+    },
+    {
+        id: "fullstack-1",
+        title: "Social Media Dashboard",
+        description: "Create a comprehensive social media management platform",
+        difficulty: "Advanced",
+        tags: ["React", "PHP", "MySQL", "Redis"],
+        guide: {
+            description: "Build a full-featured social media management tool",
+            learningOutcomes: [
+                "Full-stack architecture",
+                "Real-time updates",
+                "Performance optimization"
+            ],
+            keyFeatures: [
+                "Post scheduling",
+                "Analytics dashboard",
+                "Content calendar",
+                "Team collaboration"
+            ],
+            prerequisites: [
+                "React fundamentals",
+                "PHP backend development",
+                "Database design"
+            ],
+            skillsGained: [
+                "System architecture",
+                "API design",
+                "Caching strategies",
+                "Real-time features"
+            ]
+        }
+    },
+    {
+        id: "fullstack-2",
+        title: "E-learning Platform",
+        description: "Build a comprehensive learning management system",
+        difficulty: "Advanced",
+        tags: ["React", "PHP", "MySQL", "Redux"],
+        guide: {
+            description: "Create a feature-rich e-learning platform",
+            learningOutcomes: [
+                "Complex state management",
+                "Video streaming",
+                "User progress tracking"
+            ],
+            keyFeatures: [
+                "Course management",
+                "Video lessons",
+                "Progress tracking",
+                "Quiz system"
+            ],
+            skillsGained: [
+                "Redux architecture",
+                "Media handling",
+                "Progress tracking",
+                "Assessment systems"
+            ]
+        }
+    },
+    {
+        id: "fullstack-1",
+        title: "Social Media Dashboard",
+        description: "Create a comprehensive social media management platform",
+        difficulty: "Advanced",
+        tags: ["React", "PHP", "MySQL", "Redis"],
+        guide: {
+            description: "Build a full-featured social media management tool",
+            learningOutcomes: [
+                "Full-stack architecture",
+                "Real-time updates",
+                "Performance optimization"
+            ],
+            keyFeatures: [
+                "Post scheduling",
+                "Analytics dashboard",
+                "Content calendar",
+                "Team collaboration"
+            ],
+            prerequisites: [
+                "React fundamentals",
+                "PHP backend development",
+                "Database design"
+            ],
+            skillsGained: [
+                "System architecture",
+                "API design",
+                "Caching strategies",
+                "Real-time features"
+            ]
+        }
+    },
+    {
+        id: "fullstack-2",
+        title: "E-learning Platform",
+        description: "Build a comprehensive learning management system",
+        difficulty: "Advanced",
+        tags: ["React", "PHP", "MySQL", "Redux"],
+        guide: {
+            description: "Create a feature-rich e-learning platform",
+            learningOutcomes: [
+                "Complex state management",
+                "Video streaming",
+                "User progress tracking"
+            ],
+            keyFeatures: [
+                "Course management",
+                "Video lessons",
+                "Progress tracking",
+                "Quiz system"
+            ],
+            skillsGained: [
+                "Redux architecture",
+                "Media handling",
+                "Progress tracking",
+                "Assessment systems"
+            ]
+        }
+    }
+];

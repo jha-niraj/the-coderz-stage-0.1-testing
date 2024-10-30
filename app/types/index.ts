@@ -8,16 +8,18 @@ export interface RequestBody {
 // Types for the Project Page:
 export interface Project {
     id: number;
-    name: string;
-    category: string;
-    group: string;
-    level: 'beginner' | 'intermediate' | 'advanced';
-    language: string;
+    title: string;
     description: string;
-    features: string[];
-    learningOutcomes: string[];
-    desktopImage: string;
-    mobileImage: string;
+    difficulty: string;
+    category: string;
+    tags: string[];
+    guide: {
+        description: string;
+        learningOutcomes: string[];
+        mobileImage?: string;
+        desktopImage?: string;
+        steps: string[];
+    }
 }
 export interface ProjectCardProps {
     project: Project;

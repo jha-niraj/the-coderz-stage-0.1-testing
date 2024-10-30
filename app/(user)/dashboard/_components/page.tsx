@@ -1,297 +1,258 @@
-'use client'
+import React from 'react';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { BookOpen, Code, Star, Clock, Trophy, ArrowRight } from 'lucide-react';
+import SmoothScroll from '@/components/smoothscroll';
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Mail, BookOpen, Trophy, Users, Zap, Star, CheckCircle, BarChart, Calendar, Book, Clock } from 'lucide-react'
-import { useSession } from 'next-auth/react'
-import SmoothScroll from '@/components/smoothscroll'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import { Progress } from '@radix-ui/react-progress'
+const Dashboard = () => {
+    const quotes = [
+        {
+            text: "The beautiful thing about learning is that no one can take it away from you.",
+            author: "B.B. King"
+        },
+        {
+            text: "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.",
+            author: "Brian Herbert"
+        }
+    ];
 
-const upcomingEvents = [
-    { name: "Welcome Webinar for New Users", date: "2023-06-20", time: "14:00 - 15:00" },
-    { name: "Introduction to Coding Basics", date: "2023-06-25", time: "10:00 - 11:30" },
-    { name: "Q&A Session with Mentors", date: "2023-06-30", time: "15:00 - 16:00" },
-]
+    const learningPaths = [
+        {
+            title: "Frontend Development",
+            progress: 65,
+            totalModules: 12,
+            completedModules: 8,
+            estimatedTime: "3 months",
+            skills: ["React", "TypeScript", "CSS"],
+            level: "Intermediate"
+        },
+        {
+            title: "UI/UX Design",
+            progress: 45,
+            totalModules: 8,
+            completedModules: 4,
+            estimatedTime: "2 months",
+            skills: ["Figma", "Design Systems", "User Research"],
+            level: "Beginner"
+        },
+        {
+            title: "Backend Development",
+            progress: 25,
+            totalModules: 10,
+            completedModules: 2,
+            estimatedTime: "4 months",
+            skills: ["Node.js", "Express", "MongoDB"],
+            level: "Advanced"
+        }
+    ];
 
-const availableCourses = [
-    { name: "Programming Fundamentals", description: "Learn the basics of coding", icon: <BookOpen className="h-5 w-5 text-blue-400" /> },
-    { name: "Web Development 101", description: "Start your journey in web development", icon: <Zap className="h-5 w-5 text-yellow-400" /> },
-    { name: "Data Science Essentials", description: "Explore the world of data", icon: <BarChart className="h-5 w-5 text-green-400" /> },
-]
+    const projects = [
+        {
+            title: "E-commerce Dashboard",
+            description: "A modern dashboard for managing online store operations",
+            status: "IN_PROGRESS",
+            completion: 75,
+            dueDate: "Nov 15, 2024",
+            priority: "High",
+            technologies: ["React", "TypeScript", "Tailwind"]
+        },
+        {
+            title: "Weather App",
+            description: "Real-time weather tracking application with forecasting",
+            status: "COMPLETED",
+            completion: 100,
+            dueDate: "Oct 20, 2024",
+            priority: "Medium",
+            technologies: ["React", "API Integration", "CSS"]
+        },
+        {
+            title: "Task Management System",
+            description: "Collaborative project management tool",
+            status: "PLANNING",
+            completion: 15,
+            dueDate: "Dec 1, 2024",
+            priority: "Medium",
+            technologies: ["React", "Node.js", "MongoDB"]
+        }
+    ];
 
-interface DashboardCardProps {
-    title: string;
-    value: string | number;
-    icon: React.ReactNode;
-    description: string;
-}
+    const getStatusColor = (status) => {
+        const colors = {
+            'IN_PROGRESS': 'bg-blue-100 text-blue-800',
+            'COMPLETED': 'bg-green-100 text-green-800',
+            'PLANNING': 'bg-purple-100 text-purple-800'
+        };
+        return colors[status] || 'bg-gray-100 text-gray-800';
+    };
 
-const MotionCard = motion(Card);
-const DashboardCard = ({ title, value, icon, description }: DashboardCardProps) => (
-    <Card className="text-white border-2 border-white rounded-lg">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            {icon}
-        </CardHeader>
-        <CardContent>
-            <div className="text-2xl font-bold">{value}</div>
-            <p className="text-xs text-gray-300">{description}</p>
-        </CardContent>
-    </Card>
-)
-
-const availableCourses2 = [
-    { id: 1, name: "Advanced JavaScript Techniques", category: "Web Development", duration: "8 weeks", rating: 4.8 },
-    { id: 2, name: "Introduction to TensorFlow", category: "Machine Learning", duration: "10 weeks", rating: 4.6 },
-]
-export default function DashboardPage() {
-    const { data: session } = useSession();
-    const router = useRouter();
+    const getPriorityColor = (priority) => {
+        const colors = {
+            'High': 'text-red-500',
+            'Medium': 'text-yellow-500',
+            'Low': 'text-green-500'
+        };
+        return colors[priority] || 'text-gray-500';
+    };
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen py-8 bg-inherit text-white p-8 pt-20 md:pt-8">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col md:flex-row items-center mb-8 space-y-4 md:space-y-0 md:space-x-8">
-                        <Image 
-                            src={session?.user?.image!}
-                            alt="Profile Picture"
-                            height={100}
-                            width={100}
-                            className="rounded-full"
-                        />
-                        <div className="text-center md:text-left">
-                            <motion.h1
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5 }}
-                                className="text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-                            >
-                                Welcome, {session?.user?.name}
-                            </motion.h1>
-                            <div className="flex flex-col space-y-1 text-gray-400">
-                                <div className="flex items-center">
-                                    <Mail className="mr-2 h-4 w-4" />
-                                    {session?.user?.email}
-                                </div>
-                                <div className="flex items-center">
-                                    <Trophy className="mr-2 h-4 w-4" />
-                                    New Learner
+            <div className="min-h-screen py-24">
+                <div className="max-w-7xl mx-auto p-6 space-y-8">
+                    {/* Header Section */}
+                    <Card className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white overflow-hidden">
+                        <CardContent className="p-8 relative">
+                            <div className="relative z-10">
+                                <h1 className="text-3xl font-bold mb-4">Welcome back!</h1>
+                                <div className="max-w-2xl">
+                                    <p className="text-xl italic opacity-90">"{quotes[0].text}"</p>
+                                    <p className="mt-2 text-sm opacity-75">— {quotes[0].author}</p>
                                 </div>
                             </div>
+                            <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-1/4 translate-y-1/4">
+                                <Trophy size={200} />
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Stats Overview */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:place-items-center gap-6 mb-8">
+                        {[
+                            { icon: BookOpen, label: "Learning Paths", value: "3 Active" },
+                            { icon: Code, label: "Projects", value: "4 In Progress" },
+                            { icon: Trophy, label: "Achievements", value: "12 Earned" }
+                        ].map((stat, index) => (
+                            <Card key={index} className="hover:shadow-lg transition-shadow">
+                                <CardContent className="p-6 flex items-center space-x-4">
+                                    <div className="p-3 rounded-full bg-indigo-100">
+                                        <stat.icon className="w-6 h-6 text-indigo-600" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">{stat.label}</p>
+                                        <p className="text-xl font-semibold">{stat.value}</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+
+                    {/* Main Content Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {/* Learning Paths Section */}
+                        <div className="space-y-6">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-black dark:text-white">Learning Paths</h2>
+                                <button className="text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                                    View all <ArrowRight size={16} />
+                                </button>
+                            </div>
+                            <div className="space-y-4">
+                                {learningPaths.map((path, index) => (
+                                    <Card key={index} className="hover:shadow-lg transition-all duration-300 border-l-4 border-indigo-500">
+                                        <CardContent className="p-6">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h3 className="text-xl font-semibold mb-2">{path.title}</h3>
+                                                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                                                        <span className="flex items-center gap-1">
+                                                            <BookOpen size={16} />
+                                                            {path.completedModules}/{path.totalModules} Modules
+                                                        </span>
+                                                        <span className="flex items-center gap-1">
+                                                            <Clock size={16} />
+                                                            {path.estimatedTime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <span className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-sm">
+                                                    {path.level}
+                                                </span>
+                                            </div>
+                                            <div className="mt-4">
+                                                <div className="flex justify-between text-sm mb-2">
+                                                    <span>Progress</span>
+                                                    <span>{path.progress}%</span>
+                                                </div>
+                                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                                    <div
+                                                        className="bg-indigo-500 rounded-full h-2 transition-all duration-500"
+                                                        style={{ width: `${path.progress}%` }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="mt-4 flex flex-wrap gap-2">
+                                                {path.skills.map((skill, i) => (
+                                                    <span key={i} className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700">
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8 text-white">
-                        <DashboardCard
-                            title="Days Active"
-                            value="3 days"
-                            icon={<Zap className="h-4 w-4 text-yellow-400" />}
-                            description="Keep the momentum going!"
-                        />
-                        <DashboardCard
-                            title="Available Courses"
-                            value="10+"
-                            icon={<BookOpen className="h-4 w-4 text-blue-400" />}
-                            description="Start your learning journey"
-                        />
-                        <DashboardCard
-                            title="Community Members"
-                            value="1,000+"
-                            icon={<Users className="h-4 w-4 text-green-400" />}
-                            description="Connect and learn together"
-                        />
-                        <DashboardCard
-                            title="Next Event"
-                            value="In 2 days"
-                            icon={<Calendar className="h-4 w-4 text-purple-400" />}
-                            description="Join our welcome webinar"
-                        />
-                    </div>
-
-                    <Tabs defaultValue="events" className="mb-8">
-                        <TabsList className="grid w-full grid-cols-2">
-                            <TabsTrigger value="events">Upcoming Events</TabsTrigger>
-                            <TabsTrigger value="courses">Available Courses</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="events">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="text-2xl font-bold text-white">Upcoming Events</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <ul className="space-y-4">
-                                        {upcomingEvents.map((event, index) => (
-                                            <li key={index} className="flex justify-between items-center bg-gray-800 p-3 rounded-lg">
-                                                <div className="flex flex-col gap-2">
-                                                    <p className="font-semibold text-white">{event.name}</p>
-                                                    <p className="text-sm text-white">{event.date} | {event.time}</p>
+                        {/* Projects Section */}
+                        <div className="space-y-6">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-2xl font-bold text-black dark:text-white">Projects</h2>
+                                <button className="text-indigo-600 hover:text-indigo-800 flex items-center gap-2">
+                                    View all <ArrowRight size={16} />
+                                </button>
+                            </div>
+                            <div className="space-y-4">
+                                {projects.map((project, index) => (
+                                    <Card key={index} className="hover:shadow-lg transition-all duration-300">
+                                        <CardContent className="p-6">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <div className="flex items-center gap-3 mb-2">
+                                                        <h3 className="text-xl font-semibold">{project.title}</h3>
+                                                        <span className={`px-3 py-1 rounded-full text-xs ${getStatusColor(project.status)}`}>
+                                                            {project.status}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-gray-600 text-sm">{project.description}</p>
                                                 </div>
-                                                <Button size="sm">RSVP</Button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <Button variant="outline" className="w-full mt-4">View All Events</Button>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                        <TabsContent value="courses">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle className="text-2xl font-bold text-white">Available Courses</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <ul className="space-y-4">
-                                        {availableCourses.map((course, index) => (
-                                            <li key={index} className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                                {course.icon}
-                                                <div className="ml-3 border-l-2 flex flex-col gap-2 pl-4">
-                                                    <p className="font-semibold text-white">{course.name}</p>
-                                                    <p className="text-sm text-white">{course.description}</p>
+                                                <span className={`flex items-center gap-1 ${getPriorityColor(project.priority)}`}>
+                                                    <Star size={16} />
+                                                    {project.priority}
+                                                </span>
+                                            </div>
+                                            <div className="mt-4">
+                                                <div className="flex justify-between text-sm mb-2">
+                                                    <span>Completion</span>
+                                                    <span>{project.completion}%</span>
                                                 </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <Button variant="outline" onClick={() => router.push("/resources")} className="w-full mt-4">Explore All Courses</Button>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                    </Tabs>
-
-                    <div className="grid gap-4 lg:grid-cols-2 mb-8">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="text-2xl font-bold text-white">Getting Started</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-3">
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <CheckCircle className="mr-3 h-5 w-5 text-green-400" />
-                                        <span className="text-white">Complete your profile</span>
-                                    </li>
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <BookOpen className="mr-3 h-5 w-5 text-blue-400" />
-                                        <span className="text-white">Enroll in your first course</span>
-                                    </li>
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <Users className="mr-3 h-5 w-5 text-yellow-400" />
-                                        <span className="text-white">Join the community forum</span>
-                                    </li>
-                                </ul>
-                                <Button className="w-full mt-4">View Onboarding Guide</Button>
-                            </CardContent>
-                        </Card>
-
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="text-2xl font-bold text-white">Learning Resources</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-3">
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <Star className="mr-3 h-5 w-5 text-purple-400" />
-                                        <span className="text-white">Beginner&apos;s Guide to Online Learning</span>
-                                    </li>
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <BarChart className="mr-3 h-5 w-5 text-green-400" />
-                                        <span className="text-white">How to Set Achievable Learning Goals</span>
-                                    </li>
-                                    <li className="flex items-center bg-gray-800 p-3 rounded-lg">
-                                        <Zap className="mr-3 h-5 w-5 text-yellow-400" />
-                                        <span className="text-white">Tips for Effective Time Management</span>
-                                    </li>
-                                </ul>
-                                <Button variant="secondary" className="w-full mt-4 hover:bg-black hover:text-white">Access Resource Center</Button>
-                            </CardContent>
-                        </Card>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <MotionCard
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.9 }}
-                            className="lg:col-span-2 shadow-lg dark:bg-gray-800"
-                        >
-                            <CardHeader>
-                                <CardTitle className="text-white dark:text-white">Available Courses</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <ul className="space-y-4">
-                                    {availableCourses2.map((course, index) => (
-                                        <motion.li
-                                            key={course.id}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                                            className="p-4 rounded-lg shadow flex flex-col sm:flex-row items-start sm:items-center bg-gray-50 dark:bg-gray-700"
-                                        >
-                                            <Book className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mb-2 sm:mb-0" />
-                                            <div className="flex-grow">
-                                                <span className="font-medium text-gray-800 dark:text-white">{course.name}</span>
-                                                <Badge variant="secondary" className="ml-2 text-xs">{course.category}</Badge>
-                                                <div className="flex items-center mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                                    <Clock className="h-4 w-4 mr-1" />
-                                                    <span className="mr-3">{course.duration}</span>
-                                                    <Star className="h-4 w-4 mr-1 text-yellow-400" />
-                                                    <span>{course.rating}</span>
+                                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                                    <div
+                                                        className="bg-green-500 rounded-full h-2 transition-all duration-500"
+                                                        style={{ width: `${project.completion}%` }}
+                                                    />
                                                 </div>
                                             </div>
-                                            <Button variant="outline" className="mt-2 sm:mt-0 sm:ml-4">Enroll</Button>
-                                        </motion.li>
-                                    ))}
-                                </ul>
-                                <Button variant="outline" className="w-full mt-4">View All Courses</Button>
-                            </CardContent>
-                        </MotionCard>
-
-                        <MotionCard
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 1.1 }}
-                            className="lg:col-span-1 shadow-lg dark:bg-gray-800"
-                        >
-                            <CardHeader>
-                                <CardTitle className="text-white dark:text-white">Skills Progress</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="space-y-4">
-                                    {[
-                                        { skill: "JavaScript", progress: 75 },
-                                        { skill: "Python", progress: 60 },
-                                        { skill: "React", progress: 80 },
-                                        { skill: "Machine Learning", progress: 40 },
-                                    ].map((item, index) => (
-                                        <motion.div
-                                            key={item.skill}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                                        >
-                                            <div className="flex justify-between mb-1">
-                                                <span className="text-sm font-medium text-white dark:text-gray-300">{item.skill}</span>
-                                                <span className="text-sm font-medium text-white dark:text-gray-300">{item.progress}%</span>
+                                            <div className="mt-4 flex items-center justify-between">
+                                                <div className="flex flex-wrap gap-2">
+                                                    {project.technologies.map((tech, i) => (
+                                                        <span key={i} className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700">
+                                                            {tech}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                                <span className="text-sm text-gray-500 flex items-center gap-1">
+                                                    <Clock size={14} />
+                                                    Due {project.dueDate}
+                                                </span>
                                             </div>
-                                            <Progress value={item.progress} className="w-full" />
-                                        </motion.div>
-                                    ))}
-                                </div>
-                                <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white">
-                                    <Zap className="h-4 w-4 mr-2" />
-                                    Improve Skills
-                                </Button>
-                            </CardContent>
-                        </MotionCard>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </SmoothScroll>
-    )
-}
+    );
+};
+
+export default Dashboard;

@@ -1,4 +1,4 @@
-export const phpLessonData = [
+export const units = [
     {
         title: "Unit I: PHP Fundamentals",
         youtube: "https://youtu.be/unit1_overview",
