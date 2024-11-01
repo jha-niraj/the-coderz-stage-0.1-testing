@@ -6,6 +6,7 @@ import { AppProvider } from "./context/usercontext";
 import ClientLayout from "./clientlayout";
 import { ThemeProvider } from "@/components/themeprovider";
 import MainLayout from "./mainlayout";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
 								{
 									children
 								}
+								<Toaster />
 							</MainLayout>
 						</AppProvider>
 					</Providers>

@@ -1,27 +1,85 @@
 'use client'
 
-import { useState } from 'react'
-import { RainbowButton } from '../ui/rainbow-button'
+import { useState } from 'react';
+import { RainbowButton } from '../ui/rainbow-button';
+import { useToast } from '@/hooks/use-toast';
+import axios from 'axios';
 
+interface FormStatus {
+	message: String;
+	type: "success" | "error" | ""
+}
 export default function ContactSection() {
+	const { toast } = useToast();
 	const [formData, setFormData] = useState({
 		name: '',
-		service: '',
-		budget: '',
+		skill: '',
+		yearofstudy: '',
 		email: '',
 		details: ''
 	})
+	const [status, setStatus] = useState<FormStatus>({
+		message: '',
+		type: ''
+	})
+	const [isSubmitting, setIsSubmitting] = useState(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target
 		setFormData(prev => ({ ...prev, [name]: value }))
 	}
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-		// Handle form submission here
-		console.log(formData)
-	}
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+		setStatus({ message: '', type: '' });
+
+		try {
+			const response = await axios.post('/api/contact', formData, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+
+			if (response.status === 200 || response.status === 201) {
+				setStatus({
+					message: 'Thank you for your interest! We\'ll get back to you soon.',
+					type: 'success'
+				});
+				setFormData({
+					name: '',
+					skill: '',
+					yearofstudy: '',
+					email: '',
+					details: ''
+				});
+
+				toast({
+					title: "Form Submitted Successfully",
+					description: "Thank you for reaching out! We will contact you soon.",
+				});
+			} else {
+				setStatus({
+					message: response.data.error || 'Something went wrong. Please try again.',
+					type: 'error'
+				});
+			}
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				setStatus({
+					message: error.response?.data?.error || 'Failed to submit form. Please try again.',
+					type: 'error'
+				});
+			} else {
+				setStatus({
+					message: 'Failed to submit form. Please try again.',
+					type: 'error'
+				});
+			}
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
 	return (
 		<section className="max-w-6xl mx-auto px-4 py-20">
@@ -32,7 +90,7 @@ export default function ContactSection() {
 			<form onSubmit={handleSubmit} className="space-y-8">
 				<div>
 					<label htmlFor="name" className="text-2xl md:text-3xl font-bold">
-						My name is 
+						My name is
 						<input
 							type="text"
 							id="name"
@@ -42,41 +100,33 @@ export default function ContactSection() {
 							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
 							placeholder="first and last name"
 							required
-						/> and I&apos;m interested in 
+						/> and I&apos;m proficient in
 						<input
 							type="text"
-							id="service"
-							name="service"
-							value={formData.service}
+							id="skill"
+							name="skill"
+							value={formData.skill}
 							onChange={handleChange}
-							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
-							placeholder="service name"
+							className="border-b-2 border-gray-300 focus:border-black outline-none px-2"
+							placeholder="Full Stack Development, Video Editing"
 							required
 						/>.
 					</label>
 				</div>
-				{/* <div>
-					<label htmlFor="budget" className="text-2xl md:text-4xl font-bold">
-						My project budget
+				<div>
+					<label htmlFor="yearofstudy" className="text-2xl md:text-4xl font-bold">
+						I am studying in <input
+							type="text"
+							id="yearofstudy"
+							name="yearofstudy"
+							value={formData.yearofstudy}
+							onChange={handleChange}
+							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
+							placeholder="1st Year"
+							required
+						/>.
 					</label>
-					<div className="flex flex-wrap gap-4 mt-4">
-						{['$1-5K', '$5-10K', '$10-20K', '$20-50K', '>50K'].map((option) => (
-							<label key={option} className="inline-flex items-center cursor-pointer">
-								<input
-									type="radio"
-									name="budget"
-									value={option}
-									checked={formData.budget === option}
-									onChange={handleChange}
-									className="sr-only"
-								/>
-								<span className={`px-4 py-2 rounded-full border ${formData.budget === option ? 'bg-green-500 text-white' : 'bg-white text-black'}`}>
-									{option}
-								</span>
-							</label>
-						))}
-					</div>
-				</div> */}
+				</div>
 				<div>
 					<label htmlFor="email" className="text-2xl md:text-4xl font-bold">
 						Please, contact me at <input
@@ -104,53 +154,12 @@ export default function ContactSection() {
 						placeholder="Tell us something more about yourself..."
 					/>
 				</div>
-				<RainbowButton type="submit">Send Request</RainbowButton>
+				<RainbowButton type="submit">
+					{
+						isSubmitting ? "Submitting, Please wait..." : "Submit"
+					}
+				</RainbowButton>
 			</form>
 		</section>
 	)
 }
-
-// "use client"
-
-// import { Input } from "@/components/ui/input";
-// import { Textarea } from "@/components/ui/textarea";
-// import { Button } from "../ui/button";
-
-// const ContactSection = () => {
-// 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-// 		e.preventDefault();
-// 		// Handle form submission logic here
-// 		console.log('Form submitted');
-// 	};
-
-// 	return (
-// 		<section className="py-12">
-// 			<div className="container mx-auto px-4">
-// 				<h2 className="text-3xl font-bold text-center mb-8">Wanna talk about Freelance?</h2>
-// 				<form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
-// 					<div>
-// 						<label htmlFor="fullname" className="block text-sm font-medium mb-1">Full Name</label>
-// 						<Input id="fullname" placeholder="John Doe" required />
-// 					</div>
-// 					<div>
-// 						<label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
-// 						<Input id="email" type="email" placeholder="john@example.com" required />
-// 					</div>
-// 					<div>
-// 						<label htmlFor="phone" className="block text-sm font-medium mb-1">Phone Number</label>
-// 						<Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
-// 					</div>
-// 					<div>
-// 						<label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
-// 						<Textarea id="message" placeholder="Your message here..." className="min-h-[100px]" required />
-// 					</div>
-// 					<Button type="submit" className="w-full text-lg font-semibold">
-// 						Send Message
-// 					</Button>
-// 				</form>
-// 			</div>
-// 		</section>
-// 	);
-// };
-
-// export default ContactSection;

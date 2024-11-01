@@ -59,3 +59,15 @@ model Account {
 	@@unique([provider, providerAccountId])
 	@@map("accounts")
 }
+
+model ContactSubmission {
+  id        	String   	@id @default(cuid())
+  name      	String
+  skill   		String
+  yearofstudy	String
+  email     	String
+  details   	String?
+  createdAt 	DateTime 	@default(now())
+
+  @@map("contact_submissions")
+}
