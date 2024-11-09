@@ -167,7 +167,7 @@ const ExploreResourcesSection = () => {
     const router = useRouter();
 
     return (
-        <section className="py-16 px-4">
+        <section className="py-16">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ const ExploreResourcesSection = () => {
                         Explore Computer Science Resources
                     </h2>
                     <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                        Dive into our comprehensive collection of computer science topics. Whether you're a beginner or an expert,
+                        Dive into our comprehensive collection of computer science topics. Whether you&apos;re a beginner or an expert,
                         discover resources tailored to your learning journey.
                     </p>
                 </motion.div>

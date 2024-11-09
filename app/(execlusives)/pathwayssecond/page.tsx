@@ -8,11 +8,49 @@ import { Code, CircleIcon, BrainCircuitIcon, DatabaseIcon, CloudIcon, LayoutDash
 import { Badge } from "@/components/ui/badge";
 import { pathways } from '@/app/pathways/pathwaysdata';
 
-const PathwaysPage = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedPathway, setSelectedPathway] = useState(null);
+// Type Definitions
+interface Career {
+    title: string;
+    description: string;
+    skills: string;
+    opportunities: string;
+}
 
-    const handlePathwayClick = (pathway) => {
+interface Challenge {
+    title: string;
+    description: string;
+    opportunity: string;
+}
+
+interface Skill {
+    name: string;
+    description: string;
+}
+
+interface Trend {
+    name: string;
+    description: string;
+}
+
+interface Pathway {
+    id: string;
+    title: string;
+    icon: React.ReactNode;
+    description: string;
+    color: string;
+    niche: string;
+    domain: string;
+    careers: Career[];
+    challenges: Challenge[];
+    skills: Skill[];
+    trends: Trend[];
+}
+
+const PathwaysPage: React.FC = () => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [selectedPathway, setSelectedPathway] = useState<Pathway | null>(null);
+
+    const handlePathwayClick = (pathway: Pathway): void => {
         setSelectedPathway(pathway);
         setIsOpen(true);
     };
@@ -67,40 +105,42 @@ const PathwaysPage = () => {
             </section>
 
             {/* Pathways Grid */}
-            <section className="py-20 px-4 md:px-6" >
+            <section className="py-20 px-4 md:px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {pathways.map((pathway) => (
-                            <Card
-                                key={pathway.id}
-                                className="transition-all duration-300 hover:shadow-lg cursor-pointer group"
-                                onClick={() => handlePathwayClick(pathway)}
-                            >
-                                <CardHeader>
-                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${pathway.color} flex items-center justify-center text-white mb-4`}>
-                                        {pathway.icon}
-                                    </div>
-                                    <CardTitle className="text-2xl group-hover:text-blue-500 transition-colors">
-                                        {pathway.title}
-                                    </CardTitle>
-                                    <CardDescription className="text-lg">
-                                        {pathway.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="flex gap-2">
-                                        <Badge variant="secondary">{pathway.niche}</Badge>
-                                        <Badge variant="outline">{pathway.domain}</Badge>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        ))}
+                        {
+                            pathways.map((pathway: Pathway) => (
+                                <Card
+                                    key={pathway.id}
+                                    className="transition-all duration-300 hover:shadow-lg cursor-pointer group"
+                                    onClick={() => handlePathwayClick(pathway)}
+                                >
+                                    <CardHeader>
+                                        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${pathway.color} flex items-center justify-center text-white mb-4`}>
+                                            {pathway.icon}
+                                        </div>
+                                        <CardTitle className="text-2xl group-hover:text-blue-500 transition-colors">
+                                            {pathway.title}
+                                        </CardTitle>
+                                        <CardDescription className="text-lg">
+                                            {pathway.description}
+                                        </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex gap-2">
+                                            <Badge variant="secondary">{pathway.niche}</Badge>
+                                            <Badge variant="outline">{pathway.domain}</Badge>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))
+                        }
                     </div>
                 </div>
             </section>
 
             {/* Pathway Details Sheet */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen} >
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetContent
                     side="right"
                     className="w-full h-full sm:w-[80vw] md:w-[50vw] sm:max-w-[70vw] p-6 overflow-y-auto"
@@ -128,18 +168,20 @@ const PathwaysPage = () => {
                                 <div>
                                     <h3 className="text-2xl font-semibold mb-4">Career Paths</h3>
                                     <div className="space-y-4">
-                                        {selectedPathway.careers.map((career, index) => (
-                                            <Card key={index}>
-                                                <CardHeader>
-                                                    <CardTitle>{career.title}</CardTitle>
-                                                    <CardDescription>{career.description}</CardDescription>
-                                                </CardHeader>
-                                                <CardContent className="space-y-2">
-                                                    <p className="text-sm"><strong>Skills:</strong> {career.skills}</p>
-                                                    <p className="text-sm"><strong>Opportunities:</strong> {career.opportunities}</p>
-                                                </CardContent>
-                                            </Card>
-                                        ))}
+                                        {
+                                            selectedPathway.careers.map((career: Career, index: number) => (
+                                                <Card key={index}>
+                                                    <CardHeader>
+                                                        <CardTitle>{career.title}</CardTitle>
+                                                        <CardDescription>{career.description}</CardDescription>
+                                                    </CardHeader>
+                                                    <CardContent className="space-y-2">
+                                                        <p className="text-sm"><strong>Skills:</strong> {career.skills}</p>
+                                                        <p className="text-sm"><strong>Opportunities:</strong> {career.opportunities}</p>
+                                                    </CardContent>
+                                                </Card>
+                                            ))
+                                        }
                                     </div>
                                 </div>
 
@@ -147,12 +189,14 @@ const PathwaysPage = () => {
                                 <div>
                                     <h3 className="text-2xl font-semibold mb-4">Core Skills</h3>
                                     <div className="grid grid-cols-2 gap-4">
-                                        {selectedPathway.skills.map((skill, index) => (
-                                            <div key={index} className="p-4 rounded-lg bg-muted">
-                                                <h4 className="font-semibold mb-2">{skill.name}</h4>
-                                                <p className="text-sm text-muted-foreground">{skill.description}</p>
-                                            </div>
-                                        ))}
+                                        {
+                                            selectedPathway.skills.map((skill: Skill, index: number) => (
+                                                <div key={index} className="p-4 rounded-lg bg-muted">
+                                                    <h4 className="font-semibold mb-2">{skill.name}</h4>
+                                                    <p className="text-sm text-muted-foreground">{skill.description}</p>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </div>
 
@@ -160,19 +204,21 @@ const PathwaysPage = () => {
                                 <div>
                                     <h3 className="text-2xl font-semibold mb-4">Industry Challenges</h3>
                                     <div className="space-y-4">
-                                        {selectedPathway.challenges.map((challenge, index) => (
-                                            <Card key={index}>
-                                                <CardHeader>
-                                                    <CardTitle className="text-lg">{challenge.title}</CardTitle>
-                                                    <CardDescription>{challenge.description}</CardDescription>
-                                                </CardHeader>
-                                                <CardContent>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        <strong>Opportunity:</strong> {challenge.opportunity}
-                                                    </p>
-                                                </CardContent>
-                                            </Card>
-                                        ))}
+                                        {
+                                            selectedPathway.challenges.map((challenge: Challenge, index: number) => (
+                                                <Card key={index}>
+                                                    <CardHeader>
+                                                        <CardTitle className="text-lg">{challenge.title}</CardTitle>
+                                                        <CardDescription>{challenge.description}</CardDescription>
+                                                    </CardHeader>
+                                                    <CardContent>
+                                                        <p className="text-sm text-muted-foreground">
+                                                            <strong>Opportunity:</strong> {challenge.opportunity}
+                                                        </p>
+                                                    </CardContent>
+                                                </Card>
+                                            ))
+                                        }
                                     </div>
                                 </div>
 
@@ -180,20 +226,23 @@ const PathwaysPage = () => {
                                 <div>
                                     <h3 className="text-2xl font-semibold mb-4">Industry Trends</h3>
                                     <div className="grid grid-cols-1 gap-4">
-                                        {selectedPathway.trends.map((trend, index) => (
-                                            <div key={index} className="p-4 rounded-lg bg-muted">
-                                                <h4 className="font-semibold mb-2">{trend.name}</h4>
-                                                <p className="text-sm text-muted-foreground">{trend.description}</p>
-                                            </div>
-                                        ))}
+                                        {
+                                            selectedPathway.trends.map((trend: Trend, index: number) => (
+                                                <div key={index} className="p-4 rounded-lg bg-muted">
+                                                    <h4 className="font-semibold mb-2">{trend.name}</h4>
+                                                    <p className="text-sm text-muted-foreground">{trend.description}</p>
+                                                </div>
+                                            ))
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </>
-                    )}
+                    )
+                    }
                 </SheetContent>
             </Sheet>
-        </div >
+        </div>
     );
 };
 

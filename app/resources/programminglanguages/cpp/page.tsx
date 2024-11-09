@@ -26,8 +26,8 @@ const CppResourcePage = () => {
                 <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
                 {
                     units.map((unit, index) => (
-                        <div className="">
-                            <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
+                        <div className="" key={index}>
+                            <UnitAccordion unit={unit} unitIndex={index} lessonData={lessonData} />
                         </div>
                     ))
                 }

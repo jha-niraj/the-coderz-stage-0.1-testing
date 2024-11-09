@@ -56,7 +56,7 @@ export default function ContactSection() {
 
 				toast({
 					title: "Form Submitted Successfully",
-					description: "Thank you for reaching out! We will contact you soon.",
+					description: "Thank you for reaching out! We will contact you soon. \n Till then keep an eye on mail.",
 				});
 			} else {
 				setStatus({
@@ -82,7 +82,7 @@ export default function ContactSection() {
 	};
 
 	return (
-		<section className="max-w-6xl mx-auto px-4 py-20">
+		<section className="w-full mx-auto px-4 py-20">
 			<h1 className="text-4xl md:text-6xl font-bold mb-12">
 				Hey! Are <span className="text-gray-400">ready</span><br />
 				to <span className="text-blue-400">contribute</span> <span className="text-purple-400">or Join Us?</span>
@@ -107,8 +107,8 @@ export default function ContactSection() {
 							name="skill"
 							value={formData.skill}
 							onChange={handleChange}
-							className="border-b-2 border-gray-300 focus:border-black outline-none px-2"
-							placeholder="Full Stack Development, Video Editing"
+							className="border-b-2 border-gray-300 focus:border-black outline-none px-2 w-64 md:w-96"
+							placeholder="Full Stack Development"
 							required
 						/>.
 					</label>

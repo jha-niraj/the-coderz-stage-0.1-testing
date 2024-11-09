@@ -27,3 +27,25 @@ export const getCurrentUser = async() => {
         return null;
     }
 }
+
+export const userData = async() => {
+    const currentUser = await getCurrentUser();
+    if(!currentUser?.id) {
+        return null;
+    }
+
+    try {
+        const data = await prisma.user.findUnique({
+            where: {
+                id: currentUser?.id
+            },
+            select: {
+                aboutme: true
+            }
+        })
+
+        return data;
+    } catch(err: any) {
+        return null;
+    }
+}

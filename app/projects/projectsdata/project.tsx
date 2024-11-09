@@ -1,60 +1,17 @@
-import { Code, Cpu, Database, Globe, Server } from "lucide-react"
+import { Code, Cpu, Database, Globe, Server } from "lucide-react";
 
+type DifficultyLevel = 'All' | 'Beginner' | 'Intermediate' | 'Advanced';
 export const categories = [
-    { name: 'All', icon: <Globe className="w-5 h-5" /> },
-    { name: 'Front-End', icon: <Code className="w-5 h-5" /> },
-    { name: 'Back-End', icon: <Server className="w-5 h-5" /> },
-    { name: 'Full Stack', icon: <Database className="w-5 h-5" /> },
-    { name: 'Foundation', icon: <Cpu className="w-5 h-5" /> },
-    { name: 'C', icon: 'C' },
-    { name: 'C++', icon: 'C++' },
-    { name: 'Java', icon: 'Java' },
-    { name: 'Python', icon: 'Py' }
+    "All",
+    "Foundation",
+    "Front-End",
+    "Back-End",
+    "Full Stack",
+    "C",
+    "CPP",
+    "Java",
+    "Python"
 ]
-
-export const projects = [
-    {
-        id: 1,
-        title: "E-commerce Dashboard",
-        description: "Build a modern e-commerce admin dashboard with real-time analytics and inventory management.",
-        difficulty: "Intermediate",
-        category: "Front-End",
-        tags: ["React", "TypeScript", "Tailwind"],
-        guide: {
-            description: "This project will teach you modern React patterns, state management, and real-time data handling.",
-            learningOutcomes: ['Understanding of responsive design principles', 'Proficiency in CSS layout techniques', 'Basic SEO optimization'],
-            mobileImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-            desktopImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-            steps: [
-                "Set up a new React project with Vite",
-                "Implement authentication flow",
-                "Create dashboard layout",
-                "Add real-time charts and analytics"
-            ]
-        }
-    },
-    {
-        id: 2,
-        title: "E-commerce Dashboard",
-        description: "Build a modern e-commerce admin dashboard with real-time analytics and inventory management.",
-        difficulty: "Intermediate",
-        category: "Back-End",
-        tags: ["React", "TypeScript", "Tailwind"],
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-        guide: {
-            description: "This project will teach you modern React patterns, state management, and real-time data handling.",
-            learningOutcomes: ['Understanding of responsive design principles', 'Proficiency in CSS layout techniques', 'Basic SEO optimization'],
-            mobileImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-            desktopImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-            steps: [
-                "Set up a new React project with Vite",
-                "Implement authentication flow",
-                "Create dashboard layout",
-                "Add real-time charts and analytics"
-            ]
-        }
-    }
-];
 
 export const realProjects = [
     {
@@ -65,6 +22,8 @@ export const realProjects = [
         tags: ["HTML"],
         guide: {
             description: "Learn proper HTML structure and semantic markup without styling",
+            desktopImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
+            mobileImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
             learningOutcomes: [
                 "Understanding semantic HTML5 elements",
                 "Proper document structure",
@@ -103,6 +62,8 @@ export const realProjects = [
         tags: ["HTML"],
         guide: {
             description: "Create a well-structured menu system using proper HTML elements and attributes",
+            desktopImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
+            mobileImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
             learningOutcomes: [
                 "Table structure usage",
                 "List implementation",
@@ -137,6 +98,8 @@ export const realProjects = [
         tags: ["HTML"],
         guide: {
             description: "Build a comprehensive course catalog focusing on content organization",
+            desktopImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
+            mobileImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
             learningOutcomes: [
                 "Complex content structuring",
                 "Description lists usage",
@@ -165,6 +128,8 @@ export const realProjects = [
         tags: ["HTML", "CSS"],
         guide: {
             description: "Build a beautiful gallery with modern CSS features",
+            desktopImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
+            mobileImage: "https://images.unsplash.com/photo-1730774487035-05673e0c5747?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3fHx8ZW58MHx8fHx8",
             learningOutcomes: [
                 "CSS Grid mastery",
                 "Responsive design",
@@ -193,316 +158,6 @@ export const realProjects = [
                 documentation: ["MDN CSS Guide", "CSS-Tricks Grid Guide"],
                 tools: ["VS Code", "Chrome DevTools"]
             }
-        }
-    },
-    {
-        id: "htmlcss-2",
-        title: "Product Landing Page",
-        description: "Design a modern product showcase page with animations",
-        difficulty: "Intermediate",
-        tags: ["HTML", "CSS"],
-        guide: {
-            description: "Create a professional product page with advanced CSS features",
-            learningOutcomes: [
-                "Advanced layouts",
-                "Custom animations",
-                "Responsive design patterns"
-            ],
-            keyFeatures: [
-                "Hero section",
-                "Feature showcase",
-                "Animated elements",
-                "Contact form styling"
-            ],
-            skillsGained: [
-                "CSS animations",
-                "Layout techniques",
-                "Typography",
-                "Color theory"
-            ]
-        }
-    },
-    {
-        id: "js-1",
-        title: "Interactive Form Validator",
-        description: "Build a real-time form validation system",
-        difficulty: "Beginner",
-        tags: ["JavaScript"],
-        guide: {
-            description: "Create a comprehensive form validation system with immediate feedback",
-            learningOutcomes: [
-                "DOM manipulation",
-                "Regular expressions",
-                "Event handling"
-            ],
-            keyFeatures: [
-                "Real-time validation",
-                "Custom error messages",
-                "Password strength meter",
-                "Form submission handling"
-            ],
-            prerequisites: ["Basic JavaScript knowledge"],
-            skillsGained: [
-                "Form handling",
-                "Validation logic",
-                "RegEx usage",
-                "Event delegation"
-            ]
-        }
-    },
-    {
-        id: "js-2",
-        title: "Kanban Board",
-        description: "Create a drag-and-drop task management system",
-        difficulty: "Intermediate",
-        tags: ["JavaScript"],
-        guide: {
-            description: "Build a Trello-like task management system with drag-and-drop",
-            learningOutcomes: [
-                "Drag and Drop API",
-                "State management",
-                "Local storage"
-            ],
-            keyFeatures: [
-                "Task creation",
-                "Drag-drop functionality",
-                "Data persistence",
-                "Task categories"
-            ],
-            skillsGained: [
-                "Advanced DOM manipulation",
-                "State handling",
-                "Event handling",
-                "Data persistence"
-            ]
-        }
-    },
-    {
-        id: "react-1",
-        title: "Weather Dashboard",
-        description: "Build a weather application with location-based forecasts",
-        difficulty: "Intermediate",
-        tags: ["React"],
-        guide: {
-            description: "Create a weather dashboard using React hooks and external APIs",
-            learningOutcomes: [
-                "React hooks usage",
-                "API integration",
-                "State management"
-            ],
-            keyFeatures: [
-                "Current weather",
-                "5-day forecast",
-                "Location search",
-                "Weather maps"
-            ],
-            prerequisites: ["JavaScript", "Basic React"],
-            skillsGained: [
-                "React hooks",
-                "API handling",
-                "Component design",
-                "Props management"
-            ]
-        }
-    },
-    {
-        id: "react-2",
-        title: "E-commerce Product Page",
-        description: "Create a dynamic product page with cart functionality",
-        difficulty: "Intermediate",
-        tags: ["React"],
-        guide: {
-            description: "Build a full-featured product page with shopping cart",
-            learningOutcomes: [
-                "Complex state management",
-                "Cart functionality",
-                "Image galleries"
-            ],
-            keyFeatures: [
-                "Product variants",
-                "Shopping cart",
-                "Image zoom",
-                "Size selector"
-            ],
-            skillsGained: [
-                "Context API",
-                "Custom hooks",
-                "Effect handling",
-                "Component composition"
-            ]
-        }
-    },
-    {
-        id: "php-1",
-        title: "Content Management System",
-        description: "Build a basic CMS with user authentication",
-        difficulty: "Intermediate",
-        tags: ["PHP", "MySQL"],
-        guide: {
-            description: "Create a CMS with user roles and content management",
-            learningOutcomes: [
-                "Database design",
-                "Authentication",
-                "CRUD operations"
-            ],
-            keyFeatures: [
-                "User authentication",
-                "Content creation",
-                "Role management",
-                "Media uploads"
-            ],
-            prerequisites: ["Basic PHP", "MySQL basics"],
-            skillsGained: [
-                "PHP security",
-                "Database management",
-                "Session handling",
-                "File operations"
-            ]
-        }
-    },
-    {
-        id: "php-2",
-        title: "Event Booking System",
-        description: "Develop an event registration and management system",
-        difficulty: "Advanced",
-        tags: ["PHP", "MySQL"],
-        guide: {
-            description: "Build a complete event management system with booking functionality",
-            learningOutcomes: [
-                "Complex database relations",
-                "Payment integration",
-                "Email handling"
-            ],
-            keyFeatures: [
-                "Event creation",
-                "Ticket booking",
-                "Payment processing",
-                "Email notifications"
-            ],
-            skillsGained: [
-                "Transaction handling",
-                "API integration",
-                "Email systems",
-                "Security practices"
-            ]
-        }
-    },
-    {
-        id: "fullstack-1",
-        title: "Social Media Dashboard",
-        description: "Create a comprehensive social media management platform",
-        difficulty: "Advanced",
-        tags: ["React", "PHP", "MySQL", "Redis"],
-        guide: {
-            description: "Build a full-featured social media management tool",
-            learningOutcomes: [
-                "Full-stack architecture",
-                "Real-time updates",
-                "Performance optimization"
-            ],
-            keyFeatures: [
-                "Post scheduling",
-                "Analytics dashboard",
-                "Content calendar",
-                "Team collaboration"
-            ],
-            prerequisites: [
-                "React fundamentals",
-                "PHP backend development",
-                "Database design"
-            ],
-            skillsGained: [
-                "System architecture",
-                "API design",
-                "Caching strategies",
-                "Real-time features"
-            ]
-        }
-    },
-    {
-        id: "fullstack-2",
-        title: "E-learning Platform",
-        description: "Build a comprehensive learning management system",
-        difficulty: "Advanced",
-        tags: ["React", "PHP", "MySQL", "Redux"],
-        guide: {
-            description: "Create a feature-rich e-learning platform",
-            learningOutcomes: [
-                "Complex state management",
-                "Video streaming",
-                "User progress tracking"
-            ],
-            keyFeatures: [
-                "Course management",
-                "Video lessons",
-                "Progress tracking",
-                "Quiz system"
-            ],
-            skillsGained: [
-                "Redux architecture",
-                "Media handling",
-                "Progress tracking",
-                "Assessment systems"
-            ]
-        }
-    },
-    {
-        id: "fullstack-1",
-        title: "Social Media Dashboard",
-        description: "Create a comprehensive social media management platform",
-        difficulty: "Advanced",
-        tags: ["React", "PHP", "MySQL", "Redis"],
-        guide: {
-            description: "Build a full-featured social media management tool",
-            learningOutcomes: [
-                "Full-stack architecture",
-                "Real-time updates",
-                "Performance optimization"
-            ],
-            keyFeatures: [
-                "Post scheduling",
-                "Analytics dashboard",
-                "Content calendar",
-                "Team collaboration"
-            ],
-            prerequisites: [
-                "React fundamentals",
-                "PHP backend development",
-                "Database design"
-            ],
-            skillsGained: [
-                "System architecture",
-                "API design",
-                "Caching strategies",
-                "Real-time features"
-            ]
-        }
-    },
-    {
-        id: "fullstack-2",
-        title: "E-learning Platform",
-        description: "Build a comprehensive learning management system",
-        difficulty: "Advanced",
-        tags: ["React", "PHP", "MySQL", "Redux"],
-        guide: {
-            description: "Create a feature-rich e-learning platform",
-            learningOutcomes: [
-                "Complex state management",
-                "Video streaming",
-                "User progress tracking"
-            ],
-            keyFeatures: [
-                "Course management",
-                "Video lessons",
-                "Progress tracking",
-                "Quiz system"
-            ],
-            skillsGained: [
-                "Redux architecture",
-                "Media handling",
-                "Progress tracking",
-                "Assessment systems"
-            ]
         }
     }
 ];

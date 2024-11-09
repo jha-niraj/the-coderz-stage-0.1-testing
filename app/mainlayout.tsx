@@ -11,7 +11,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     const [color, setColor] = useState("#ffffff");
 
     useEffect(() => {
-        setColor(theme === "dark" ? "#ffffff" : "#000000");
+        setColor(theme === "light" ? "#ffffff" : "#000000");
     }, [theme]);
 
     return (

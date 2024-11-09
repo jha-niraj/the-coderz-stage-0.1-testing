@@ -70,7 +70,7 @@ const categories = [
 		resources: [
 			{
 				name: 'HTML',
-				url: '/resources/development/htmlcss',
+				url: '/resources/foundations/htmlcss',
 				icon: '</>',
 				description: 'The standard markup language for creating web pages and web applications.',
 				color: 'from-orange-500 to-orange-300',
@@ -78,7 +78,7 @@ const categories = [
 			},
 			{
 				name: 'CSS',
-				url: '/resources/development/css',
+				url: '/resources/foundations/htmlcss',
 				icon: '🎨',
 				description: 'A style sheet language used for describing the presentation of a document written in HTML.',
 				color: 'from-blue-500 to-blue-300',
@@ -86,7 +86,7 @@ const categories = [
 			},
 			{
 				name: 'JavaScript',
-				url: '/resources/development/javascript',
+				url: '/resources/foundations/javascript',
 				icon: 'JS',
 				description: 'A high-level, interpreted programming language that is a core technology of the World Wide Web.',
 				color: 'from-yellow-500 to-yellow-300',
@@ -94,7 +94,7 @@ const categories = [
 			},
 			{
 				name: 'TypeScript',
-				url: '/resources/development/typescript',
+				url: '/resources/foundations/typescript',
 				icon: 'TS',
 				description: 'A typed superset of JavaScript that compiles to plain JavaScript.',
 				color: 'from-blue-700 to-blue-500',

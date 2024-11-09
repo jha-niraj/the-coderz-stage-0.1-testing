@@ -22,6 +22,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
             },
             select: {
                 aboutme: true,
+                tagline: true,
+                college: true,
+                location: true,
                 github: true,
                 linkedin: true,
                 twitter: true,
@@ -31,8 +34,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
                 skills: true,
             }
         })
-
-        console.log(user);
 
         if (!user) {
             return NextResponse.json({ msg: "User not found" }, { status: 404 })

@@ -1067,7 +1067,7 @@ export const lessonData = {
                 ],
                 code: `
                 const name = 'Alice';
-                const greeting = \`Hello, ${name}!\`;
+                const greeting = "Hello, ${name}!";
                 console.log(greeting); // Logs: Hello, Alice!
 
                 const multiLine = \`This is a string

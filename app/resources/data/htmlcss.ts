@@ -63,7 +63,6 @@ export const units = [
     }
 ];
 
-
 export const lessonData = {
     'html_doc_structure': {
         title: "HTML Document Structure",

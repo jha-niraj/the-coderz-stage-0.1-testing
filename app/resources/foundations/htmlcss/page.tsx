@@ -29,7 +29,7 @@ const HTMLCSSResourcePage = () => {
                         <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
                     ))
                 }
-                <QuizAndContribute quizlink='https://www.google.com' contributelink='#' />
+                <QuizAndContribute contributelink='#' />
             </div>
         </div>
     );

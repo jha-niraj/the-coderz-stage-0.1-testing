@@ -75,21 +75,23 @@ const Dashboard = () => {
         }
     ];
 
-    const getStatusColor = (status) => {
+    const getStatusColor = (status: any) => {
         const colors = {
             'IN_PROGRESS': 'bg-blue-100 text-blue-800',
             'COMPLETED': 'bg-green-100 text-green-800',
             'PLANNING': 'bg-purple-100 text-purple-800'
         };
+        //@ts-ignore
         return colors[status] || 'bg-gray-100 text-gray-800';
     };
 
-    const getPriorityColor = (priority) => {
+    const getPriorityColor = (priority: any) => {
         const colors = {
             'High': 'text-red-500',
             'Medium': 'text-yellow-500',
             'Low': 'text-green-500'
         };
+        //@ts-ignore
         return colors[priority] || 'text-gray-500';
     };
 
@@ -103,7 +105,7 @@ const Dashboard = () => {
                             <div className="relative z-10">
                                 <h1 className="text-3xl font-bold mb-4">Welcome back!</h1>
                                 <div className="max-w-2xl">
-                                    <p className="text-xl italic opacity-90">"{quotes[0].text}"</p>
+                                    <p className="text-xl italic opacity-90">&quot;{quotes[0].text}&quot;</p>
                                     <p className="mt-2 text-sm opacity-75">— {quotes[0].author}</p>
                                 </div>
                             </div>

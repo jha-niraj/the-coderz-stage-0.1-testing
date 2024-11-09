@@ -2,7 +2,7 @@
 
 import SmoothScroll from '@/components/smoothscroll';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
-import { ChevronDown, Search } from 'lucide-react';
+import { ChevronDown, Search, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from "next/link";
@@ -89,81 +89,93 @@ export default function Projects() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                {issueOptions.map((issue, index) => (
-                                    <DropdownMenuItem key={index} onClick={() => setSelectedIssue(issue)}>
-                                        {issue}
-                                    </DropdownMenuItem>
-                                ))}
+                                {
+                                    issueOptions.map((issue, index) => (
+                                        <DropdownMenuItem key={index} onClick={() => setSelectedIssue(issue)}>
+                                            {issue}
+                                        </DropdownMenuItem>
+                                    ))
+                                }
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
                 </header>
                 <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {
-                        filteredProjects.map((project, index) => {
-                            return (
-                                <CardContainer className="inter-var w-full" key={index}>
-                                    <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[30rem] h-auto rounded-xl p-4 border">
-                                        <CardItem
-                                            translateZ="50"
-                                            className="text-xl font-bold text-neutral-600 dark:text-white"
-                                        >
-                                            {project.name}
-                                        </CardItem>
-                                        <CardItem
-                                            as="p"
-                                            translateZ="60"
-                                            className="text-neutral-800 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                                        >
-                                            {project.description}
-                                        </CardItem>
-                                        <CardItem
-                                            as="p"
-                                            translateZ="60"
-                                            className="text-neutral-500 w-full text-sm max-w-sm pt-2 flex items-center justify-between dark:text-neutral-300"
-                                        >
-                                            <TooltipProvider>
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <Button variant="outline">Tech Stack</Button>
-                                                    </TooltipTrigger>
-                                                    <TooltipContent>
-                                                        <ul className="flex flex-wrap gap-2">
-                                                            {project.tags.map((tag, index) => (
-                                                                <li key={index} className="bg-black dark:bg-white text-white dark:text-black p-2 text-sm mr-2 rounded">
-                                                                    {tag}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </TooltipContent>
-                                                </Tooltip>
-                                            </TooltipProvider>
-                                            <p className="">
-                                                By {project.author}
-                                            </p>
-                                        </CardItem>
-                                        <div className="flex justify-between items-center mt-5">
+                        filteredProjects.length === 0 ? (
+                            <div className="col-span-full flex flex-col items-center justify-center pt-28 text-center">
+                                <div className="bg-white p-8 rounded-lg shadow-md max-w-md">
+                                    <Zap className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No Projects Available</h3>
+                                    <p className="text-gray-500">There are no projects available with the selected filters. Please try different criteria.</p>
+                                </div>
+                            </div>
+                        ) : (
+                            filteredProjects.map((project, index) => {
+                                return (
+                                    <CardContainer className="inter-var w-full" key={index}>
+                                        <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full sm:w-[30rem] h-auto rounded-xl p-4 border">
                                             <CardItem
-                                                translateZ={20}
-                                                as={Link}
-                                                href="https://twitter.com/mannupaaji"
-                                                target="__blank"
-                                                className="px-4 py-2 rounded-xl text-sm font-normal dark:text-white"
+                                                translateZ="50"
+                                                className="text-xl font-bold text-neutral-600 dark:text-white"
                                             >
-                                                Github
+                                                {project.name}
                                             </CardItem>
                                             <CardItem
-                                                translateZ={20}
-                                                as="button"
-                                                className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                                                as="p"
+                                                translateZ="60"
+                                                className="text-neutral-800 text-sm max-w-sm mt-2 dark:text-neutral-300"
                                             >
-                                                View Live →
+                                                {project.description}
                                             </CardItem>
-                                        </div>
-                                    </CardBody>
-                                </CardContainer>
-                            )
-                        })
+                                            <CardItem
+                                                as="p"
+                                                translateZ="60"
+                                                className="text-neutral-500 w-full text-sm max-w-sm pt-2 flex items-center justify-between dark:text-neutral-300"
+                                            >
+                                                <TooltipProvider>
+                                                    <Tooltip>
+                                                        <TooltipTrigger asChild>
+                                                            <Button variant="outline">Tech Stack</Button>
+                                                        </TooltipTrigger>
+                                                        <TooltipContent>
+                                                            <ul className="flex flex-wrap gap-2">
+                                                                {project.tags.map((tag, index) => (
+                                                                    <li key={index} className="bg-black dark:bg-white text-white dark:text-black p-2 text-sm mr-2 rounded">
+                                                                        {tag}
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </TooltipContent>
+                                                    </Tooltip>
+                                                </TooltipProvider>
+                                                <p className="">
+                                                    By {project.author}
+                                                </p>
+                                            </CardItem>
+                                            <div className="flex justify-between items-center mt-5">
+                                                <CardItem
+                                                    translateZ={20}
+                                                    as={Link}
+                                                    href="https://twitter.com/mannupaaji"
+                                                    target="__blank"
+                                                    className="px-4 py-2 rounded-xl text-sm font-normal dark:text-white"
+                                                >
+                                                    Github
+                                                </CardItem>
+                                                <CardItem
+                                                    translateZ={20}
+                                                    as="button"
+                                                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                                                >
+                                                    View Live →
+                                                </CardItem>
+                                            </div>
+                                        </CardBody>
+                                    </CardContainer>
+                                )
+                            })
+                        )
                     }
                 </main>
             </div>

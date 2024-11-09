@@ -21,6 +21,9 @@ model User {
 	hashedPassword		String?		
 	image             	String?           		@default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
 	aboutme				String?
+	tagline				String?
+	college				String?
+	location			String?
 	github				String?
 	linkedin			String?
 	twitter				String?

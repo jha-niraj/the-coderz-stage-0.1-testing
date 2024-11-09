@@ -57,7 +57,7 @@ export default function StudentProfile() {
     const [selectedSkills, setSelectedSkills] = useState(initialState.selectedSkills);
     const [selectedInterests, setSelectedInterests] = useState(initialState.selectedInterests);
     const [aboutme, setAboutMe] = useState(initialState.aboutme);
-    const [ dialogOpen, setDialogOpen ] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     useEffect(() => {
         const fetchedUserData = async () => {
@@ -374,25 +374,25 @@ export default function StudentProfile() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {
                                             selectedInterests ?
-                                                    selectedInterests.map((interest, index) => (
-                                                        <motion.div
-                                                            key={interest}
-                                                            initial={{ opacity: 0, y: 20 }}
-                                                            animate={{ opacity: 1, y: 0 }}
-                                                            transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                                                            className="group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 transition-all duration-300 hover:shadow-xl"
-                                                        >
-                                                            <div className="absolute inset-0 bg-blue-500 dark:bg-blue-400 opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
-                                                            <div className="relative p-4 flex items-center justify-start">
-                                                                <h4 className="text-sm font-semibold">{interest}</h4>
-                                                            </div>
-                                                            <div className="absolute bottom-0 left-0 h-1 w-full bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                                                        </motion.div>
-                                                    ))
+                                                selectedInterests.map((interest, index) => (
+                                                    <motion.div
+                                                        key={interest}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                                                        className="group relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 transition-all duration-300 hover:shadow-xl"
+                                                    >
+                                                        <div className="absolute inset-0 bg-blue-500 dark:bg-blue-400 opacity-0 transition-opacity duration-300 group-hover:opacity-10" />
+                                                        <div className="relative p-4 flex items-center justify-start">
+                                                            <h4 className="text-sm font-semibold">{interest}</h4>
+                                                        </div>
+                                                        <div className="absolute bottom-0 left-0 h-1 w-full bg-blue-500 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                                                    </motion.div>
+                                                ))
                                                 :
-                                                    <div>
-                                                        <p>Please update this section</p>
-                                                    </div>
+                                                <div>
+                                                    <p>Please update this section</p>
+                                                </div>
                                         }
                                     </div>
                                 </motion.div>
@@ -412,16 +412,16 @@ export default function StudentProfile() {
                                             className="flex flex-wrap gap-2"
                                         >
                                             {
-                                                selectedSkills ? 
-                                                        selectedSkills.map((skill) => (
-                                                            <Badge key={skill} variant="secondary" className="bg-white w-[45%] flex items-center justify-center text-black hover:bg-sky-500 hover:text-white cursor-pointer">
-                                                                {skill || "Please update the skill section"}
-                                                            </Badge>
-                                                        ))
+                                                selectedSkills ?
+                                                    selectedSkills.map((skill) => (
+                                                        <Badge key={skill} variant="secondary" className="bg-white w-[45%] flex items-center justify-center text-black hover:bg-sky-500 hover:text-white cursor-pointer">
+                                                            {skill || "Please update the skill section"}
+                                                        </Badge>
+                                                    ))
                                                     :
-                                                        <div>
-                                                            <p>Please update the technical section</p>
-                                                        </div>
+                                                    <div>
+                                                        <p>Please update the technical section</p>
+                                                    </div>
                                             }
 
                                         </motion.div>

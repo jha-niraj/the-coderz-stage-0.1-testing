@@ -12,7 +12,7 @@ const pageDescription = {
     description: "Master React with our comprehensive course covering everything from basics to advanced topics Perfect for beginners and experienced programmers looking to enhance their skills."
 }
 
-const CppResourcePage = () => {
+const ReactResourcePage = () => {
     const router = useRouter();
     const [isEnrolled, setIsEnrolled] = useState(false);
 
@@ -26,8 +26,8 @@ const CppResourcePage = () => {
                 <PageDescription title={pageDescription.title} description={pageDescription.description} onClick={handleEnroll} isEnrolled={isEnrolled} />
                 {
                     units.map((unit, index) => (
-                        <div className="">
-                            <UnitAccordion key={index} unit={unit} unitIndex={index} lessonData={lessonData} />
+                        <div className="" key={index}>
+                            <UnitAccordion unit={unit} unitIndex={index} lessonData={lessonData} />
                         </div>
                     ))
                 }
@@ -37,4 +37,4 @@ const CppResourcePage = () => {
     );
 };
 
-export default CppResourcePage;
+export default ReactResourcePage;
