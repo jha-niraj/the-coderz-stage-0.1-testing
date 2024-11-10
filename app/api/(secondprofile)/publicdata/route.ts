@@ -30,10 +30,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const body = await req.json();
         const { tagline, college, location, github, linkedin, twitter, leetcode, website } = body;
 
-        console.log(name, tagline, college, location, github, linkedin, twitter, leetcode, website);
-
-        // return NextResponse.json({ msg: "Successful" }, { status: 200 });
-
         const updatedUser = await prisma.user.update({
             where: {
                 email: session?.user?.email as string

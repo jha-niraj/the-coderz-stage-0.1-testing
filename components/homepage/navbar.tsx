@@ -49,7 +49,7 @@ export default function Navbar({ className }: { className?: string }) {
 
     return (
         <div
-            className={cn("fixed top-5 inset-x-0 max-w-xl sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-7xl mx-auto z-50 transition-all duration-200", className)}
+            className={cn("fixed top-5 inset-x-0 max-w-xl sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto z-50 transition-all duration-200", className)}
         >
             <Menu setActive={setActive}>
                 <Link href="/" className="flex gap-2 items-center justify-center">

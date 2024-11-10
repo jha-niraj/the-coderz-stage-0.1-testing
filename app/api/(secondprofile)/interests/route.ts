@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
-import { getCurrentUser } from "@/actions/user.action";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 
@@ -15,38 +14,33 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     try {
-        const { skills } = await req.json();
+        const { interests } = await req.json();
 
-        if (!Array.isArray(skills) || skills.length === 0) {
+        if (!Array.isArray(interests) || interests.length === 0) {
             return NextResponse.json(
                 { message: 'Invalid interests format' },
                 { status: 400 }
             );
         }
 
-        console.log(skills);
+        console.log(interests);
 
-        const updatedResponse = await prisma.user.update({
+        const response = await prisma.user.update({
             where: {
                 email: session?.user?.email as string
             },
             data: {
-                skills
+                interests
             }
         })
 
-        if(!updatedResponse) {
-            return NextResponse.json({ msg: "Unable to update the skill section" }, { status: 501 });
+        if(!response) {
+            return NextResponse.json({ msg: "Unable to update the interests section" }, { status: 501 });
         }
 
-        return NextResponse.json({ 
-            msg: "Skills updated successfully", 
-            skills: updatedResponse?.skills 
-        }, { 
-            status: 200 
-        });
+        return NextResponse.json({ msg: "Interests updated successfully", interests }, { status: 200 });
     } catch (err: any) {
-        console.log("Error while updating skills Section: " + err);
-        return NextResponse.json({ msg: "Error while updating skills section" }, { status: 501 });
+        console.log("Error while updating Interests Section: " + err);
+        return NextResponse.json({ msg: "Error while updating interests section" }, { status: 501 });
     }
 }

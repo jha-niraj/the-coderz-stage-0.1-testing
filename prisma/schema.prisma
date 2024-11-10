@@ -14,12 +14,15 @@ datasource db {
 }
 
 model User {
-	id					String 		@id 		@default(uuid())
-	name				String?		
-	email				String		@unique
-	emailVerified		Boolean?				@default(false)
+	id					String 			@id 		@default(uuid())
+	name				String?			
+	email				String			@unique
+	emailVerified		Boolean?					@default(false)
 	hashedPassword		String?		
-	image             	String?           		@default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+	image             	String?           			@default("https://tse4.mm.bing.net/th?id=OIP.-BS8Y2nH1k93GJiitUVBCAHaHa&pid=Api&P=0")
+	gender				String?
+	phone				String?
+	yearofbirth			String?
 	aboutme				String?
 	tagline				String?
 	college				String?
@@ -35,8 +38,10 @@ model User {
   	verifyTokenExpiry 	DateTime?
 	resetToken			String?
 	restTokenExpiry		DateTime?
-	createdAt			DateTime	@default(now())
-	isAdmin				Boolean		@default(false)
+	createdAt			DateTime		@default(now())
+	isAdmin				Boolean			@default(false)
+
+	proofofwork			ProofOfWork[]
 	accounts			Account[]
 }
 
@@ -61,6 +66,17 @@ model Account {
 
 	@@unique([provider, providerAccountId])
 	@@map("accounts")
+}
+
+model ProofOfWork {
+  id          String    @id @default(uuid())
+  description String
+  skills      String[]
+  link        String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model ContactSubmission {

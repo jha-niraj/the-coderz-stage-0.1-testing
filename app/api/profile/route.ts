@@ -32,6 +32,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
                 website: true,
                 interests: true,
                 skills: true,
+                proofofwork: true
             }
         })
 

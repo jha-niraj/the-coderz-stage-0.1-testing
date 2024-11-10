@@ -14,11 +14,8 @@ import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 
-// // Type Definitions
-// interface CategoryProps {
-//     name: string;
-// }[];
 type DifficultyLevel = "All" | "Beginner" | "Intermediate" | "Advanced";
+
 interface Resource {
     documentation: string[];
     tools: string[];
@@ -45,6 +42,9 @@ interface Project {
     guide: ProjectGuide;
 }
 
+// Type assertion for your realProjects data
+const typedProjects = realProjects as Project[];
+
 const difficultyLevel: DifficultyLevel[] = ["All", "Beginner", "Intermediate", "Advanced"];
 
 const ProjectsPage: React.FC = () => {
@@ -52,7 +52,7 @@ const ProjectsPage: React.FC = () => {
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-    const filteredProjects = realProjects.filter((project) => {
+    const filteredProjects = typedProjects.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
         const difficultyMatch = selectedLevel === 'All' || project.difficulty === selectedLevel;
         return categoryMatch && difficultyMatch;

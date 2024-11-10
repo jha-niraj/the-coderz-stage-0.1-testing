@@ -90,7 +90,7 @@ const categories = [
 				icon: 'JS',
 				description: 'A high-level, interpreted programming language that is a core technology of the World Wide Web.',
 				color: 'from-yellow-500 to-yellow-300',
-				status: "live"
+				status: "coming"
 			},
 			{
 				name: 'TypeScript',
