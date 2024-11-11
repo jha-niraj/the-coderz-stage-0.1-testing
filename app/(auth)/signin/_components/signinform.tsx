@@ -14,11 +14,13 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { Adapter } from "next-auth/adapters";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 
 export default function SignInForm() {
 	const { status } = useSession();
 	const router = useRouter();
 	const { email, setEmail, password, setPassword, image, setImage } = useAppContext();
+	const [ isSubmitting, setIsSubmitting ] = useState<boolean>(false);
 
 	useEffect(() => {
 		if(status === "authenticated") {
@@ -28,7 +30,7 @@ export default function SignInForm() {
 
 	const handleSignInWithGoogle = async() => {
 		try {
-			const callback = await signIn("google", { callbackUrl: "/dashboard" });
+			const callback = await signIn("google", { callbackUrl: "/profile" });
 
 			if(callback?.error) {
 				toast.error("Email not registered");
@@ -41,7 +43,7 @@ export default function SignInForm() {
 
 	const handleSignInWithGitHub = async() => {
 		try {
-			const callback = await signIn("github", { callbackUrl: "/dashboard" });
+			const callback = await signIn("github", { callbackUrl: "/profile" });
 			if(callback?.error) {
 				toast.error("Email not registered");
 				router.push("/register");
@@ -53,6 +55,7 @@ export default function SignInForm() {
 
 	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		
 		const response = await signIn("credentials", {
 			email, password, image,
@@ -63,13 +66,14 @@ export default function SignInForm() {
 			toast.error(response?.error);
 		}
 		if(response?.ok && !response?.error) {
+			setIsSubmitting(false);
 			toast.success("Logged in Successfully");
 			router.push("/profile");
 		}
 	};
 
 	return (
-		<div className="flex flex-col pt-10 bg-black text-white w-full h-screen gap-2 items-center justify-center">
+		<div className="flex flex-col pt-16 text-black dark:text-white w-full h-screen gap-2 items-center justify-center">
 			<h1 className="relative z-10 text-md text-3xl w-[85%] sm:w-[65%] md:w-[50%] lg:w-[30%] bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
 				Welcome Back
 			</h1>
@@ -83,14 +87,18 @@ export default function SignInForm() {
 						<label className="text-md font-medium">Password</label>
 						<Input type="password" placeholder="********" onChange={(e: any) => setPassword(e.target.value)} />
 					</div>
-					<Button type="submit" className="w-full">Sign In</Button>
+					<RainbowButton type="submit" className="w-full">
+                        {
+                            isSubmitting ? "Signing In..." : "Sign In"
+                        }
+                    </RainbowButton>
 				</form>
 
 				<div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-4 h-[1px] w-full" />
 
 				<div className="flex flex-col sm:flex-row gap-2">
 					<button
-						className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+						className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black border-2 border-black dark:border-none rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
 						type="submit"
 						onClick={handleSignInWithGoogle}
 					>
@@ -101,7 +109,7 @@ export default function SignInForm() {
 						<BottomGradient />
 					</button>
 					<button
-						className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+						className=" relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black border-2 border-black dark:border-none rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
 						type="submit"
 						onClick={handleSignInWithGitHub}
 					>
@@ -116,7 +124,7 @@ export default function SignInForm() {
 				<div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-4 h-[1px] w-full" />
 
 				<div className="text-center">
-					<div className="text-sm text-white flex gap-2 items-center justify-center">
+					<div className="text-sm text-black dark:text-white flex gap-2 items-center justify-center">
 						<h1 className="text-sm lg:font-bold font-medium">Don&apos;t have an account?</h1>
 						<Link href="/register" className="font-medium lg:font-bold text-sm text-sky-600 hover:text-indigo-500">
 							Sign up

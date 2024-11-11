@@ -22,6 +22,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
             },
             select: {
                 aboutme: true,
+                gender: true,
+                phone: true,
+                yearofbirth: true,
                 tagline: true,
                 college: true,
                 location: true,

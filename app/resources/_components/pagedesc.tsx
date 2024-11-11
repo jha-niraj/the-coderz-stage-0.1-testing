@@ -39,7 +39,7 @@ export default function PageDescription({ title, description, onClick, isEnrolle
             >
                 <div className="flex justify-between items-center gap-4">
                     <h2 className="text-xl font-semibold">Key Highlights</h2>
-                    <Button
+                    {/* <Button
                         onClick={() => onClick()}
                         className={`px-2 text-md font-semibold text-white rounded-lg transition-all duration-300 ${isEnrolled
                             ? "bg-green-500 cursor-default"
@@ -47,7 +47,7 @@ export default function PageDescription({ title, description, onClick, isEnrolle
                             }`}
                     >
                         {isEnrolled ? "Enrolled" : "Get Started"}
-                    </Button>
+                    </Button> */}
                 </div>
                 <ul className="list-disc list-inside space-y-2">
                     <li>Comprehensive coverage from basics to advanced topics</li>

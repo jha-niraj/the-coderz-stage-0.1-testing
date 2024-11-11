@@ -91,14 +91,14 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
                     <Link
                         href={unit.quizlink}
                         target="_blank"
-                        className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent border border-white dark:border-white dark:text-white text-white rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
+                        className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent border border-white dark:border-white text-white dark:text-black rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
                     >
                         Quiz <ExternalLink className="ml-2 h-4 w-4" />
                     </Link>
                     <Link
                         href={unit.youtube}
                         target="_blank"
-                        className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent dark:text-white text-white rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
+                        className="flex items-center justify-center w-full sm:w-auto p-2 dark:text-white text-white font-semibold transform hover:-translate-y-1 transition duration-400"
                     >
                         <YoutubeIcon size={32} className="text-red-500" />
                     </Link>

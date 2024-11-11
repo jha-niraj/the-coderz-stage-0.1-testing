@@ -22,8 +22,8 @@ const StudentServices = () => {
             <div className="space-y-6">
                 <Card className="hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-colors duration-300">
                     <CardContent className="p-4 sm:p-6 lg:p-8">
-                        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
-                            <div className="space-y-4 lg:w-2/3 flex flex-col gap-6">
+                        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-center">
+                            <div className="space-y-4 lg:w-2/3 flex flex-col">
                                 <div>
                                     <div className="flex items-center space-x-2">
                                         <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
@@ -37,7 +37,7 @@ const StudentServices = () => {
                                         Access our carefully selected collection of learning materials, covering everything
                                         from coding fundamentals to advanced system design. Stay ahead with industry-relevant content.
                                     </p>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 py-4">
                                         <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-sm">500+ Tutorials</span>
                                         <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-sm">Practice Problems</span>
                                         <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-full text-sm">Video Content</span>
@@ -80,8 +80,8 @@ const StudentServices = () => {
                         </Badge>
                     </div>
                     <CardContent className="p-4 sm:p-6 lg:p-8">
-                        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                            <div className="space-y-4 lg:w-2/3 flex flex-col gap-8">
+                        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-center">
+                            <div className="space-y-4 lg:w-2/3 flex flex-col">
                                 <div className="">
                                     <div className="flex items-center space-x-2">
                                         <div className="p-2 bg-yellow-100 dark:bg-yellow-900/20 rounded-lg">
@@ -95,7 +95,7 @@ const StudentServices = () => {
                                         We&apos;re building partnerships with top companies to bring you exclusive internship
                                         and job opportunities. Get ready for a transformative career journey.
                                     </p>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 py-4">
                                         <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-full text-sm">Premium Internships</span>
                                         <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-full text-sm">Career Mentoring</span>
                                         <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-full text-sm">Resume Reviews</span>
@@ -133,8 +133,8 @@ const StudentServices = () => {
 
                 <Card className="hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors duration-300">
                     <CardContent className="p-4 sm:p-6 lg:p-8">
-                        <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-center">
-                            <div className="space-y-4 lg:w-2/3 flex flex-col gap-8">
+                        <div className="flex flex-col lg:flex-row gap-16 lg:gap-12 items-center">
+                            <div className="space-y-4 lg:w-2/3 flex flex-col">
                                 <div>
                                     <div className="flex items-center space-x-2">
                                         <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
@@ -148,7 +148,7 @@ const StudentServices = () => {
                                         Connect with a vibrant community of learners, mentors, and industry professionals.
                                         Participate in events, collaborate on projects, and grow together.
                                     </p>
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-2 py-4">
                                         <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm">Weekly Meetups</span>
                                         <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm">Project Collabs</span>
                                         <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full text-sm">Tech Events</span>

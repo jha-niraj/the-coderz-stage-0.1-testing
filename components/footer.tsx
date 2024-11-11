@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion";
-import { ChevronUp, Github, Linkedin, Twitter } from "lucide-react";
+import { ChevronUp, Github, Instagram, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
@@ -19,14 +19,17 @@ const Footer = () => {
                             <p className="">Empowering developers with cutting-edge resources and a supportive community.</p>
                         </div>
                         <div className="flex space-x-4">
-                            <Link href="#" className="hover:text-blue-400 transition-colors">
+                            <Link href="https://github.com/thecoderzhub" target="_blank" className="hover:text-blue-400 transition-colors">
                                 <Github className="w-6 h-6" />
                             </Link>
-                            <Link href="#" className="hover:text-blue-400 transition-colors">
-                                <Twitter className="w-6 h-6" />
-                            </Link>
-                            <Link href="#" className="hover:text-blue-400 transition-colors">
+                            <Link href="https://www.linkedin.com/in/the-coder-z-a214b4334/" target="_blank" className="hover:text-blue-400 transition-colors">
                                 <Linkedin className="w-6 h-6" />
+                            </Link>
+                            <Link href="https://www.instagram.com/thecoderzofficial/" target="_blank" className="hover:text-blue-400 transition-colors">
+                                <Instagram className="w-6 h-6" />
+                            </Link>
+                            <Link href="https://x.com/coderzofficial" target="_blank" className="hover:text-blue-400 transition-colors">
+                                <Twitter className="w-6 h-6" />
                             </Link>
                         </div>
                     </div>

@@ -5,26 +5,30 @@ import { motion } from "framer-motion";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from "../ui/button";
-import { Facebook, Linkedin, LinkIcon, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, LinkIcon, Twitter } from "lucide-react";
 import supportsectionimage from "@/public/images/support-section-image.jpg";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 const SupportSection = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const handleShare = (platform: string) => {
         const tweetText = encodeURIComponent("Hello guys, I have been using this platform for 1 month and I have found this very helpful. Visit this platform for all the resources related to computer science and follow their Instagram and newsletter to remain updated every day.");
-        const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=https://yourwebsite.com`; // Replace with your website URL
+        const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=https://yourwebsite.com`;
 
-        const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=https://yourwebsite.com&title=Support Our Mission&summary=Help us empower more developers by sharing our platform. Together, we can build a stronger coding community.`; // Replace with your website URL
+        const linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&url=https://yourwebsite.com&title=Support Our Mission&summary=Help us empower more developers by sharing our platform. Together, we can build a stronger coding community.`;
+        const instagramUrl = "https://www.instagram.com/thecoderzofficial/";
 
         if (platform === 'Twitter') {
             window.open(tweetUrl, '_blank');
         } else if (platform === 'LinkedIn') {
             window.open(linkedInUrl, '_blank');
+        } else if(platform === "Instagram") {
+            window.open(instagramUrl, '_blank');
         } else {
-            console.log(`Sharing to ${platform}`);
+            console.log(`Please share this to ${platform}`);
         }
     };
 
@@ -82,8 +86,9 @@ const SupportSection = () => {
                     </DialogHeader>
                     <div className="flex justify-center space-x-4 my-4">
                         {[
-                            { icon: Twitter, name: 'Twitter' },
                             { icon: Linkedin, name: 'LinkedIn' },
+                            { icon: Instagram, name: "Instagram" },
+                            { icon: Twitter, name: 'Twitter' },
                         ].map((platform, index) => (
                             <motion.button
                                 key={index}

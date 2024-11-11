@@ -9,6 +9,7 @@ import Image, { StaticImageData } from 'next/image'
 import SmoothScroll from '@/components/smoothscroll';
 import whatsappIcon from "@/public/images/whatsapp-icon.png";
 import discordIcon from "@/public/images/discord-icon.png";
+import Link from 'next/link'
 
 interface CommunityPlatformProps {
 	logo: StaticImageData;
@@ -33,7 +34,7 @@ const CommunityPlatform = ({ logo, title, description, color, buttonText, button
 				</div>
 				<p className="text-gray-600 mb-6">{description}</p>
 				<Button
-					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white hover:text-white w-full`}
+					className={`${color.replace('border', 'bg')} hover:bg-opacity-80 text-white hover:text-white dark:hover:text-black w-full`}
 					onClick={() => window.open(buttonLink, '_blank')}
 				>
 					{buttonText} <ExternalLink className="w-4 h-4 ml-2" />
@@ -104,7 +105,7 @@ export default function CommunityPage() {
 								description="Dive into our Discord server for in-depth discussions, collaborative projects, and regular tech workshops."
 								color="border-indigo-500"
 								buttonText="Join Discord Server"
-								buttonLink="https://discord.gg/e96wYKBY"
+								buttonLink="https://discord.gg/2tMK3FFt"
 							/>
 						</div>
 					</motion.div>
@@ -143,15 +144,14 @@ export default function CommunityPage() {
 					>
 						<h3 className="text-3xl font-bold mb-4 text-white">Ready to Level Up Your Coding Journey?</h3>
 						<p className="text-xl text-white text-opacity-90 mb-8">Join The Coder&apos;z today and unlock a world of opportunities!</p>
+						<Link href="/resources">
 						<Button
 							className="bg-white text-indigo-600 hover:bg-indigo-100 text-lg px-8 py-3"
-							onClick={() => {
-								window.scrollTo({ top: 0, behavior: 'smooth' })
-							}}
 						>
 							<Rocket className="w-5 h-5 mr-2" />
 							Launch Your Journey
 						</Button>
+						</Link>
 					</motion.div>
 				</main>
 			</div>

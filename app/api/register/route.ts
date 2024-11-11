@@ -9,6 +9,13 @@ export async function POST(request: NextRequest) {
         const body: RequestBody = await request.json();
         const { name, email, password } = body;
 
+        if (!name || !email || !password) {
+            return NextResponse.json(
+                { message: "Missing required fields" },
+                { status: 400 }
+            );
+        }
+
         console.log(body);
 
         const existingUser = await prisma.user.findUnique({

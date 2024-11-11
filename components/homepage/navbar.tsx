@@ -13,25 +13,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import mainWebLogo from "@/app/lib/WhatsApp Image 2024-10-09 at 19.48.26.jpeg";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Navbar({ className }: { className?: string }) {
     const [active, setActive] = useState<string | null>(null);
     const { data: session, status } = useSession();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const toggleMobileMenu = () => setIsMobileMenuOpen(c => !c);
+    const router = useRouter();
 
     const mobileLinks = [
         {
             name: "Resources",
             href: "/resources"
-        },
-        {
-            name: "Projects",
-            href: "/projects"
-        },
-        {
-            name: "Pathways",
-            href: "pathways"
         },
         {
             name: "Communities",
@@ -46,6 +40,11 @@ export default function Navbar({ className }: { className?: string }) {
             href: "/aboutus"
         },
     ]
+
+    const handleLogout = async() => {
+        await signOut();
+        router.push("/");
+    }
 
     return (
         <div
@@ -63,6 +62,9 @@ export default function Navbar({ className }: { className?: string }) {
                     <h1 className="">The Coder&apos;z</h1>
                 </Link>
                 <div className="hidden md:flex items-center justify-center gap-5">
+                    <Link href="/">
+                        Home
+                    </Link>
                     {
                         status === "authenticated" ?
                             <MenuItem setActive={setActive} active={active} item="Exclusives">
@@ -133,11 +135,14 @@ export default function Navbar({ className }: { className?: string }) {
                                     <Link href="/profile">
                                         <DropdownMenuItem>Profile</DropdownMenuItem>
                                     </Link>
-                                    <Link href="/secondprofile">
+                                    {/* <Link href="/secondprofile">
                                         <DropdownMenuItem>Second Profile</DropdownMenuItem>
-                                    </Link>
+                                    </Link> */}
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem onClick={() => signOut()} className="text-red-500">Log Out</DropdownMenuItem>
+                                    <DropdownMenuItem onClick={handleLogout} 
+                                        className="text-red-500">
+                                            Log Out
+                                    </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                             :
@@ -177,6 +182,18 @@ export default function Navbar({ className }: { className?: string }) {
                             </div>
                             <div className="flex flex-col space-y-6 pt-10">
                                 {
+                                    status === "authenticated" ?
+                                        <div className="flex flex-col gap-4">
+                                            <Link onClick={toggleMobileMenu} href="/dashboard" className="text-lg text-white">Dashboard</Link>
+                                            <Link onClick={toggleMobileMenu} href="/profile" className="text-lg text-white">Profile</Link>
+                                            <Link onClick={toggleMobileMenu} href="/projects" className="text-lg text-white">Projects</Link>
+                                            <Link onClick={toggleMobileMenu} href="/pathways" className="text-lg text-white">Pathways</Link>
+                                            <Link onClick={toggleMobileMenu} href="/opensource" className="text-lg text-white">Open Source</Link>
+                                        </div>
+                                        :
+                                        ""
+                                }
+                                {
                                     mobileLinks.map((link, index) => {
                                         return (
                                             <Link key={index} onClick={toggleMobileMenu} href={link.href || "#"} className="text-lg text-white">{link.name}</Link>
@@ -184,15 +201,28 @@ export default function Navbar({ className }: { className?: string }) {
                                     })
                                 }
                                 {
+                                    status === "authenticated" ?
+                                        <div>
+                                            <button onClick={() => signOut()}>Log Out</button>
+                                        </div>
+                                        :
+                                        ""
+                                }
+                                {
                                     status === "authenticated" ? (
                                         <>
-                                            <div className="flex items-center justify-center gap-4">
-                                                <User size={32} className="rounded-full bg-gray-200 text-gray-600" />
-                                                <h1 className="text-white">{session?.user?.name}</h1>
+                                            <div className="flex justify-between">
+                                                <div className="flex gap-4 items-center justify-center">
+                                                    <User size={32} className="rounded-full bg-gray-200 text-gray-600" />
+                                                    <h1 className="text-white">{session?.user?.name}</h1>
+                                                </div>
+                                                <div>
+                                                    <button onClick={() => signOut()}>Log Out</button>
+                                                </div>
                                             </div>
                                         </>
                                     ) : (
-                                        <Link href="/signin" className="w-full flex items-center bg-background rounded-lg justify-center">
+                                        <Link href="/signin" onClick={toggleMobileMenu} className="w-full flex items-center bg-background rounded-lg justify-center">
                                             <ShinyButton className="w-full">Sign In</ShinyButton>
                                         </Link>
                                     )

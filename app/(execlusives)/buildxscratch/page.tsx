@@ -46,7 +46,7 @@ export default function ProjectCatalogUpdated() {
 
     const filteredProjects = projects.filter(project =>
         (project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            project.languages.some(lang => lang.toLowerCase().includes(searchTerm.toLowerCase()))) &&
+        project.languages.some(lang => lang.toLowerCase().includes(searchTerm.toLowerCase()))) &&
         (difficulty === 'all' || project.difficulty.toLowerCase() === difficulty.toLowerCase())
     )
 
@@ -109,7 +109,6 @@ export default function ProjectCatalogUpdated() {
                                             <Card className="flex flex-col overflow-hidden border-2 border-gray-700 dark:border-gray-300">
                                                 <div
                                                     className="bg-cover bg-center"
-                                                // style={{ backgroundImage: `url(${project.image})` }}
                                                 />
                                                 <CardHeader>
                                                     <CardTitle className="flex justify-between items-center">

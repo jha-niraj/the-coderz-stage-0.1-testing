@@ -15,7 +15,7 @@ const OpenSourceContribution = () => {
 
     return (
         <div className="relative py-16 sm:py-20 overflow-hidden w-full" id="contribute">
-            <div className="mx-auto w-full px-6 lg:px-8">
+            <div className="mx-auto w-full px-6 lg:px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const OpenSourceContribution = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="mx-auto mt-16 max-w-2xl flex items-center justify-center flex-col md:flex-row rounded-3xl ring-1 ring-indigo-500 bg-black dark:bg-background sm:mt-20 lg:mx-0 lg:flex lg:max-w-none"
+                    className="mx-auto mt-12 max-w-2xl flex items-center justify-center flex-col lg:flex-row rounded-3xl ring-1 ring-indigo-500 bg-black dark:bg-background sm:mt-20 lg:mx-0 lg:flex lg:max-w-none"
                 >
                     <div className="p-8 sm:p-10 lg:flex-auto">
                         <h3 className="text-2xl font-bold tracking-tight text-white">
