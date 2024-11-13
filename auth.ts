@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
                 }
             },
             async authorize(credentials) {
-                if(!credentials || !credentials.email || !credentials.password) {
+                if (!credentials || !credentials.email || !credentials.password) {
                     throw new Error("Please enter an email and password");
                 }
 
@@ -34,13 +34,13 @@ export const authOptions: NextAuthOptions = {
                     }
                 })
 
-                if(!user) {
+                if (!user) {
                     throw new Error("No user found with this credentials");
                 }
 
                 const passwordMatch = await bcrypt.compare(credentials?.password, user?.hashedPassword!);
 
-                if(!passwordMatch) {
+                if (!passwordMatch) {
                     throw new Error("Password incorrect");
                 }
                 console.log("Authorized user:", user);
@@ -65,7 +65,18 @@ export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt"
     },
+    pages: {
+        signIn: '/signin',
+        error: '/auth/error',
+    },
     callbacks: {
+        async redirect({ url, baseUrl }) {
+            // Allows relative callback URLs
+            if (url.startsWith("/")) return `${baseUrl}${url}`
+            // Allows callback URLs on the same origin
+            else if (new URL(url).origin === baseUrl) return url
+            return baseUrl
+        },
         async jwt({ token, user }) {
             if (user) {
                 token.id = token.sub;
@@ -75,8 +86,8 @@ export const authOptions: NextAuthOptions = {
             }
             return token;
         },
-        session({ session, token } : { session: any; token: JWT }) {
-            if(token && session?.user) {
+        session({ session, token }: { session: any; token: JWT }) {
+            if (token && session?.user) {
                 session.user.id = token.id;
                 session.user.name = token.name;
                 session.user.email = token.email;
@@ -84,9 +95,5 @@ export const authOptions: NextAuthOptions = {
             }
             return session;
         }
-    },
-    pages: {
-        signIn: '/signin',
-        error: '/signin?error=CredentialsSignin',
-    },
+    }
 }

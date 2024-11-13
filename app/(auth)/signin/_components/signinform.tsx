@@ -17,7 +17,7 @@ import { Adapter } from "next-auth/adapters";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 
 export default function SignInForm() {
-	const { status } = useSession();
+	const { data: session, status } = useSession();
 	const router = useRouter();
 	const { email, setEmail, password, setPassword, image, setImage } = useAppContext();
 	const [ isSubmitting, setIsSubmitting ] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export default function SignInForm() {
 		if(status === "authenticated") {
 			router.push("/profile");
 		}
-	}, [router, status]);
+	}, [router, session]);
 
 	const handleSignInWithGoogle = async() => {
 		try {

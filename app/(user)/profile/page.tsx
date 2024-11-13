@@ -72,6 +72,12 @@ export default function Home() {
     const { toast } = useToast();
     const { data: session, status } = useSession();
     const router = useRouter();
+    
+    useEffect(() => {
+        if(!session?.user) {
+            router.push("/signin");
+        }
+    }, [])
 
     // Data Stores for all the fields
     const [publicDataOpen, setPublicDataOpen] = useState<boolean>(false);

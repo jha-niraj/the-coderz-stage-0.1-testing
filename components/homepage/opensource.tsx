@@ -101,7 +101,7 @@ const OpenSourceContribution = () => {
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <Link
-                                        href="https://github.com/jha-niraj/the-coders.git"
+                                        href="https://github.com/jha-niraj/the-coderz-stage-0.1-testing"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

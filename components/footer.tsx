@@ -42,13 +42,10 @@ const Footer = () => {
                                 <Link href="#" className="hover:text-blue-400 transition-colors">Home</Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-blue-400 transition-colors">About Us</Link>
+                                <Link href="/aboutus" className="hover:text-blue-400 transition-colors">About Us</Link>
                             </li>
                             <li>
-                                <Link href="#" className="hover:text-blue-400 transition-colors">Courses</Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="hover:text-blue-400 transition-colors">Blog</Link>
+                                <Link href="/resources" className="hover:text-blue-400 transition-colors">Resources</Link>
                             </li>
                         </ul>
                     </div>
@@ -56,10 +53,7 @@ const Footer = () => {
                         <h4 className="text-lg text-left sm:text-right font-semibold mb-4">Support</h4>
                         <ul className="space-y-2 sm:text-right">
                             <li>
-                                <Link href="#" className="hover:text-blue-400 transition-colors">FAQ</Link>
-                            </li>
-                            <li>
-                                <Link href="#" className="hover:text-blue-400 transition-colors">Contact Us</Link>
+                                <Link href="mailto:thecoderzofficial@gmail.com" className="hover:text-blue-400 transition-colors">Contact Us</Link>
                             </li>
                             <li>
                                 <Link href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>

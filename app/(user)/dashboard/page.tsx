@@ -8,6 +8,8 @@ import { ArrowRight, Construction, Github, FileCode, User } from 'lucide-react';
 import Link from 'next/link';
 import SmoothScroll from "@/components/smoothscroll";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const upcomingFeatures = [
     {
@@ -27,7 +29,16 @@ const upcomingFeatures = [
     }
 ];
 
-export default async function Dashboard() {
+export default function Dashboard() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+    
+    useEffect(() => {
+        if(!session?.user) {
+            router.push("/signin");
+        }
+    }, [])
+
     return (
         <SmoothScroll>
             <section>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { categories, realProjects } from './projectsdata/project';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -9,10 +9,14 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Image from 'next/image';
-import { ChevronRight, Monitor, Smartphone, Zap } from 'lucide-react';
+import { ArrowRight, ChevronRight, Monitor, Smartphone, Sparkles, Terminal, Zap } from 'lucide-react';
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
+import { CheckCircle } from 'lucide-react';
+import { useToast } from '../hooks/use-toast';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 type DifficultyLevel = "All" | "Beginner" | "Intermediate" | "Advanced";
 
@@ -51,6 +55,15 @@ const ProjectsPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState<string>('All');
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const { toast } = useToast();
+    const { data: session, status } = useSession();
+    const router = useRouter();
+    
+    useEffect(() => {
+        if(!session?.user) {
+            router.push("/signin");
+        }
+    }, [])
 
     const filteredProjects = typedProjects.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
@@ -58,12 +71,95 @@ const ProjectsPage: React.FC = () => {
         return categoryMatch && difficultyMatch;
     });
 
+    const handleBuildFromScratch = () => {
+        console.log("Hello")
+        toast({
+            title: "Coming Soon...",
+            description: "We are working on this features which enables you to learn at you own pacce while following simple and understanding instructions.",
+            variant: "default"
+        });
+    }
+
     return (
         <section>
             <div className="min-h-screen text-black dark:text-white pt-28">
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <header className="max-w-7xl mx-auto mb-10">
+                    <div className="min-h-screen">
+                        <div className="container mx-auto px-4">
+                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                <div className="space-y-6">
+                                    <h1 className="text-5xl font-bold leading-tight">
+                                        Build real projects
+                                        <br />
+                                        <span className="text-emerald-500">that matter's</span>
+                                    </h1>
+
+                                    <p className="text-gray-400 dark:text-white text-lg">
+                                        Follow simple instructions to build production-ready projects. Learn by doing with our guided project-based approach.
+                                    </p>
+
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        <a href='#project_section' className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors">
+                                            <Sparkles size={20} />
+                                            Start First Project
+                                        </a>
+                                    </div>
+
+                                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                                        <div className="flex -space-x-2">
+                                            {[1, 2, 3].map((i) => (
+                                                <div key={i} className="w-8 h-8 rounded-full bg-gray-800 border-2 border-gray-950 flex items-center justify-center">
+                                                    <Sparkles size={14} className="text-emerald-500" />
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <span>Join 100+ developers building projects</span>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <CodeWindow />
+                                    <StepsList />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="max-w-5xl mx-auto px-4">
+                        <h2 className="text-2xl font-bold text-center mb-8">Why do projects?</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                                <div className="text-purple-600 mb-4">
+                                    <img className='w-20' src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ=" alt="" />
+                                </div>
+                                <h3 className="text-xl font-semibold mb-2">Become job ready</h3>
+                                <p className="text-center text-gray-600">
+                                    Kickstart your career by building stellar proof of work
+                                </p>
+                            </div>
+                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                                <div className="text-green-600 mb-4">
+                                    <img className='w-16' src="https://cdn-icons-png.flaticon.com/512/751/751355.png" alt="" />
+                                </div>
+                                <h3 className="text-xl font-semibold mb-2">Learn by doing</h3>
+                                <p className="text-center text-gray-600">
+                                    Upskill by building hands-on projects with stepwise guidance
+                                </p>
+                            </div>
+                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                                <div className="text-yellow-600 mb-4">
+                                    <img className='w-20' src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png" alt="" />
+                                </div>
+                                <h3 className="text-xl font-semibold mb-2">Get feedback</h3>
+                                <p className="text-center text-gray-600">
+                                    Grow with the community and get feedback from mentors
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="project_section">
                     <h1 className="text-3xl font-medium text-center">Explore projects on different tech stacks</h1>
-                    <div className="flex flex-col sm:flex-row items-center justify-center sm:items-center sm:justify-between gap-4 mb-8 py-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center sm:items-center sm:justify-between gap-4 py-4">
                         <motion.div layout className="flex flex-wrap items-center justify-center gap-2">
                             {
                                 categories.map((category, index) => (
@@ -163,7 +259,7 @@ const ProjectsPage: React.FC = () => {
                                                         as="div"
                                                         className="flex gap-3 w-full justify-between"
                                                     >
-                                                        <Button variant="outline" className="flex-1">
+                                                        <Button variant="outline" className="flex-1" onClick={handleBuildFromScratch}>
                                                             Build from Scratch
                                                         </Button>
                                                         <Button
@@ -262,6 +358,60 @@ const ProjectsPage: React.FC = () => {
                 </Sheet>
             </div>
         </section>
+    );
+};
+
+const CodeWindow = () => {
+    return (
+        <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-2xl">
+            <div className="flex items-center gap-2 bg-gray-800 px-4 py-2">
+                <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div className="flex items-center text-gray-400">
+                    <Terminal size={14} className="mr-2" />
+                    <span className="text-sm">project.tsx</span>
+                </div>
+            </div>
+            <div className="p-4 text-sm font-mono">
+                <pre className="text-green-400">
+                    <code>{`// E-commerce Dashboard
+  function Dashboard() {
+    return (
+      <div className="grid gap-4">
+        <Stats />
+        <RevenueChart />
+        <ProductList />
+      </div>
+    )
+  }`}</code>
+                </pre>
+            </div>
+        </div>
+    );
+};
+const ProjectStep = ({ number, title }: { number: number; title: string }) => (
+    <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20">
+            <span className="text-emerald-500 text-sm font-medium">{number}</span>
+        </div>
+        <span className="text-gray-300 text-sm">{title}</span>
+    </div>
+);
+const StepsList = () => {
+    return (
+        <div className="bg-gray-900 rounded-lg p-6">
+            <h3 className="text-gray-200 font-semibold mb-4">Project Steps</h3>
+            <div className="space-y-3">
+                <ProjectStep number={1} title="Setup project environment" />
+                <ProjectStep number={2} title="Build core components" />
+                <ProjectStep number={3} title="Add interactivity" />
+                <ProjectStep number={4} title="Style with Tailwind CSS" />
+                <ProjectStep number={5} title="Deploy to production" />
+            </div>
+        </div>
     );
 };
 
