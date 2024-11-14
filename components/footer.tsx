@@ -1,8 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion";
-import { ChevronUp, Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { ChevronUp, Github, Instagram, Linkedin, Twitter, X } from "lucide-react";
 import Link from "next/link";
+import twitterLogo from "./homepage/X_logo.jpg";
+import Image from "next/image";
 
 const Footer = () => {
     const scrollToTop = () => {
@@ -20,21 +22,26 @@ const Footer = () => {
                         </div>
                         <div className="flex space-x-4">
                             <Link href="https://github.com/thecoderzhub" target="_blank" className="hover:text-blue-400 transition-colors">
-                                <Github className="w-6 h-6" />
+                                <Github className="w-7 h-7" />
                             </Link>
                             <Link href="https://www.linkedin.com/in/the-coder-z-a214b4334/" target="_blank" className="hover:text-blue-400 transition-colors">
-                                <Linkedin className="w-6 h-6" />
+                                <Linkedin className="w-7 h-7" />
                             </Link>
                             <Link href="https://www.instagram.com/thecoderzofficial/" target="_blank" className="hover:text-blue-400 transition-colors">
-                                <Instagram className="w-6 h-6" />
+                                <Instagram className="w-7 h-7" />
                             </Link>
                             <Link href="https://x.com/coderzofficial" target="_blank" className="hover:text-blue-400 transition-colors">
-                                <Twitter className="w-6 h-6" />
+                                <Image
+                                    src={twitterLogo}
+                                    height={30}
+                                    width={30}
+                                    alt="Twitter Logo"
+                                />
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="flex items-start sm:items-center sm:justify-between gap-4 flex-col sm:flex-row">
+                <div className="flex justify-between gap-4 flex-row">
                     <div className="">
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2">
@@ -50,8 +57,8 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="">
-                        <h4 className="text-lg text-left sm:text-right font-semibold mb-4">Support</h4>
-                        <ul className="space-y-2 sm:text-right">
+                        <h4 className="text-lg text-right font-semibold mb-4">Support</h4>
+                        <ul className="space-y-2 text-right">
                             <li>
                                 <Link href="mailto:thecoderzofficial@gmail.com" className="hover:text-blue-400 transition-colors">Contact Us</Link>
                             </li>

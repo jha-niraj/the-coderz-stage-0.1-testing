@@ -1,38 +1,97 @@
-"use client"
+import React, { useEffect, useRef } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
+// Base languages
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
+// Additional languages
+import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-cpp';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-java';
+import { Copy, Check } from 'lucide-react';
 
-import { CheckCircle2, ClipboardCheck } from "lucide-react";
-import { useState } from "react";
-import Highlight from "react-highlight";
-import toast from "react-hot-toast";
+type SupportedLanguage =
+	| 'typescript'
+	| 'javascript'
+	| 'jsx'
+	| 'tsx'
+	| 'python'
+	| 'java'
+	| 'c'
+	| 'cpp';
 
-const CodeBlock = ({ code, language }: { code: string, language: string }) => {
-	const [copied, setCopied] = useState(false);
-	const lines = code.trim().split('\n');
+interface CodeBlockProps {
+	code: string;
+	language?: SupportedLanguage;
+	filename?: string;
+}
 
-	const handleCopyCode = () => {
-		navigator.clipboard.writeText(code);
+const CodeBlock: React.FC<CodeBlockProps> = ({
+	code,
+	language = 'typescript',
+	filename
+}) => {
+	const [copied, setCopied] = React.useState(false);
+	const timeoutRef = useRef<number>();
+
+	useEffect(() => {
+		Prism.highlightAll();
+	}, [code]);
+
+	const handleCopy = async () => {
+		await navigator.clipboard.writeText(code);
 		setCopied(true);
-		toast.success("Code copied successfully");
-		setTimeout(() => setCopied(false), 2000);
+
+		if (timeoutRef.current) {
+			window.clearTimeout(timeoutRef.current);
+		}
+
+		timeoutRef.current = window.setTimeout(() => {
+			setCopied(false);
+		}, 2000);
+	};
+
+	// Get file icon based on language
+	const getFileIcon = (lang: string) => {
+		switch (lang) {
+			case 'python':
+				return '🐍';
+			case 'java':
+				return '☕';
+			case 'c':
+			case 'cpp':
+				return '⚡';
+			default:
+				return '📄';
+		}
 	};
 
 	return (
-		<div className="relative mb-3 w-full rounded-md overflow-hidden">
-			<div className="bg-gray-800 text-gray-400 text-xs w-full py-2 px-4 flex justify-between items-center">
-				<span>{ language }</span>
-				<button
-					onClick={handleCopyCode}
-					className="text-gray-400 hover:text-white transition-colors"
-					aria-label="Copy code"
-				>
-					{copied ? <CheckCircle2 size={18} /> : <ClipboardCheck size={18} />}
-				</button>
-			</div>
-			<div className="flex overflow-x-auto bg-black w-full">
-				<Highlight className="flex-grow leading-5 text-white overflow-x-auto w-full">
-					{code}
-				</Highlight>
-			</div>
+		<div className="rounded-lg overflow-hidden bg-[#1e1e1e] shadow-xl">
+			{filename && (
+				<div className="flex items-center justify-between px-4 py-2 bg-[#2d2d2d] border-b border-[#404040]">
+					<span className="flex items-center gap-2 text-sm text-gray-400">
+						<span>{getFileIcon(language)}</span>
+						<span>{filename}</span>
+					</span>
+					<button
+						onClick={handleCopy}
+						className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+					>
+						{copied ? (
+							<Check size={16} className="text-green-500" />
+						) : (
+							<Copy size={16} />
+						)}
+						{copied ? 'Copied!' : 'Copy'}
+					</button>
+				</div>
+			)}
+			<pre className="p-4 m-0 overflow-x-auto">
+				<code className={`language-${language}`}>{code}</code>
+			</pre>
 		</div>
 	);
 };

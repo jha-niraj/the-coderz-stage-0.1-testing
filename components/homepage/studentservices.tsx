@@ -4,6 +4,8 @@ import { BookOpen, BriefcaseIcon, Users, ArrowRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import Image from 'next/image';
 import image1 from "@/components/homepage/image-1.jpeg";
+import image2 from "./pics_for_my_website_for_the_earn.jpeg";
+import image3 from "./pics_for_my_website_for_the_earn (1).jpeg";
 import { RainbowButton } from '../ui/rainbow-button';
 import Link from 'next/link';
 
@@ -73,7 +75,7 @@ const StudentServices = () => {
                     </CardContent>
                 </Card>
 
-                <Card className="p-4 hover:bg-yellow-50 dark:hover:bg-yellow-900/10 transition-colors duration-300 relative overflow-hidden">
+                <Card className="hover:bg-yellow-50 dark:hover:bg-yellow-900/10 transition-colors duration-300 relative overflow-hidden">
                     <div className="absolute -right-12 top-6 rotate-45">
                         <Badge className="bg-blue-600 dark:bg-blue-500 text-white px-12 py-1 text-sm font-medium">
                             Coming Soon
@@ -101,7 +103,7 @@ const StudentServices = () => {
                                         <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300 rounded-full text-sm">Resume Reviews</span>
                                     </div>
                                 </div>
-                                <Link href="googleform">
+                                <Link href="https://docs.google.com/forms/d/e/1FAIpQLSddYWmj1G3ASw2WMEbrfkDN2tkpsQJjEYOocHb1gNbL8leEKA/viewform" target='_blank'>
                                     <RainbowButton>
                                         Join waitlist <ArrowRight className="ml-2 h-4 w-4" />
                                     </RainbowButton>
@@ -111,7 +113,7 @@ const StudentServices = () => {
                                 <div className="relative">
                                     <div className="absolute inset-0 rounded-lg transform rotate-6">
                                         <Image
-                                            src={image1}
+                                            src={image2}
                                             alt="Community networking"
                                             className="rounded-lg shadow-lg transform rotate-6"
                                             height={300}
@@ -119,7 +121,7 @@ const StudentServices = () => {
                                         />
                                     </div>
                                     <Image
-                                        src={image1}
+                                        src={image2}
                                         alt="Community networking"
                                         className="relative rounded-lg shadow-lg"
                                         height={300}
@@ -164,7 +166,7 @@ const StudentServices = () => {
                                 <div className="relative">
                                     <div className="absolute inset-0 rounded-lg transform rotate-6">
                                         <Image
-                                            src={image1}
+                                            src={image3}
                                             alt="Community networking"
                                             className="rounded-lg shadow-lg transform rotate-6"
                                             height={300}
@@ -172,7 +174,7 @@ const StudentServices = () => {
                                         />
                                     </div>
                                     <Image
-                                        src={image1}
+                                        src={image3}
                                         alt="Community networking"
                                         className="relative rounded-lg shadow-lg"
                                         height={300}

@@ -30,15 +30,6 @@ const upcomingFeatures = [
 ];
 
 export default function Dashboard() {
-    const { data: session, status } = useSession();
-    const router = useRouter();
-    
-    useEffect(() => {
-        if(!session?.user) {
-            router.push("/signin");
-        }
-    }, [])
-
     return (
         <SmoothScroll>
             <section>
@@ -51,7 +42,7 @@ export default function Dashboard() {
                         >
                             <Card className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
                                 <CardContent className="p-8">
-                                    <h1 className="text-3xl font-bold mb-4">Dashboard 0.2 Coming Soon!</h1>
+                                    <h1 className="text-3xl font-bold mb-4">Dashboard 0.1 Coming Soon!</h1>
                                     <p className="text-lg opacity-90">We&apos;re working on something exciting. Stage 0.2 is under development with amazing new features.</p>
                                 </CardContent>
                             </Card>
@@ -62,6 +53,7 @@ export default function Dashboard() {
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.5 }}
+                                className="dark:hover:border-2 dark:hover:rounded-2xl"
                             >
                                 <Link href="/resources" className="block">
                                     <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer">
@@ -70,7 +62,7 @@ export default function Dashboard() {
                                                 <h3 className="text-xl font-semibold">Explore Resources</h3>
                                                 <ArrowRight className="w-5 h-5 text-indigo-600" />
                                             </div>
-                                            <p className="mt-2 text-gray-600">Access our curated collection of learning materials and resources.</p>
+                                            <p className="mt-2 text-black dark:text-gray-200">Access our curated collection of learning materials and resources.</p>
                                         </CardContent>
                                     </Card>
                                 </Link>
@@ -80,6 +72,7 @@ export default function Dashboard() {
                                 initial={{ opacity: 0, y: 50 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.5 }}
+                                className="dark:hover:border-2 dark:hover:rounded-2xl"
                             >
                                 <Link href="/projects" className="block">
                                     <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer">
@@ -88,7 +81,7 @@ export default function Dashboard() {
                                                 <h3 className="text-xl font-semibold">View Projects</h3>
                                                 <ArrowRight className="w-5 h-5 text-indigo-600" />
                                             </div>
-                                            <p className="mt-2 text-gray-600">Explore available projects and start building your portfolio.</p>
+                                            <p className="mt-2 text-black dark:text-gray-200">Explore available projects and start building your portfolio.</p>
                                         </CardContent>
                                     </Card>
                                 </Link>
@@ -99,10 +92,11 @@ export default function Dashboard() {
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.5 }}
+                            className="mt-10"
                         >
                             <Card className="mt-12">
                                 <CardHeader>
-                                    <h2 className="text-2xl font-bold">What&apos;s Coming in Stage 0.2</h2>
+                                    <h2 className="text-2xl font-bold">What&apos;s Coming in Update 0.2</h2>
                                 </CardHeader>
                                 <CardContent>
                                     <div className="grid gap-6 md:grid-cols-3">
@@ -117,7 +111,7 @@ export default function Dashboard() {
                                                     <CardContent className="p-4">
                                                         <feature.icon className="w-8 h-8 text-indigo-600 mb-3" />
                                                         <h3 className="font-semibold mb-2">{feature.title}</h3>
-                                                        <p className="text-sm text-gray-600">{feature.description}</p>
+                                                        <p className="text-sm text-black dark:text-gray-200">{feature.description}</p>
                                                     </CardContent>
                                                 </Card>
                                             </motion.div>
@@ -134,9 +128,9 @@ export default function Dashboard() {
                         >
                             <Card className="bg-gradient-to-r from-purple-100 to-indigo-100">
                                 <CardContent className="p-8 text-center">
-                                    <h2 className="text-2xl font-bold mb-4">Want to Contribute?</h2>
-                                    <p className="text-gray-600 mb-6">We welcome developers who want to help build the future of learning. Join our community of contributors!</p>
-                                    <Link href="https://www.github.com" target="_blank">
+                                    <h2 className="text-2xl font-bold mb-4 text-black dark:text-black">Want to Contribute?</h2>
+                                    <p className="text-black dark:text-black mb-6">We welcome developers who want to help build the future of learning. Join our community of contributors!</p>
+                                    <Link href="https://github.com/thecoderzhub" target="_blank">
                                         <Button
                                             className="bg-indigo-600 hover:bg-indigo-700 text-white"
                                         >

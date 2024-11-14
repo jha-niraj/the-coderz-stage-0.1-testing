@@ -115,33 +115,5 @@ export const pathwaysData = [
             { name: 'Build Real-World Projects', duration: '8-12 weeks' },
             { name: 'Advanced Topics (Performance, Testing, etc.)', duration: '4-6 weeks' }
         ]
-    },
-    {
-        id: 'back-end',
-        title: 'Back-End Development',
-        icon: <Database className="w-6 h-6" />,
-        description: 'Build robust server-side applications and APIs to power web services.',
-        color: 'from-green-500 to-emerald-500',
-    },
-    {
-        id: 'full-stack',
-        title: 'Full Stack Development',
-        icon: <Globe className="w-6 h-6" />,
-        description: 'Master both front-end and back-end technologies to create complete web solutions.',
-        color: 'from-purple-500 to-pink-500',
-    },
-    {
-        id: 'data-science',
-        title: 'Data Science',
-        icon: <Cpu className="w-6 h-6" />,
-        description: 'Analyze and interpret complex data to drive business decisions and innovations.',
-        color: 'from-yellow-500 to-orange-500',
-    },
-    {
-        id: 'cyber-security',
-        title: 'Cyber Security',
-        icon: <Shield className="w-6 h-6" />,
-        description: 'Protect digital assets and systems from cyber threats and vulnerabilities.',
-        color: 'from-red-500 to-rose-500',
     }
 ]

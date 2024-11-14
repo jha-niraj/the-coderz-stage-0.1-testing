@@ -527,19 +527,19 @@ export default function Home() {
                                                 {publicData.tagline || "Please update your tagline"}
                                             </p>
                                         </div>
-                                        <div className="flex items-center justify-center md:justify-start text-gray-800 dark:text-gray-300">
+                                        <div className="flex items-center justify-center md:justify-start text-gray-800 dark:text-gray-100">
                                             <Mail className="h-5 w-5 text-blue-500 dark:text-blue-400 mr-3" />
                                             <span>{session?.user?.email}</span>
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <div className="space-y-4 w-full text-gray-600 dark:text-gray-400 text-center md:text-left">
+                                        <div className="space-y-4 w-full text-gray-600 dark:text-gray-100 text-center md:text-left">
                                             <div className="flex items-center gap-2 justify-center md:justify-start">
-                                                <Building2 className="h-4 w-4 text-gray-500 dark:text-gray-300" />
+                                                <Building2 className="h-4 w-4" />
                                                 <span>{publicData.college || "Please update your college"}</span>
                                             </div>
                                             <div className="flex items-center gap-2 justify-center md:justify-start">
-                                                <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-300" />
+                                                <MapPin className="h-4 w-4" />
                                                 <span>{publicData.location || "Please update your location"}</span>
                                             </div>
                                         </div>
@@ -573,7 +573,7 @@ export default function Home() {
                                                 name="tagline"
                                                 value={tempPublicData.tagline}
                                                 onChange={handlePublicDataChange}
-                                                placeholder="Enter your tagline"
+                                                placeholder="Front-End Developer"
                                             />
                                             <div className="text-xs text-gray-500 mt-1">
                                                 Use this space to describe yourself in one line.
@@ -587,7 +587,7 @@ export default function Home() {
                                                     name="college"
                                                     value={tempPublicData.college}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your headline"
+                                                    placeholder="Lovely Professional University"
                                                 />
                                             </div>
                                             <div>
@@ -597,7 +597,7 @@ export default function Home() {
                                                     name="location"
                                                     value={tempPublicData.location}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your headline"
+                                                    placeholder="Jalandhar, Punjab, India"
                                                 />
                                             </div>
                                         </div>
@@ -609,7 +609,7 @@ export default function Home() {
                                                     name="github"
                                                     value={tempPublicData.github}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your GitHub Profile"
+                                                    placeholder="Enter your GitHub Profile Link"
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -619,7 +619,7 @@ export default function Home() {
                                                     name="linkedin"
                                                     value={tempPublicData.linkedin}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your LinkedIn Profile"
+                                                    placeholder="Enter your LinkedIn Profile Link"
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -629,7 +629,7 @@ export default function Home() {
                                                     name="twitter"
                                                     value={tempPublicData.twitter}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your Twitter Profile"
+                                                    placeholder="Enter your Twitter Profile Link"
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -639,7 +639,7 @@ export default function Home() {
                                                     name="leetcode"
                                                     value={tempPublicData.leetcode}
                                                     onChange={handlePublicDataChange}
-                                                    placeholder="Enter your LeetCode Profile"
+                                                    placeholder="Enter your LeetCode Profile Link"
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -673,7 +673,7 @@ export default function Home() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.4 }}
                             >
-                                <Card className="bg-sky-100 p-4 w-full flex flex-col gap-4">
+                                <Card className="bg-sky-100 text-black p-4 w-full flex flex-col gap-4">
                                     <div className="flex justify-between items-center">
                                         <div className="flex flex-col">
                                             <div className="flex gap-2">

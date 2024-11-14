@@ -13,10 +13,12 @@ import { ArrowRight, ChevronRight, Monitor, Smartphone, Sparkles, Terminal, Zap 
 import { DropdownMenu } from '@radix-ui/react-dropdown-menu';
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
-import { CheckCircle } from 'lucide-react';
-import { useToast } from '../hooks/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { RainbowButton } from '@/components/ui/rainbow-button';
+import Link from 'next/link';
+import projectMainImage from "./a_group_of_college_students_including_3.jpeg";
 
 type DifficultyLevel = "All" | "Beginner" | "Intermediate" | "Advanced";
 
@@ -56,14 +58,14 @@ const ProjectsPage: React.FC = () => {
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { toast } = useToast();
-    const { data: session, status } = useSession();
-    const router = useRouter();
-    
-    useEffect(() => {
-        if(!session?.user) {
-            router.push("/signin");
-        }
-    }, [])
+    // const { data: session, status } = useSession();
+    // const router = useRouter();
+
+    // useEffect(() => {
+    //     if (!session?.user) {
+    //         router.push("/signin");
+    //     }
+    // }, [])
 
     const filteredProjects = typedProjects.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
@@ -72,7 +74,6 @@ const ProjectsPage: React.FC = () => {
     });
 
     const handleBuildFromScratch = () => {
-        console.log("Hello")
         toast({
             title: "Coming Soon...",
             description: "We are working on this features which enables you to learn at you own pacce while following simple and understanding instructions.",
@@ -82,45 +83,46 @@ const ProjectsPage: React.FC = () => {
 
     return (
         <section>
-            <div className="min-h-screen text-black dark:text-white pt-28">
-                <header className="max-w-7xl mx-auto mb-10">
-                    <div className="min-h-screen">
-                        <div className="container mx-auto px-4">
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                                <div className="space-y-6">
-                                    <h1 className="text-5xl font-bold leading-tight">
-                                        Build real projects
-                                        <br />
-                                        <span className="text-emerald-500">that matter's</span>
-                                    </h1>
-
-                                    <p className="text-gray-400 dark:text-white text-lg">
-                                        Follow simple instructions to build production-ready projects. Learn by doing with our guided project-based approach.
-                                    </p>
-
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <a href='#project_section' className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors">
-                                            <Sparkles size={20} />
-                                            Start First Project
-                                        </a>
-                                    </div>
-
-                                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                                        <div className="flex -space-x-2">
-                                            {[1, 2, 3].map((i) => (
-                                                <div key={i} className="w-8 h-8 rounded-full bg-gray-800 border-2 border-gray-950 flex items-center justify-center">
-                                                    <Sparkles size={14} className="text-emerald-500" />
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <span>Join 100+ developers building projects</span>
-                                    </div>
+            <div className="min-h-screen flex flex-col gap-16 text-black dark:text-white pt-28 sm:pt-32">
+                <header className="max-w-7xl mx-auto flex flex-col gap-16">
+                    <div className="flex items-center justify-center w-full">
+                        <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-6 lg:px-8 gap-8 md:gap-12">
+                            <div className="w-full md:w-2/3 flex flex-col gap-6 md:gap-8">
+                                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-center md:text-left">
+                                    Build real projects
+                                    <br />
+                                    <span className="text-emerald-500">that matter's</span>
+                                </h1>
+                                <p className="text-black dark:text-white text-base sm:text-lg text-center md:text-left">
+                                    Follow simple instructions to build production-ready projects. Learn by doing with our guided project-based approach.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+                                    <Link href='#project_section'>
+                                        <RainbowButton>Start First Project</RainbowButton>
+                                    </Link>
                                 </div>
-
-                                <div className="space-y-6">
-                                    <CodeWindow />
-                                    <StepsList />
+                                <div className="flex items-center gap-4 text-sm text-gray-400 justify-center md:justify-start">
+                                    <div className="flex -space-x-2">
+                                        {[1, 2, 3].map((i) => (
+                                            <div
+                                                key={i}
+                                                className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-800 border-2 border-gray-950 flex items-center justify-center"
+                                            >
+                                                <Sparkles size={14} className="text-emerald-500" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <span className="text-xs sm:text-sm text-black dark:text-white">Join 100+ developers building projects</span>
                                 </div>
+                            </div>
+                            <div className="w-full md:w-1/2 h-full flex justify-center md:justify-end">
+                                <Image
+                                    src={projectMainImage}
+                                    alt="Project Main Image"
+                                    height={150}
+                                    width={300}
+                                    className="w-full rounded-2xl"
+                                />
                             </div>
                         </div>
                     </div>
@@ -132,7 +134,7 @@ const ProjectsPage: React.FC = () => {
                                     <img className='w-20' src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ=" alt="" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Become job ready</h3>
-                                <p className="text-center text-gray-600">
+                                <p className="text-center text-black dark:text-white">
                                     Kickstart your career by building stellar proof of work
                                 </p>
                             </div>
@@ -141,23 +143,23 @@ const ProjectsPage: React.FC = () => {
                                     <img className='w-16' src="https://cdn-icons-png.flaticon.com/512/751/751355.png" alt="" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Learn by doing</h3>
-                                <p className="text-center text-gray-600">
+                                <p className="text-center text-black dark:text-white">
                                     Upskill by building hands-on projects with stepwise guidance
                                 </p>
                             </div>
-                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
+                            <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm" id="project_section">
                                 <div className="text-yellow-600 mb-4">
                                     <img className='w-20' src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png" alt="" />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Get feedback</h3>
-                                <p className="text-center text-gray-600">
+                                <p className="text-center text-black dark:text-white">
                                     Grow with the community and get feedback from mentors
                                 </p>
                             </div>
                         </div>
                     </div>
                 </header>
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="project_section">
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h1 className="text-3xl font-medium text-center">Explore projects on different tech stacks</h1>
                     <div className="flex flex-col sm:flex-row items-center justify-center sm:items-center sm:justify-between gap-4 py-4">
                         <motion.div layout className="flex flex-wrap items-center justify-center gap-2">

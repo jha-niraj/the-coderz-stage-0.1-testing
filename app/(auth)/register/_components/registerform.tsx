@@ -111,7 +111,7 @@ export default function SignUpForm() {
                     </div>
                     <div className="flex flex-col gap-1">
                         <label className="text-md font-medium">Username</label>
-                        <Input type="text" placeholder="user1@gmail.com" onChange={(e: any) => setEmail(e.target.value)} required />
+                        <Input type="email" placeholder="user1@gmail.com" onChange={(e: any) => setEmail(e.target.value)} required />
                     </div>
                     <div className="flex flex-col gap-1">
                         <label className="text-md font-medium">Password</label>

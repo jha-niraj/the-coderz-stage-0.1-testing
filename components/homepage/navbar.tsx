@@ -62,26 +62,28 @@ export default function Navbar({ className }: { className?: string }) {
                     <h1 className="">The Coder&apos;z</h1>
                 </Link>
                 <div className="hidden md:flex items-center justify-center gap-5">
-                    <Link href="/">
+                    <Link href="/" className="hover:scale-105 hidden lg:flex">
                         Home
+                    </Link>
+                    <Link href="/resources" className="hover:scale-105">
+                        Resources
                     </Link>
                     {
                         status === "authenticated" ?
                             <MenuItem setActive={setActive} active={active} item="Exclusives">
                                 <div className="flex flex-col space-y-4 text-sm">
-                                    <HoveredLink href="/projects">Projects</HoveredLink>
+                                    <HoveredLink href="/projects">Projects/Build From Scratch</HoveredLink>
                                     <HoveredLink href="/pathways">Pathways</HoveredLink>
-                                    <HoveredLink href="/buildxscratch">Build from Scratch</HoveredLink>
-                                    <HoveredLink href="/opensource">Open Source(coming soon)</HoveredLink>
+                                    <HoveredLink href="/opensource">Open Source (coming soon)</HoveredLink>
                                 </div>
                             </MenuItem>
                             :
                             ""
                     }
-                    <Link href="/aboutus">
+                    <Link href="/aboutus" className="hover:scale-105">
                         About Us
                     </Link>
-                    <Link href="/communities">
+                    <Link href="/communities" className="hover:scale-105">
                         Communities
                     </Link>
                     <MenuItem setActive={setActive} active={active} item="Services">
