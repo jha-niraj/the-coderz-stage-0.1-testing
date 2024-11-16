@@ -1,8 +1,8 @@
 export const units = [
     {
         title: "Unit I: PHP Fundamentals",
-        youtube: "https://youtu.be/unit1_overview",
-        quizlink: "https://quizlink.com/unit1_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=0s",
+        quizlink: "",
         lessons: [
             { name: "PHP, MySQL, and XAMPP Installation", lessonkey: "php_mysql_xampp_installation" },
             { name: "PHP Basic Syntax", lessonkey: "php_basic_syntax" },
@@ -16,8 +16,8 @@ export const units = [
     },
     {
         title: "Unit II: PHP Arrays and Functions",
-        youtube: "https://youtu.be/unit2_overview",
-        quizlink: "https://quizlink.com/unit2_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=3620s",
+        quizlink: "",
         lessons: [
             { name: "PHP Enumerated Arrays", lessonkey: "php_enumerated_arrays" },
             { name: "PHP Associative Arrays", lessonkey: "php_associative_arrays" },
@@ -30,8 +30,8 @@ export const units = [
     },
     {
         title: "Unit III: PHP Forms",
-        youtube: "https://youtu.be/unit3_overview",
-        quizlink: "https://quizlink.com/unit3_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=7740s",
+        quizlink: "",
         lessons: [
             { name: "PHP Form Handling", lessonkey: "php_form_handling" },
             { name: "PHP GET and POST", lessonkey: "php_get_post" },
@@ -41,8 +41,8 @@ export const units = [
     },
     {
         title: "Unit IV: PHP Cookies, Sessions, and String Handling",
-        youtube: "https://youtu.be/unit4_overview",
-        quizlink: "https://quizlink.com/unit4_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=9490s",
+        quizlink: "",
         lessons: [
             { name: "PHP Cookie Handling", lessonkey: "php_cookie_handling" },
             { name: "PHP Session Handling", lessonkey: "php_session_handling" },
@@ -55,8 +55,8 @@ export const units = [
     },
     {
         title: "Unit V: Object-Oriented Programming in PHP",
-        youtube: "https://youtu.be/unit5_overview",
-        quizlink: "https://quizlink.com/unit5_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=18553s",
+        quizlink: "",
         lessons: [
             { name: "Defining PHP Classes", lessonkey: "php_classes" },
             { name: "Creating and Using Objects", lessonkey: "php_objects" },
@@ -68,8 +68,8 @@ export const units = [
     },
     {
         title: "Unit VI: Basic MySQL and SQL Queries",
-        youtube: "https://youtu.be/unit6_overview",
-        quizlink: "https://quizlink.com/unit6_quiz",
+        youtube: "https://www.youtube.com/watch?v=t0syDUSbdfE&t=21054s",
+        quizlink: "",
         lessons: [
             { name: "Database Basics", lessonkey: "mysql_database_basics" },
             { name: "Using PHPMyAdmin", lessonkey: "phpmyadmin" },

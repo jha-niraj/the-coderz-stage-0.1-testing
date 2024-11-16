@@ -31,7 +31,7 @@ export default function MainContent({ index, title, content, points, code }: Mai
                     ))}
                 </ul>
                     )}
-                {code && <CodeBlock language="C++" code={code} />}
+                {code && <CodeBlock language="cpp" code={code} />}
             </div>
         </motion.div>
     )

@@ -12,12 +12,13 @@ import teamImage from "./images/nirajjha (copy).jpeg";
 import { RainbowButton } from '@/components/ui/rainbow-button';
 import { cn } from "@/app/lib/utils";
 import Marquee from "@/components/ui/marquee";
+import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card'
 
 const theCoderzFamily = [
     {
         name: "Abhinav Shankar",
-        role: "Co-Founder & Manager",
         img: teamImage,
+        role: "Management / Reasearch and Development",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",
@@ -25,8 +26,8 @@ const theCoderzFamily = [
     },
     {
         name: "Harsh Pandey",
-        role: "Co-Founder & PR Head",
         img: teamImage,
+        role: "Public Relations Head",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",
@@ -34,8 +35,8 @@ const theCoderzFamily = [
     },
     {
         name: "Niraj Jha",
-        role: "Lead Dveloper",
         img: teamImage,
+        role: "Lead Developer",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/jha-niraj",
         instagram: "https://instagram.com/janedoe",
@@ -43,8 +44,8 @@ const theCoderzFamily = [
     },
     {
         name: "Tejasvi Sinha",
-        role: "Social Media Management Head",
         img: teamImage,
+        role: "Social Media Management Head",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",
@@ -52,8 +53,8 @@ const theCoderzFamily = [
     },
     {
         name: "Vaishnavi",
-        role: "Social Media Team",
         img: teamImage,
+        role: "Research and Development",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",
@@ -61,8 +62,35 @@ const theCoderzFamily = [
     },
     {
         name: "Ansh",
-        role: "Content Creation & PR Team",
         img: teamImage,
+        role: "Social Media Team",
+        linkedin: "https://linkedin.com/in/janedoe",
+        github: "https://github.com/janedoe",
+        instagram: "https://instagram.com/janedoe",
+        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+    },
+    {
+        name: "Sangam",
+        img: teamImage,
+        role: "Social Media and Content Strategist",
+        linkedin: "https://linkedin.com/in/janedoe",
+        github: "https://github.com/janedoe",
+        instagram: "https://instagram.com/janedoe",
+        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+    },
+    {
+        name: "Om",
+        img: teamImage,
+        role: "Tech Team / Deployment Head",
+        linkedin: "https://linkedin.com/in/janedoe",
+        github: "https://github.com/janedoe",
+        instagram: "https://instagram.com/janedoe",
+        bio: "Jane is a visionary leader with 10+ years of experience in EdTech. She's passionate about making CS education accessible to all."
+    },
+    {
+        name: "Imran",
+        img: teamImage,
+        role: "Technical Team",
         linkedin: "https://linkedin.com/in/janedoe",
         github: "https://github.com/janedoe",
         instagram: "https://instagram.com/janedoe",
@@ -70,91 +98,87 @@ const theCoderzFamily = [
     },
 ]
 
-const firstRow = theCoderzFamily.slice(0, theCoderzFamily.length / 2);
-const secondRow = theCoderzFamily.slice(theCoderzFamily.length / 2);
-const ReviewCard = ({
-    img,
+interface TheCoderZFamilyProps {
+    name: string;
+    img: string | StaticImageData;
+    role: string;
+    linkedin?: string;
+    github?: string;
+    instagram?: string;
+}
+const TheCoderZFamily = ({
     name,
+    img,
     role,
     linkedin,
     github,
-    instagram,
-    bio,
-}: {
-    img: string | StaticImageData;
-    name: string;
-    role: string,
-    linkedin: string;
-    github: string;
-    instagram: string;
-    bio: string;
-}) => {
+    instagram
+}: TheCoderZFamilyProps) => {
     return (
-        <figure
-            className={cn(
-                "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                // light styles
-                "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-                // dark styles
-                "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
-                // Another customizations
-                "flex flex-col gap-6 w-64"
-            )}
-        >
-            <div className="flex flex-row items-center justify-center gap-6">
-                <Image
-                    className="rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Team member image"
-                    src={img}
-                />
-                <div className="flex flex-col">
-                    <figcaption className="text-md font-bold dark:text-white">
-                        {name}
-                    </figcaption>
-                    <p className="text-sm font-semiboldtext-gray-500 dark:text-white/70">{role}</p>
+        <CardContainer className="inter-var w-full">
+            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-[200px] w-full rounded-xl p-6 border">
+                <div className="flex flex-row items-center gap-6 h-full">
+                    {/* <CardItem translateZ="100" className="flex-shrink-0">
+                        <Image
+                            src={img}
+                            width={100}
+                            height={100}
+                            alt={`${name}'s profile picture`}
+                            className="rounded-full object-cover group-hover/card:shadow-xl w-[100px] h-[100px]"
+                        />
+                    </CardItem> */}
+                    <div className="flex flex-col justify-between flex-grow gap-6">
+                        <div className="flex flex-col items-center justify-center gap-2">
+                            <CardItem
+                                translateZ="50"
+                                className="text-xl font-bold text-center text-neutral-600 dark:text-white"
+                            >
+                                {name}
+                            </CardItem>
+                            <CardItem
+                                translateZ="40"
+                                className="text-sm text-neutral-500 text-center dark:text-neutral-300"
+                            >
+                                {role}
+                            </CardItem>
+                        </div>
+                        <div className="flex w-full justify-around">
+                            {linkedin && (
+                                <Link
+                                    href={linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="h-8 w-8 hover:bg-purple-50 border-2 border-gray-400 rounded-lg dark:hover:bg-purple-900/20 transition-colors flex items-center justify-center"
+                                >
+                                    <Linkedin className="h-4 w-4" />
+                                </Link>
+                            )}
+                            {github && (
+                                <Link
+                                    href={github}
+                                    target="_blank"
+                                    className="h-8 w-8 hover:bg-purple-50 border-2 border-gray-400 rounded-lg dark:hover:bg-purple-900/20 transition-colors flex items-center justify-center"
+                                >
+                                    <Github className="h-4 w-4" />
+                                </Link>
+                            )}
+                            {instagram && (
+                                <Link
+                                    href={instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="h-8 w-8 hover:bg-purple-50 border-2 border-gray-400 rounded-lg dark:hover:bg-purple-900/20 transition-colors flex items-center justify-center"
+                                >
+                                    <Instagram className="h-4 w-4" />
+                                </Link>
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="flex space-x-2 items-center justify-center gap-5">
-                <Link href={linkedin || "#"} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="icon">
-                        <Linkedin className="h-4 w-4" />
-                    </Button>
-                </Link>
-                <Link href={github || "#"} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="icon">
-                        <Github className="h-4 w-4" />
-                    </Button>
-                </Link>
-                <Link href={instagram || "#"} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="icon">
-                        <Instagram className="h-4 w-4" />
-                    </Button>
-                </Link>
-            </div>
-        </figure>
+            </CardBody>
+        </CardContainer>
     );
 };
-
-const TheCoderZFamily = () => {
-    return (
-        <div className="relative flex h-[450px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-            <Marquee reverse pauseOnHover className="[--duration:20s]">
-                {firstRow.map((review) => (
-                    <ReviewCard key={review.role} {...review} />
-                ))}
-            </Marquee>
-            <Marquee pauseOnHover className="[--duration:20s]">
-                {secondRow.map((review) => (
-                    <ReviewCard key={review.role} {...review} />
-                ))}
-            </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
-        </div>
-    );
-}
 
 interface AboutUsSectionProps {
     title: string;
@@ -284,10 +308,24 @@ export default function AboutUs() {
                         className="flex flex-col"
                     >
                         <h2 className="text-4xl font-bold mb-4 text-center">The Coder&apos;z Family</h2>
-                        <TheCoderZFamily />
-                        <div className='mx-auto pt-6'>
-                            <RainbowButton>Join Us</RainbowButton>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto px-4">
+                            {
+                                theCoderzFamily.map((member, index) => (
+                                    <TheCoderZFamily
+                                        key={index}
+                                        name={member.name}
+                                        img={member.img}
+                                        role={member.role}
+                                        linkedin={member.linkedin}
+                                        github={member.github}
+                                        instagram={member.instagram}
+                                    />
+                                ))
+                            }
                         </div>
+                        <Link href="mailto:thecoderzofficial@gmail.com" className='mx-auto pt-6'>
+                            <RainbowButton>Join Us</RainbowButton>
+                        </Link>
                     </motion.div>
                 </div>
             </div>

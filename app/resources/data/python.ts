@@ -1,8 +1,8 @@
 export const units = [
     {
         title: "Unit I: Setting Up and Basic Programming in Python",
-        youtube: "https://youtu.be/unit1_overview",
-        quizlink: "https://quizlink.com/unit1_quiz",
+        youtube: "https://youtu.be/AkffMtK5oHs?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "Installing Python and Running 'Hello World'", lessonkey: "python_install_hello" },
             { name: "Understanding Variables and Expressions", lessonkey: "variables_expressions" },
@@ -15,8 +15,8 @@ export const units = [
     },
     {
         title: "Unit II: Control Flow and Iteration",
-        youtube: "https://youtu.be/unit2_overview",
-        quizlink: "https://quizlink.com/unit2_quiz",
+        youtube: "https://youtu.be/z5nBbx1fwGc?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "Conditional Statements and Modulus Operator", lessonkey: "conditionals_modulus" },
             { name: "Using Random Numbers in Programs", lessonkey: "random_numbers" },
@@ -28,8 +28,8 @@ export const units = [
     },
     {
         title: "Unit III: Functions and Recursion",
-        youtube: "https://youtu.be/unit3_overview",
-        quizlink: "https://quizlink.com/unit3_quiz",
+        youtube: "https://youtu.be/kTjTqjM5u_0?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "Defining and Calling Functions", lessonkey: "function_calls" },
             { name: "Type Conversion and Coercion", lessonkey: "type_conversion" },
@@ -40,8 +40,8 @@ export const units = [
     },
     {
         title: "Unit IV: Working with Strings, Lists, and Dictionaries",
-        youtube: "https://youtu.be/unit4_overview",
-        quizlink: "https://quizlink.com/unit4_quiz",
+        youtube: "https://youtu.be/x3BUKq54e-M?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "String Basics and Traversal", lessonkey: "string_basics" },
             { name: "Slicing, Comparing, and Finding in Strings", lessonkey: "string_slicing" },
@@ -52,8 +52,8 @@ export const units = [
     },
     {
         title: "Unit V: Object-Oriented Programming Concepts",
-        youtube: "https://youtu.be/unit5_overview",
-        quizlink: "https://quizlink.com/unit5_quiz",
+        youtube: "https://youtu.be/HQnoYzxOHMw?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "Creating Classes and Instances", lessonkey: "classes_instances" },
             { name: "Class Inheritance and Method Overriding", lessonkey: "inheritance" },
@@ -62,8 +62,8 @@ export const units = [
     },
     {
         title: "Unit VI: File Handling and Regular Expressions",
-        youtube: "https://youtu.be/unit6_overview",
-        quizlink: "https://quizlink.com/unit6_quiz",
+        youtube: "https://youtu.be/9oLkWF_tOtk?feature=shared",
+        quizlink: "",
         lessons: [
             { name: "Reading and Writing Files", lessonkey: "file_io" },
             { name: "Handling Exceptions and Error Types", lessonkey: "exceptions" },

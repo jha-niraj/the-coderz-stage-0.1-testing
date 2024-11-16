@@ -9,6 +9,7 @@ import Link from 'next/link';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import SmoothScroll from '@/components/smoothscroll';
+import { useToast } from '@/hooks/use-toast';
 
 interface LessonDataProps {
     title: string;
@@ -25,7 +26,6 @@ interface LessonDataProps {
     }[];
     nextChapter: string;
 }
-
 interface SlideInModalProps {
     isOpen: boolean;
     onClose: () => void;
@@ -33,16 +33,23 @@ interface SlideInModalProps {
 }
 
 const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData }) => {
+    const { toast } = useToast();
     if (!lessonData) return null;
+
+    const handleSolution = () => {
+        toast({
+            title: "Success",
+            description: "We are in the process of making an solution list, if you want you can contribute also",
+        });
+    }
 
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent
                 side="right"
-                className="w-full h-full sm:w-[80vw] md:w-[60vw] sm:max-w-[80vw] p-6 overflow-y-auto"
-                style={{ maxWidth: '90vw' }}
+                className="w-full h-full sm:w-[80vw] md:w-[60vw] p-6 overflow-y-auto"
             >
-                <SheetHeader>
+                <SheetHeader className="pt-4">
                     <SheetTitle>{lessonData.title}</SheetTitle>
                     <SheetDescription>{lessonData.description}</SheetDescription>
                 </SheetHeader>
@@ -73,20 +80,8 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                                                 </ul>
                                             )}
                                         {
-                                            section.code && <CodeBlock language="C++" code={section.code} />
+                                            section.code && <CodeBlock language="cpp" code={section.code} />
 
-                                        }
-                                        {
-                                            section.code && <SyntaxHighlighter
-                                                language="C++"
-                                                style={nightOwl}
-                                                className="rounded-lg !mt-4"
-                                                showLineNumbers
-                                            >
-                                                {
-                                                    section.code
-                                                }
-                                            </SyntaxHighlighter>
                                         }
                                     </div>
                                 </motion.div>
@@ -106,6 +101,7 @@ const SlideInModal: React.FC<SlideInModalProps> = ({ isOpen, onClose, lessonData
                             <Link
                                 href="#"
                                 className="bg-green-400 hover:bg-black text-white font-small p-2 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 text-lg"
+                                onClick={handleSolution}
                             >
                                 Solution
                             </Link>

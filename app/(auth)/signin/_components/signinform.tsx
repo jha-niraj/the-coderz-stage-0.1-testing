@@ -26,7 +26,7 @@ export default function SignInForm() {
 		if(status === "authenticated") {
 			router.push("/profile");
 		}
-	}, [router, session]);
+	}, [router, session, status]);
 
 	const handleSignInWithGoogle = async() => {
 		try {

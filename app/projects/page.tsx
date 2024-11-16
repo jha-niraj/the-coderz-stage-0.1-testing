@@ -58,14 +58,14 @@ const ProjectsPage: React.FC = () => {
     const [selectedLevel, setSelectedLevel] = useState<DifficultyLevel>("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const { toast } = useToast();
-    // const { data: session, status } = useSession();
-    // const router = useRouter();
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
-    // useEffect(() => {
-    //     if (!session?.user) {
-    //         router.push("/signin");
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (!session?.user) {
+            router.push("/signin");
+        }
+    }, [session, router])
 
     const filteredProjects = typedProjects.filter((project) => {
         const categoryMatch = activeCategory === 'All' || project.tags.includes(activeCategory);
@@ -76,7 +76,7 @@ const ProjectsPage: React.FC = () => {
     const handleBuildFromScratch = () => {
         toast({
             title: "Coming Soon...",
-            description: "We are working on this features which enables you to learn at you own pacce while following simple and understanding instructions.",
+            description: "We are working on this features which enables you to learn at you own pace while following simple and understanding instructions.",
             variant: "default"
         });
     }
@@ -89,9 +89,9 @@ const ProjectsPage: React.FC = () => {
                         <div className="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-6 lg:px-8 gap-8 md:gap-12">
                             <div className="w-full md:w-2/3 flex flex-col gap-6 md:gap-8">
                                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-center md:text-left">
-                                    Build real projects
+                                    Build real world projects
                                     <br />
-                                    <span className="text-emerald-500">that matter's</span>
+                                    <span className="text-emerald-500">that matter&apos;s</span>
                                 </h1>
                                 <p className="text-black dark:text-white text-base sm:text-lg text-center md:text-left">
                                     Follow simple instructions to build production-ready projects. Learn by doing with our guided project-based approach.
@@ -126,12 +126,16 @@ const ProjectsPage: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="max-w-5xl mx-auto px-4">
+                    <div className="max-w-7xl mx-auto px-4">
                         <h2 className="text-2xl font-bold text-center mb-8">Why do projects?</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
                                 <div className="text-purple-600 mb-4">
-                                    <img className='w-20' src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ=" alt="" />
+                                    <Image 
+                                        className='w-20' 
+                                        src="https://media.istockphoto.com/id/1396933001/vector/vector-blue-verified-badge.jpg?s=612x612&w=0&k=20&c=aBJ2JAzbOfQpv2OCSr0k8kYe0XHutOGBAJuVjvWvPrQ=" 
+                                        alt="" 
+                                    />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Become job ready</h3>
                                 <p className="text-center text-black dark:text-white">
@@ -140,7 +144,11 @@ const ProjectsPage: React.FC = () => {
                             </div>
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm">
                                 <div className="text-green-600 mb-4">
-                                    <img className='w-16' src="https://cdn-icons-png.flaticon.com/512/751/751355.png" alt="" />
+                                    <Image 
+                                        className='w-16' 
+                                        src="https://cdn-icons-png.flaticon.com/512/751/751355.png" 
+                                        alt="" 
+                                    />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Learn by doing</h3>
                                 <p className="text-center text-black dark:text-white">
@@ -149,7 +157,11 @@ const ProjectsPage: React.FC = () => {
                             </div>
                             <div className="flex flex-col items-center p-6 border rounded-lg shadow-sm" id="project_section">
                                 <div className="text-yellow-600 mb-4">
-                                    <img className='w-20' src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png" alt="" />
+                                    <Image 
+                                        className='w-20' 
+                                        src="https://cdn-icons-png.flaticon.com/512/6165/6165577.png" 
+                                        alt="" 
+                                    />
                                 </div>
                                 <h3 className="text-xl font-semibold mb-2">Get feedback</h3>
                                 <p className="text-center text-black dark:text-white">
@@ -168,7 +180,7 @@ const ProjectsPage: React.FC = () => {
                                     <button
                                         key={index}
                                         className={`text-black text-sm font-small dark:text-black p-1 pl-2 pr-2 rounded-lg
-                                        ${activeCategory === category ? "bg-black text-white" : "bg-white text-black"}
+                                        ${activeCategory === category ? "bg-black text-white dark:bg-white dark:text-black" : "bg-white text-black"}
                                         ${activeCategory.includes(category) ? "hover:bg-sky-100 hover:text-black" : "opacity-50 cursor-not-allowed"}
                                     `}
                                         onClick={() => activeCategory.includes(category) && setActiveCategory(category)}
@@ -199,7 +211,7 @@ const ProjectsPage: React.FC = () => {
                         </DropdownMenu>
                     </div>
 
-                    <div className="">
+                    <div className="mb-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 mx-auto w-full lg:grid-cols-3 gap-6 min-h-[300px]">
                             {
                                 filteredProjects.length === 0 ? (
@@ -288,14 +300,14 @@ const ProjectsPage: React.FC = () => {
                             <div className="space-y-8">
                                 <SheetHeader>
                                     <SheetTitle>{selectedProject.title}</SheetTitle>
-                                    <p className="text-gray-500">{selectedProject.guide.description}</p>
+                                    <p className="text-black dark:text-gray-200">{selectedProject.guide.description}</p>
                                 </SheetHeader>
 
                                 <div className="space-y-6">
                                     {selectedProject.guide.desktopImage && selectedProject.guide.mobileImage && (
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="space-y-3">
-                                                <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
+                                                <div className="flex items-center gap-2 text-sm font-medium text-black dark:text-gray-200">
                                                     <Monitor className="w-4 h-4" />
                                                     <span>Desktop Preview</span>
                                                 </div>
@@ -311,7 +323,7 @@ const ProjectsPage: React.FC = () => {
                                             </div>
 
                                             <div className="space-y-3">
-                                                <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
+                                                <div className="flex items-center gap-2 text-sm font-medium text-black dark:text-gray-200">
                                                     <Smartphone className="w-4 h-4" />
                                                     <span>Mobile Preview</span>
                                                 </div>

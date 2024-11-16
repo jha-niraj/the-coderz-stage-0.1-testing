@@ -12,7 +12,7 @@ import StatsSection from "@/components/homepage/datacount";
 export  default function LandingPage() {
     return (
         <SmoothScroll>
-			<main className={`h-full w-[95%] sm:w-[80%] relative flex flex-col items-center justify-center mx-auto pt-20 sm:pt-32`}>
+			<main className={`h-full w-[95%] sm:w-[80%] relative flex flex-col items-center justify-center mx-auto pt-16 sm:pt-32`}>
 				<MainPage />
 				<ExploreResourcesSection />
 				<StudentServices />

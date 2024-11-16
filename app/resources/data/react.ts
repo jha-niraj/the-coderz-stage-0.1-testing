@@ -1,8 +1,8 @@
 export const units = [
     {
         title: "Unit I: JavaScript Refresher and Introduction to React",
-        youtube: "https://youtu.be/unit1_overview",
-        quizlink: "https://quizlink.com/unit1_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=0s",
+        quizlink: "",
         lessons: [
             { name: "ES6 Refresher - Classes, Arrow Functions, Variables (let, const, var)", lessonkey: "es6_refresher" },
             { name: "Array Methods - map(), Destructuring, Spread Operator", lessonkey: "array_methods" },
@@ -13,8 +13,8 @@ export const units = [
     },
     {
         title: "Unit II: Setting Up React and Component Basics",
-        youtube: "https://youtu.be/unit2_overview",
-        quizlink: "https://quizlink.com/unit2_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=2695s",
+        quizlink: "",
         lessons: [
             { name: "Installing React with Create React App", lessonkey: "install_react" },
             { name: "React Environment and Folder Structure", lessonkey: "react_environment" },
@@ -25,8 +25,8 @@ export const units = [
     },
     {
         title: "Unit III: Working with Hooks and Lifecycle in React",
-        youtube: "https://youtu.be/unit3_overview",
-        quizlink: "https://quizlink.com/unit3_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=7410s",
+        quizlink: "",
         lessons: [
             { name: "Introduction to React Hooks", lessonkey: "hooks_intro" },
             { name: "Built-in Hooks - useState, useEffect, useContext, useRef", lessonkey: "builtin_hooks" },
@@ -37,8 +37,8 @@ export const units = [
     },
     {
         title: "Unit IV: Forms and Controlled Components",
-        youtube: "https://youtu.be/unit4_overview",
-        quizlink: "https://quizlink.com/unit4_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=12532s",
+        quizlink: "",
         lessons: [
             { name: "Adding and Handling Forms in React", lessonkey: "forms_handling" },
             { name: "Controlled vs Uncontrolled Components", lessonkey: "controlled_uncontrolled" },
@@ -47,8 +47,8 @@ export const units = [
     },
     {
         title: "Unit V: HTTP Requests and Routing",
-        youtube: "https://youtu.be/unit5_overview",
-        quizlink: "https://quizlink.com/unit5_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=15415s",
+        quizlink: "",
         lessons: [
             { name: "Fetching Data with Fetch API and Axios", lessonkey: "http_fetch_axios" },
             { name: "GET, POST, PUT, and DELETE Requests", lessonkey: "http_methods" },
@@ -58,8 +58,8 @@ export const units = [
     },
     {
         title: "Unit VI: Redux and Deployment",
-        youtube: "https://youtu.be/unit6_overview",
-        quizlink: "https://quizlink.com/unit6_quiz",
+        youtube: "https://www.youtube.com/watch?v=dz458ZkBMak&t=30950s",
+        quizlink: "",
         lessons: [
             { name: "Redux Basics and Store Setup", lessonkey: "redux_basics" },
             { name: "Understanding Redux Flow and Dispatching Actions", lessonkey: "redux_flow" },
@@ -68,7 +68,6 @@ export const units = [
         ]
     }
 ];
-
 
 export const lessonData = {
     "es6_refresher": {

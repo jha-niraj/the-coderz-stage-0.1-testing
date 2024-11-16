@@ -105,7 +105,7 @@ export default function CommunityPage() {
 								description="Dive into our Discord server for in-depth discussions, collaborative projects, and regular tech workshops."
 								color="border-indigo-500"
 								buttonText="Join Discord Server"
-								buttonLink="https://discord.gg/2tMK3FFt"
+								buttonLink="https://discord.gg/chF78trF"
 							/>
 						</div>
 					</motion.div>

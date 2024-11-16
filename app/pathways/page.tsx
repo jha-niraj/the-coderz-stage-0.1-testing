@@ -1,15 +1,21 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Code, Database, Globe, Shield, Cpu, Lightbulb, Rocket, Target, Zap, Sparkles, LucideIcon } from 'lucide-react';
+import { Code, Database, Globe, Shield, Cpu, Lightbulb, Rocket, Target, Zap, Sparkles, LucideIcon, Briefcase, Award, TrendingUp, GraduationCap, ChevronRight, BookOpen, ShieldCheck, MessageSquare } from 'lucide-react';
 import { pathwaysData } from './pathwaysdata';
 import { motion, useAnimation } from "framer-motion";
 import ShimmerButton from '@/components/ui/shimmer-button';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 import { useRouter } from 'next/navigation';
+import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
+import { RainbowButton } from '@/components/ui/rainbow-button';
+import { useSession } from 'next-auth/react';
 
 const benefits = [
     { title: 'Structured Learning', description: 'Follow a curated path designed by industry experts', icon: <Target className="w-6 h-6" /> },
@@ -62,17 +68,39 @@ interface PathwayProps {
     learningPath: {
         name: string;
         duration: string;
+        description: string;
+        link: string;
     }[];
+    certifications: {
+        title: string;
+        description: string;
+        domains: string[];
+        duration: string;
+        recommendedTraining: {
+            title: string;
+            link: string;
+        }[];
+    }[];
+    advices: {
+        title: string;
+        description: string;
+    }[]
 }
 
 export default function Component() {
     const [selectedPathway, setSelectedPathway] = useState<PathwayProps | null>(null);
+    const { data: session, status } = useSession();
     const router = useRouter();
+
+    useEffect(() => {
+        if (!session?.user) {
+            router.push("/signin");
+        }
+    }, [router, session?.user])
 
     const handleCardClick = (pathway: PathwayProps) => {
         setSelectedPathway(pathway);
     };
-
     const handleResourcesClick = (pathwayId: string) => {
         router.push(`/resources/${pathwayId}`);
     };
@@ -91,7 +119,7 @@ export default function Component() {
                     <p className="text-xl md:text-2xl text-black dark:text-white max-w-3xl mx-auto">
                         Find your perfect learning pathway and join thousands of developers building the future of technology
                     </p>
-                    <div className="pt-4">
+                    <div className="">
                         <div className="relative flex overflow-x-hidden">
                             <div className="animate-marquee whitespace-nowrap py-6 flex gap-8">
                                 {[...techPaths, ...techPaths].map((path, index) => (
@@ -108,7 +136,7 @@ export default function Component() {
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pt-12 max-w-7xl mx-auto">
                         {[
                             { label: "Active Learners", value: "10,000+" },
                             { label: "Success Rate", value: "94%" },
@@ -116,7 +144,9 @@ export default function Component() {
                             { label: "Learning Paths", value: "25+" }
                         ].map((stat, index) => (
                             <div key={index} className="text-center shadow-2xl rounded-2xl dark:border-2 p-4">
-                                <div className="text-3xl font-bold text-black dark:text-white mb-2">{stat.value}</div>
+                                <div className="text-3xl font-bold text-black dark:text-white mb-2 whitespace-nowrap">
+                                    {stat.value}
+                                </div>
                                 <div className="text-gray-500 text-sm">{stat.label}</div>
                             </div>
                         ))}
@@ -143,7 +173,7 @@ export default function Component() {
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <CardDescription className="text-center">{benefit.description}</CardDescription>
+                                        <CardDescription className="text-center text-black dark:text-white">{benefit.description}</CardDescription>
                                     </CardContent>
                                 </Card>
                             ))
@@ -155,7 +185,7 @@ export default function Component() {
             {/* Pathways Section */}
             <section className="py-12">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center mb-12">Explore Our Pathways</h2>
+                    <h2 className="text-3xl font-medium text-center mb-12">Explore Our Pathways on diffrent domains</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {
                             pathwaysData.map((pathway) => (
@@ -163,13 +193,13 @@ export default function Component() {
                                     className="inter-var w-full cursor-pointer"
                                     key={pathway.id}
                                 >
-                                    <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] h-[250px] border-black/[0.1] w-full rounded-xl p-4 border">
+                                    <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] h-[300px] sm:h-[270px] border-black/[0.1] w-full rounded-xl p-4 border">
                                         <div className="flex flex-col justify-between h-full">
-                                            <div>
-                                                <div className="flex flex-col items-start justify-between mb-4">
+                                            <div className="h-full">
+                                                <div className="flex flex-col items-start gap-4 justify-between mb-4">
                                                     <CardItem
                                                         translateZ="50"
-                                                        className="text-xl font-semibold text-neutral-600 dark:text-white flex gap-3 items-center justify-center"
+                                                        className="text-xl font-semibold text-neutral-600 dark:text-white flex gap-2 items-center justify-center"
                                                     >
                                                         <div className={`mr-4 p-2 rounded-full bg-gradient-to-r ${pathway.color} text-white`}>
                                                             {pathway.icon}
@@ -178,16 +208,23 @@ export default function Component() {
                                                             {pathway.title}
                                                         </h1>
                                                     </CardItem>
-                                                    <CardItem>
+                                                    <CardItem className="">
                                                         {pathway.description}
                                                     </CardItem>
                                                 </div>
+
                                             </div>
                                             <CardItem
                                                 translateZ="60"
                                                 as="div"
-                                                className="flex gap-3 w-full justify-between"
+                                                className="flex flex-col gap-4 w-full justify-between"
                                             >
+                                                <CardItem className="w-full">
+                                                    <div className="flex gap-2 items-center justify-center">
+                                                        <Badge variant="secondary" className='text-center'>{pathway.niche}</Badge>
+                                                        <Badge variant="outline" className='text-center'>{pathway.domain}</Badge>
+                                                    </div>
+                                                </CardItem>
                                                 <Button
                                                     variant="default"
                                                     className="flex-1"
@@ -207,91 +244,199 @@ export default function Component() {
 
             {/* Sheet to show the Pathway Data */}
             <Sheet open={!!selectedPathway} onOpenChange={() => setSelectedPathway(null)}>
-                <SheetContent side="right" className="w-full md:max-w-[640px] overflow-y-auto">
-                    {
-                        selectedPathway && (
-                            <>
-                                <SheetHeader>
-                                    <SheetTitle>{selectedPathway.title}</SheetTitle>
-                                    <SheetDescription>{selectedPathway.description}</SheetDescription>
-                                </SheetHeader>
-                                <div className="mt-6">
-                                    <h3 className="text-lg font-semibold mb-2">Niche</h3>
-                                    <p>{selectedPathway.niche}</p>
-                                    <h3 className="text-lg font-semibold mt-4 mb-2">Domain</h3>
-                                    <p>{selectedPathway.domain}</p>
-
-                                    <h3 className="text-lg font-semibold mt-4 mb-2">Careers</h3>
-                                    {
-                                        selectedPathway.careers?.map((career, index) => (
-                                            <div key={index} className="mb-4">
-                                                <h4 className="font-medium">{career.title}</h4>
-                                                <p className="text-sm text-gray-600">{career.description}</p>
-                                                <p className="text-sm mt-1"><strong>Skills:</strong> {career.skills}</p>
-                                                <p className="text-sm mt-1"><strong>Opportunities:</strong> {career.opportunities}</p>
-                                            </div>
-                                        ))
-                                    }
-
-                                    <h3 className="text-lg font-semibold mt-4 mb-2">Challenges</h3>
-                                    {
-                                        selectedPathway.challenges?.map((challenge, index) => (
-                                            <div key={index} className="mb-4">
-                                                <h4 className="font-medium">{challenge.title}</h4>
-                                                <p className="text-sm text-gray-600">{challenge.description}</p>
-                                                <p className="text-sm mt-1"><strong>Opportunity:</strong> {challenge.opportunity}</p>
-                                            </div>
-                                        ))
-                                    }
-
-                                    <h3 className="text-lg font-semibold mt-4 mb-2">Key Skills</h3>
-                                    {
-                                        selectedPathway.skills?.map((skill, index) => (
-                                            <div key={index} className="mb-2">
-                                                <h4 className="font-medium">{skill.name}</h4>
-                                                <p className="text-sm text-gray-600">{skill.description}</p>
-                                            </div>
-                                        ))
-                                    }
-
-                                    <h3 className="text-lg font-semibold mt-4 mb-2">Industry Trends</h3>
-                                    {
-                                        selectedPathway.trends?.map((trend, index) => (
-                                            <div key={index} className="mb-2">
-                                                <h4 className="font-medium">{trend.name}</h4>
-                                                <p className="text-sm text-gray-600">{trend.description}</p>
-                                            </div>
-                                        ))
-                                    }
-
-                                    {
-                                        selectedPathway.learningPath && (
-                                            <>
-                                                <h3 className="text-lg font-semibold mt-4 mb-2">Learning Path</h3>
-                                                <ol className="list-decimal list-inside">
-                                                    {
-                                                        selectedPathway.learningPath.map((step, index) => (
-                                                            <li key={index} className="mb-2">
-                                                                <span className="font-medium">{step.name}</span> - {step.duration}
-                                                            </li>
-                                                        ))
-                                                    }
-                                                </ol>
-                                            </>
-                                        )
-                                    }
-                                    <div className="mt-8">
-                                        <Button
-                                            className="w-full"
-                                            onClick={() => handleResourcesClick(selectedPathway.id)}
-                                        >
-                                            Explore {selectedPathway.title} Resources
-                                        </Button>
+                <SheetContent side="right" className="w-full p-0 md:max-w-[840px]">
+                    {selectedPathway && (
+                        <ScrollArea className="h-full">
+                            <div className="p-6">
+                                <SheetHeader className="mb-6">
+                                    <div className={`p-4 rounded-lg bg-gradient-${selectedPathway.color} mb-4`}>
+                                        <SheetTitle className="text-2xl text-black dark:text-white mb-2">
+                                            {selectedPathway.title}
+                                        </SheetTitle>
+                                        <SheetDescription className="text-black dark:text-gray-200">
+                                            {selectedPathway.description}
+                                        </SheetDescription>
                                     </div>
+                                    <div className="flex gap-2 mt-4">
+                                        <Badge variant="secondary">{selectedPathway.niche}</Badge>
+                                        <Badge variant="secondary">{selectedPathway.domain}</Badge>
+                                    </div>
+                                </SheetHeader>
+                                <div className="space-y-8 w-full">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <Briefcase className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Career Paths</h3>
+                                        </div>
+                                        {
+                                            selectedPathway.careers.map((career, index) => (
+                                                <Card key={index} className="p-4">
+                                                    <h4 className="font-semibold text-lg mb-2">{index + 1} . {career.title}</h4>
+                                                    <p className="text-black dark:text-gray-200 mb-3">{career.description}</p>
+                                                    <div className="grid gap-2">
+                                                        <div>
+                                                            <span className="font-bold">Skills: </span>{career.skills}
+                                                        </div>
+                                                        <div>
+                                                            <span className="font-bold">Opportunities: </span>{career.opportunities}
+                                                        </div>
+                                                    </div>
+                                                </Card>
+                                            ))
+                                        }
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <Lightbulb className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Challenges & Opportunities</h3>
+                                        </div>
+                                        {
+                                            selectedPathway.challenges.map((challenge, index) => (
+                                                <Card key={index} className="p-4">
+                                                    <h4 className="font-semibold text-lg mb-2">{index + 1} . {challenge.title}</h4>
+                                                    <p className="text-black dark:text-gray-200 mb-3">{challenge.description}</p>
+                                                    <div>
+                                                        <span className="font-bold">Opportunity: </span>{challenge.opportunity}
+                                                    </div>
+                                                </Card>
+                                            ))
+                                        }
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <Award className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Key Skills</h3>
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2">
+                                            {
+                                                selectedPathway.skills.map((skill, index) => (
+                                                    <Card key={index} className="p-4">
+                                                        <h4 className="font-semibold mb-2">{index + 1} . {skill.name}</h4>
+                                                        <p className="text-sm text-black dark:text-gray-200">{skill.description}</p>
+                                                    </Card>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <TrendingUp className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Industry Trends</h3>
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2">
+                                            {
+                                                selectedPathway.trends.map((trend, index) => (
+                                                    <Card key={index} className="p-4">
+                                                        <h4 className="font-semibold mb-2">{index + 1} . {trend.name}</h4>
+                                                        <p className="text-sm text-black dark:text-gray-200">{trend.description}</p>
+                                                    </Card>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <BookOpen className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Learning Path</h3>
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2">
+                                            {
+                                                selectedPathway.learningPath.map((step, index) => (
+                                                    <Card key={index} className="p-4 flex flex-col justify-between gap-4">
+                                                        <div>
+                                                            <h4 className="font-semibold mb-2">{index + 1} . {step.name}</h4>
+                                                            <p className="text-sm text-black dark:text-gray-100 mb-2">{step.description}</p>
+                                                            <div>
+                                                                <span className="font-medium">Duration: </span>{step.duration}
+                                                            </div>
+                                                        </div>
+                                                        <Link 
+                                                            href={step.link}
+                                                            target='_blank'
+                                                            className="bg-green-600 p-2 rounded-2xl text-center"
+                                                        >
+                                                            Explore Path
+                                                        </Link>
+                                                    </Card>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <ShieldCheck className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Certifications</h3>
+                                        </div>
+                                        {
+                                            selectedPathway.certifications.map((cert, index) => (
+                                                <Card key={index} className="p-4">
+                                                    <h4 className="font-semibold text-lg mb-2">{index + 1} . {cert.title}</h4>
+                                                    <p className="text-black dark:text-gray-200 mb-2">{cert.description}</p>
+                                                    <div>
+                                                        <span className="font-bold">Domains: </span>{cert.domains.join(', ')}
+                                                    </div>
+                                                    <div>
+                                                        <span className="font-bold">Duration: </span>{cert.duration}
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="font-bold mb-4">Recommended Training:</h4>
+                                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                            {
+                                                                cert.recommendedTraining.map((training, index) => {
+                                                                    return (
+                                                                        <Link
+                                                                            href={training.link}
+                                                                            key={index}
+                                                                            className="bg-green-700 text-white p-1 text-center rounded-2xl"
+                                                                            target='_blank'
+                                                                        >
+                                                                            {
+                                                                                training.title
+                                                                            }
+                                                                        </Link>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </Card>
+                                            ))
+                                        }
+                                    </div>
+                                    <Separator />
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <MessageSquare className="w-5 h-5" />
+                                            <h3 className="font-semibold text-lg">Advice from our side</h3>
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2">
+                                            {
+                                                selectedPathway.advices.map((advice, index) => (
+                                                    <Card key={index} className="p-4">
+                                                        <h4 className="font-bold text-lg mb-2">{index + 1} . {advice.title}</h4>
+                                                        <p className="text-black dark:text-gray-200">{advice.description}</p>
+                                                    </Card>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                    <Separator />
+                                    <Link
+                                        target='_blank'
+                                        href="https://discord.gg/chF78trF"
+                                        className="flex items-center justify-center"
+                                    >
+                                        <RainbowButton>Join Discord</RainbowButton>
+                                    </Link>
                                 </div>
-                            </>
-                        )
-                    }
+                            </div>
+                        </ScrollArea>
+                    )}
                 </SheetContent>
             </Sheet>
         </div>

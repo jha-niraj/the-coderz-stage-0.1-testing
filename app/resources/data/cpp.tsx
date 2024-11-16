@@ -1,8 +1,8 @@
 export const units = [
     {
         title: "Unit I: Concepts and Basics of C++ Programming",
-        youtube: "https://youtu.be/unit1_overview",
-        quizlink: "https://quizlink.com/unit1_quiz",
+        youtube: "https://www.youtube.com/watch?v=e7sAf4SbS_g&t=0s",
+        quizlink: "",
         lessons: [
             { name: "Introduction to cin and cout", lessonkey: "intro_cin_cout" },
             { name: "Creating Classes and Class Objects", lessonkey: "classes_objects" },
@@ -13,8 +13,8 @@ export const units = [
     },
     {
         title: "Unit II: Pointers, Reference Variables, Arrays, and Strings",
-        youtube: "https://youtu.be/unit2_overview",
-        quizlink: "https://quizlink.com/unit2_quiz",
+        youtube: "https://www.youtube.com/watch?v=e7sAf4SbS_g&t=27003s",
+        quizlink: "",
         lessons: [
             { name: "Pointer Basics and Pointer Arithmetic", lessonkey: "pointer_basics" },
             { name: "Handling Dangling and Wild Pointers", lessonkey: "dangling_wild_pointers" },
@@ -25,8 +25,8 @@ export const units = [
     },
     {
         title: "Unit III: Data File Operations and Constructors",
-        youtube: "https://youtu.be/unit3_overview",
-        quizlink: "https://quizlink.com/unit3_quiz",
+        youtube: "https://www.youtube.com/watch?v=e7sAf4SbS_g&t=32251s",
+        quizlink: "",
         lessons: [
             { name: "File Opening, Closing, and Modes", lessonkey: "file_operations" },
             { name: "Sequential and Random File Processing", lessonkey: "file_processing" },
@@ -37,8 +37,8 @@ export const units = [
     },
     {
         title: "Unit IV: Operator Overloading and Inheritance",
-        youtube: "https://youtu.be/unit4_overview",
-        quizlink: "https://quizlink.com/unit4_quiz",
+        youtube: "https://www.youtube.com/watch?v=e7sAf4SbS_g&t=37020s",
+        quizlink: "",
         lessons: [
             { name: "Unary and Binary Operator Overloading", lessonkey: "operator_overloading" },
             { name: "Type Conversions and Class Types", lessonkey: "type_conversion" },
@@ -49,8 +49,8 @@ export const units = [
     },
     {
         title: "Unit V: Dynamic Memory Management and Polymorphism",
-        youtube: "https://youtu.be/unit5_overview",
-        quizlink: "https://quizlink.com/unit5_quiz",
+        youtube: "https://www.youtube.com/watch?v=e7sAf4SbS_g&t=39558s",
+        quizlink: "",
         lessons: [
             { name: "Dynamic Memory with new and delete", lessonkey: "dynamic_memory" },
             { name: "Virtual Destructors and Abstract Classes", lessonkey: "virtual_destructors" },
@@ -60,8 +60,8 @@ export const units = [
     },
     {
         title: "Unit VI: Exception Handling, Templates, and STL",
-        youtube: "https://youtu.be/unit6_overview",
-        quizlink: "https://quizlink.com/unit6_quiz",
+        youtube: "https://www.youtube.com/watch?v=7hcQQEHZPiQ&t=130s",
+        quizlink: "",
         lessons: [
             { name: "Basics of Exception Handling", lessonkey: "exception_handling" },
             { name: "Function and Class Templates", lessonkey: "templates" },
@@ -70,7 +70,6 @@ export const units = [
         ]
     }
 ];
-
 
 export const lessonData = {
     'intro_cin_cout': {

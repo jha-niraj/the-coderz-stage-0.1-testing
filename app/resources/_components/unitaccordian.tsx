@@ -8,6 +8,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Badge } from "@/components/ui/badge";
 import SlideInModal from "./slideinmodal";
 import QuizAndContribute from "./quizcontribute";
+import { useToast } from "@/hooks/use-toast";
 
 interface Lesson {
     title: string;
@@ -46,6 +47,7 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
     const [expanded, setExpanded] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
+    const { toast } = useToast();
 
     // Effect to handle scroll lock
     useEffect(() => {
@@ -67,6 +69,12 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
         setSelectedLesson({ ...lesson, ...detailedLessonData });
         setIsModalOpen(true);
     };
+    const handleQuizSelection = () => {
+        toast({
+            title: "Success",
+            description: "We are creating an extensive list of quiz that will help you grasp the knowledge of the current topic. It will be available soon.",
+        });
+    }
 
     return (
         <motion.div
@@ -79,41 +87,43 @@ const UnitAccordion: React.FC<UnitAccordionProps> = ({ unit, unitIndex, lessonDa
                 <CardHeader
                     className="cursor-pointer flex flex-col sm:flex-row items-center gap-4 sm:gap-2 justify-between"
                 >
-                    <div 
+                    <div
                         className="flex justify-between items-center w-full"
                         onClick={() => setExpanded(!expanded)}
                     >
                         <CardTitle className="text-md sm:text-xl font-semibold text-white dark:text-black">
                             {unit.title}
                         </CardTitle>
-
                     </div>
-                    <Link
-                        href={unit.quizlink}
-                        target="_blank"
-                        className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent border border-white dark:border-white text-white dark:text-black rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
-                    >
-                        Quiz <ExternalLink className="ml-2 h-4 w-4" />
-                    </Link>
-                    <Link
-                        href={unit.youtube}
-                        target="_blank"
-                        className="flex items-center justify-center w-full sm:w-auto p-2 dark:text-white text-white font-semibold transform hover:-translate-y-1 transition duration-400"
-                    >
-                        <YoutubeIcon size={32} className="text-red-500" />
-                    </Link>
-                    <div 
-                        className="flex items-center space-x-2 w-24 sm:w-32"
-                        onClick={() => setExpanded(!expanded)}
-                    >
-                        <Badge className="bg-gray-700 text-gray-300 w-2/3 text-center">
-                            {unit.lessons.length} lessons
-                        </Badge>
-                        {expanded ? (
-                            <ChevronUp className="text-gray-200 dark:text-gray-600" />
-                        ) : (
-                            <ChevronDown className="text-gray-200 dark:text-gray-600" />
-                        )}
+                    <div className="flex w-full justify-between sm:justify-end sm:gap-6">
+                        <button
+                            // href={unit.quizlink}
+                            // target="_blank"
+                            className="shadow-[0_0_0_3px_#000000_inset] flex items-center justify-center w-full sm:w-auto p-2 bg-transparent border border-white dark:border-white text-white dark:text-black rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400"
+                            onClick={handleQuizSelection}
+                        >
+                            Quiz <ExternalLink className="ml-2 h-4 w-4" />
+                        </button>
+                        <Link
+                            href={unit.youtube}
+                            target="_blank"
+                            className="flex items-center justify-center w-full sm:w-auto p-2 dark:text-white text-white font-semibold transform hover:-translate-y-1 transition duration-400"
+                        >
+                            <YoutubeIcon size={32} className="text-red-500" />
+                        </Link>
+                        <div
+                            className="flex items-center space-x-2 w-24 sm:w-32"
+                            onClick={() => setExpanded(!expanded)}
+                        >
+                            <Badge className="bg-gray-700 text-gray-300 w-2/3 text-center">
+                                {unit.lessons.length} lessons
+                            </Badge>
+                            {expanded ? (
+                                <ChevronUp className="text-gray-200 dark:text-gray-600" />
+                            ) : (
+                                <ChevronDown className="text-gray-200 dark:text-gray-600" />
+                            )}
+                        </div>
                     </div>
                 </CardHeader>
                 <AnimatePresence>

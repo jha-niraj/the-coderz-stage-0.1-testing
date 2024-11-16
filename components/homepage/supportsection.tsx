@@ -38,7 +38,7 @@ const SupportSection = () => {
     };
 
     return (
-        <section className="text-white w-full rounded-2xl py-16">
+        <section className="text-white max-w-7xl mx-auto rounded-2xl py-16">
             <Toaster />
             <motion.section
                 className="bg-gradient-to-r from-black via-gray-600 rounded-lg py-8 flex items-center justify-center flex-col w-full"

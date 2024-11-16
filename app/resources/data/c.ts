@@ -1,8 +1,8 @@
 export const units = [
     {
         title: "Unit I: Basics and Introduction to C",
-        youtube: "https://youtu.be/unit1_overview",
-        quizlink: "https://quizlink.com/unit1_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=0s",
+        quizlink: "",
         lessons: [
             { name: "Program Development in C", lessonkey: "progdevc" },
             { name: "Structured Programming with Algorithms and Flowcharts", lessonkey: "structuredprog" },
@@ -13,8 +13,8 @@ export const units = [
     },
     {
         title: "Unit II: Control Structures and Input/Output",
-        youtube: "https://youtu.be/unit2_overview",
-        quizlink: "https://quizlink.com/unit2_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=98592s",
+        quizlink: "",
         lessons: [
             { name: "If and If-Else Statements", lessonkey: "ifelse" },
             { name: "Switch Case Statements", lessonkey: "switch" },
@@ -25,8 +25,8 @@ export const units = [
     },
     {
         title: "Unit III: Functions and Storage Classes",
-        youtube: "https://youtu.be/unit3_overview",
-        quizlink: "https://quizlink.com/unit3_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=139841s",
+        quizlink: "",
         lessons: [
             { name: "Function Prototypes and Definitions", lessonkey: "funcproto" },
             { name: "Passing Arguments (By Value and Reference)", lessonkey: "arguments" },
@@ -36,8 +36,8 @@ export const units = [
     },
     {
         title: "Unit IV: Arrays in C",
-        youtube: "https://youtu.be/unit4_overview",
-        quizlink: "https://quizlink.com/unit4_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=123803s",
+        quizlink: "",
         lessons: [
             { name: "Declaring and Initializing Arrays", lessonkey: "arrays" },
             { name: "One-Dimensional and Two-Dimensional Arrays", lessonkey: "arrays2d" },
@@ -47,8 +47,8 @@ export const units = [
     },
     {
         title: "Unit V: Pointers and Dynamic Memory Allocation",
-        youtube: "https://youtu.be/unit5_overview",
-        quizlink: "https://quizlink.com/unit5_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=115719s",
+        quizlink: "",
         lessons: [
             { name: "Pointer Basics and Types", lessonkey: "pointers" },
             { name: "Pointer Arithmetic and Expressions", lessonkey: "pointerarithmetic" },
@@ -58,8 +58,8 @@ export const units = [
     },
     {
         title: "Unit VI: Strings and User-Defined Types",
-        youtube: "https://youtu.be/unit6_overview",
-        quizlink: "https://quizlink.com/unit6_quiz",
+        youtube: "https://www.youtube.com/watch?v=xDHSP_hyWJA&t=131238s",
+        quizlink: "",
         lessons: [
             { name: "Working with Strings", lessonkey: "strings" },
             { name: "String Manipulation Functions", lessonkey: "stringfuncs" },
@@ -68,7 +68,6 @@ export const units = [
         ]
     }
 ];
-
 
 export const lessonData = {
     'progdevc': {

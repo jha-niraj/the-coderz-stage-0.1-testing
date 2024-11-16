@@ -29,25 +29,25 @@ interface StatData {
 const stats: StatData[] = [
     {
         icon: Users,
-        number: "50,000+",
+        number: "-----",
         description: "Active Student Developers",
         bgColor: "bg-purple-200"
     },
     {
         icon: Code,
-        number: "1,000+",
+        number: "-----",
         description: "Open Source Projects",
         bgColor: "bg-green-200"
     },
     {
         icon: BookOpen,
-        number: "2,500+",
+        number: "5+",
         description: "Learning Resources",
         bgColor: "bg-yellow-200"
     },
     {
         icon: School,
-        number: "100+",
+        number: "-----",
         description: "Partner Universities",
         bgColor: "bg-blue-200"
     }

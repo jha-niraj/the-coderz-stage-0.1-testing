@@ -47,6 +47,14 @@ const categories = [
 				status: "coming"
 			},
 			{
+				name: 'PHP',
+				url: '/resources/programminglanguages/php',
+				icon: '',
+				description: 'Develop dynamic web applications with PHP. Focus on backend development and database integration.',
+				color: 'from-indigo-600 to-purple-400',
+				categories: ['Backend', 'WordPress', 'MySQL', 'APIs']
+			},
+			{
 				name: 'Go',
 				url: '/resources/programminglanguages/go',
 				icon: 'Go',
@@ -404,9 +412,7 @@ export default function ResourcesPage() {
 						))}
 					</AnimatePresence>
 				</main>
-				<footer className="flex w-full items-center justify-center">
-					<SupportSection />
-				</footer>
+				<SupportSection />
 			</div>
 		</SmoothScroll>
 	)

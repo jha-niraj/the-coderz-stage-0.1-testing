@@ -80,7 +80,7 @@ export default function Projects() {
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            <Search className="relative right-3 top-2 text-gray-400" />
+                            <Search className="relative right-8 text-gray-400" />
                         </div>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>

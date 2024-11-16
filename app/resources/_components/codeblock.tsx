@@ -70,25 +70,23 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
 	return (
 		<div className="rounded-lg overflow-hidden bg-[#1e1e1e] shadow-xl">
-			{filename && (
-				<div className="flex items-center justify-between px-4 py-2 bg-[#2d2d2d] border-b border-[#404040]">
-					<span className="flex items-center gap-2 text-sm text-gray-400">
-						<span>{getFileIcon(language)}</span>
-						<span>{filename}</span>
-					</span>
-					<button
-						onClick={handleCopy}
-						className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
-					>
-						{copied ? (
-							<Check size={16} className="text-green-500" />
-						) : (
-							<Copy size={16} />
-						)}
-						{copied ? 'Copied!' : 'Copy'}
-					</button>
-				</div>
-			)}
+			<div className="flex items-center justify-between px-4 py-2 bg-[#2d2d2d] border-b border-[#404040]">
+				<span className="flex items-center gap-2 text-sm text-gray-400">
+					<span>{getFileIcon(language)}</span>
+					<span>{filename}</span>
+				</span>
+				<button
+					onClick={handleCopy}
+					className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors"
+				>
+					{copied ? (
+						<Check size={16} className="text-green-500" />
+					) : (
+						<Copy size={16} />
+					)}
+					{copied ? 'Copied!' : 'Copy'}
+				</button>
+			</div>
 			<pre className="p-4 m-0 overflow-x-auto">
 				<code className={`language-${language}`}>{code}</code>
 			</pre>

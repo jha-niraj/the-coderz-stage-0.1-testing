@@ -77,7 +77,7 @@ export default function Home() {
         if(!session?.user) {
             router.push("/signin");
         }
-    }, [])
+    }, [router, session?.user])
 
     // Data Stores for all the fields
     const [publicDataOpen, setPublicDataOpen] = useState<boolean>(false);
@@ -149,7 +149,7 @@ export default function Home() {
         }
 
         fetchedUserData();
-    }, [])
+    }, [toast])
 
     const SocialButton = ({ href, icon: Icon }: { href: string | null | undefined, icon: React.ElementType }) => (
         href ? (
