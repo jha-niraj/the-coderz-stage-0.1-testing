@@ -2980,135 +2980,379 @@ int main() {
 },
 
     'virtual_functions': {
-        title: "Pure Virtual Functions and Late Binding",
-        description: "Learn about pure virtual functions in C++ and how they contribute to late binding in object-oriented programming, facilitating abstraction and design.",
-        sections: [
-            {
-                title: "Understanding Pure Virtual Functions",
-                content: "A pure virtual function is a function declared in a base class that has no definition. It forces derived classes to implement the function, creating an interface.",
-                code: `class Abstract {
-    public:
-        virtual void doWork() = 0;  // Pure virtual function
-    };`
-            },
-            {
-                title: "Late Binding",
-                content: "Late binding refers to the method resolution that occurs at runtime. Virtual functions use late binding to determine which method to call based on the object's type.",
-                code: `Abstract* obj = new Derived();
-    obj->doWork();  // Calls the implementation in Derived at runtime
-    delete obj;`
-            }
-        ],
-        practiceQuestions: [
-            {
-                question: "Define an abstract class with a pure virtual function and create derived classes implementing that function.",
-                hint: "Show how each derived class provides its unique behavior."
-            },
-            {
-                question: "Write a program demonstrating late binding with virtual functions.",
-                hint: "Use an array of base class pointers pointing to derived class objects."
-            },
-            {
-                question: "Implement a scenario where pure virtual functions enforce implementation in derived classes.",
-                hint: "Try to instantiate an abstract class to demonstrate the error."
-            }
-        ]
-    },
+    title: "Pure Virtual Functions and Late Binding",
+    description: "Learn about pure virtual functions in C++ and their role in enabling late binding and abstraction. Understand how these concepts contribute to flexible and reusable object-oriented designs.",
+    sections: [
+        {
+            title: "Understanding Pure Virtual Functions",
+            content: "A pure virtual function is a function declared in a base class that has no definition. Declaring a pure virtual function makes the base class abstract, meaning it cannot be instantiated. Derived classes must override the pure virtual function to be instantiated. This mechanism enforces a consistent interface across derived classes.",
+            code: `#include <iostream>
+using namespace std;
+
+class Abstract {
+public:
+    virtual void doWork() = 0; // Pure virtual function
+
+    virtual ~Abstract() { // Virtual destructor
+        cout << "Abstract class destructor called." << endl;
+    }
+};
+
+class Derived1 : public Abstract {
+public:
+    void doWork() override { // Override the pure virtual function
+        cout << "Derived1 is doing work!" << endl;
+    }
+};
+
+class Derived2 : public Abstract {
+public:
+    void doWork() override { // Override the pure virtual function
+        cout << "Derived2 is doing work!" << endl;
+    }
+};
+
+int main() {
+    Abstract* obj1 = new Derived1();
+    Abstract* obj2 = new Derived2();
+
+    obj1->doWork(); // Calls Derived1's implementation
+    obj2->doWork(); // Calls Derived2's implementation
+
+    delete obj1; // Proper cleanup
+    delete obj2; // Proper cleanup
+
+    return 0;
+}`
+        },
+        {
+            title: "Late Binding",
+            content: "Late binding, also known as dynamic dispatch, is a runtime process where the appropriate function is determined based on the actual type of the object. Virtual functions enable late binding, allowing polymorphic behavior in C++.",
+            code: `#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void display() { // Virtual function for late binding
+        cout << "Base class display" << endl;
+    }
+
+    virtual ~Base() {
+        cout << "Base class destructor called." << endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void display() override { // Overriding the base class method
+        cout << "Derived class display" << endl;
+    }
+
+    ~Derived() {
+        cout << "Derived class destructor called." << endl;
+    }
+};
+
+int main() {
+    Base* obj = new Derived(); // Base class pointer to Derived object
+    obj->display(); // Late binding determines Derived's display method is called
+
+    delete obj; // Properly calls destructors in reverse order (Derived, then Base)
+    return 0;
+}`
+        }
+    ],
+    practiceQuestions: [
+        {
+            question: "Define an abstract class with a pure virtual function and create derived classes implementing that function.",
+            hint: "Show how each derived class provides its unique behavior."
+        },
+        {
+            question: "Write a program demonstrating late binding with virtual functions.",
+            hint: "Use an array of base class pointers pointing to derived class objects."
+        },
+        {
+            question: "Implement a scenario where pure virtual functions enforce implementation in derived classes.",
+            hint: "Try to instantiate an abstract class to demonstrate the error."
+        },
+        {
+            question: "Create an abstract class representing shapes with a pure virtual function for area calculation. Implement derived classes like Circle and Rectangle.",
+            hint: "Override the area function in each derived class with specific calculations."
+        },
+        {
+            question: "Write a program to demonstrate the destruction sequence when using a base class pointer for derived class objects with virtual destructors.",
+            hint: "Observe the order of destructor calls in a multilevel inheritance hierarchy."
+        },
+        {
+            question: "Demonstrate late binding by using a virtual function to log events in different derived classes like FileLogger, ConsoleLogger, and NetworkLogger.",
+            hint: "Implement a virtual function logEvent() in the base class and override it in each derived class."
+        }
+    ]
+},
+
     'exception_handling': {
-        title: "Basics of Exception Handling",
-        description: "Learn the fundamentals of exception handling in C++. Understand how to catch and throw exceptions to create robust programs.",
-        sections: [
-            {
-                title: "What is Exception Handling?",
-                content: "Exception handling is a mechanism to handle runtime errors in a controlled way, ensuring the program can continue executing or terminate gracefully.",
-                code: `try {
-        // Code that may throw an exception
-    } catch (const std::exception& e) {
-        // Code to handle the exception
-    }`
-            },
-            {
-                title: "Throwing Exceptions",
-                content: "You can throw exceptions using the `throw` keyword followed by an instance of an exception class. This will interrupt normal flow and transfer control to the nearest catch block.",
-                code: `if (condition) {
-        throw std::runtime_error("Error message");
-    }`
-            },
-            {
-                title: "Catching Exceptions",
-                content: "Catch blocks allow you to define how to respond to specific exceptions. You can have multiple catch blocks to handle different types of exceptions.",
-                code: `try {
-        // Code that may throw an exception
-    } catch (const std::runtime_error& e) {
-        // Handle runtime error
-    } catch (const std::exception& e) {
-        // Handle any other exception
-    }`
-            }
-        ],
-        practiceQuestions: [
-            {
-                question: "Write a program that throws an exception for a division by zero error.",
-                hint: "Use the `throw` statement to handle the division operation."
-            },
-            {
-                question: "Implement a function that catches different exceptions and displays a message based on the exception type.",
-                hint: "Use multiple catch blocks for different exception types."
-            },
-            {
-                question: "Create a class that handles file operations and throws exceptions for file not found or permission errors.",
-                hint: "Define custom exceptions for your file handling."
-            }
-        ]
-    },
+    title: "Basics of Exception Handling",
+    description: "Learn the fundamentals of exception handling in C++. Understand how to use try-catch blocks and the `throw` statement to handle runtime errors and create robust programs.",
+    sections: [
+        {
+            title: "What is Exception Handling?",
+            content: "Exception handling is a mechanism to handle runtime errors in a controlled way, ensuring the program can continue executing or terminate gracefully. Exceptions are raised when an error occurs, and the program transfers control to the nearest catch block for handling.",
+            code: `#include <iostream>
+#include <exception>
+using namespace std;
+
+int main() {
+    try {
+        cout << "Trying to execute..." << endl;
+        throw runtime_error("Something went wrong!"); // Throwing an exception
+    } catch (const exception& e) { // Catching the exception
+        cout << "Caught an exception: " << e.what() << endl; // Display the error message
+    }
+    return 0;
+}`
+        },
+        {
+            title: "Throwing Exceptions",
+            content: "You can throw exceptions using the `throw` keyword followed by an instance of an exception class or a custom error message. This interrupts the normal flow of execution and transfers control to a catch block.",
+            code: `#include <iostream>
+#include <stdexcept>
+using namespace std;
+
+void divide(int a, int b) {
+    if (b == 0) {
+        throw invalid_argument("Division by zero is not allowed!"); // Throwing an exception
+    }
+    cout << "Result: " << a / b << endl;
+}
+
+int main() {
+    try {
+        divide(10, 0); // Attempting division by zero
+    } catch (const invalid_argument& e) { // Handling the specific exception
+        cout << "Error: " << e.what() << endl;
+    }
+    return 0;
+}`
+        },
+        {
+            title: "Catching Exceptions",
+            content: "Catch blocks allow you to define how to respond to specific exceptions. You can have multiple catch blocks to handle different types of exceptions. Always catch exceptions by reference to avoid slicing.",
+            code: `#include <iostream>
+#include <stdexcept>
+using namespace std;
+
+void process(int value) {
+    if (value < 0) {
+        throw invalid_argument("Negative value provided!");
+    } else if (value == 0) {
+        throw runtime_error("Value cannot be zero!");
+    }
+}
+
+int main() {
+    try {
+        process(-1); // Will throw an invalid_argument exception
+    } catch (const invalid_argument& e) {
+        cout << "Invalid argument exception: " << e.what() << endl;
+    } catch (const runtime_error& e) {
+        cout << "Runtime error: " << e.what() << endl;
+    } catch (const exception& e) { // Catching any other exceptions
+        cout << "General exception: " << e.what() << endl;
+    }
+    return 0;
+}`
+        },
+        {
+            title: "Custom Exception Classes",
+            content: "You can define your own exception classes by inheriting from `std::exception`. Override the `what()` method to provide a custom error message.",
+            code: `#include <iostream>
+#include <exception>
+using namespace std;
+
+class MyException : public exception {
+public:
+    const char* what() const noexcept override { // Overriding the what() method
+        return "Custom exception occurred!";
+    }
+};
+
+int main() {
+    try {
+        throw MyException(); // Throwing a custom exception
+    } catch (const MyException& e) { // Catching the custom exception
+        cout << e.what() << endl;
+    }
+    return 0;
+}`
+        }
+    ],
+    practiceQuestions: [
+        {
+            question: "Write a program that throws an exception for a division by zero error.",
+            hint: "Use the `throw` statement to handle the division operation."
+        },
+        {
+            question: "Implement a function that catches different exceptions and displays a message based on the exception type.",
+            hint: "Use multiple catch blocks for different exception types."
+        },
+        {
+            question: "Create a class that handles file operations and throws exceptions for file not found or permission errors.",
+            hint: "Define custom exceptions for your file handling."
+        },
+        {
+            question: "Write a program to demonstrate rethrowing an exception inside a catch block.",
+            hint: "Use the `throw;` statement inside a catch block to rethrow the caught exception."
+        },
+        {
+            question: "Implement a function that calculates the square root of a number and throws an exception if the input is negative.",
+            hint: "Use a custom exception class for negative values."
+        },
+        {
+            question: "Create a program that uses a base class pointer to catch exceptions thrown by derived exception classes.",
+            hint: "Use polymorphism to handle exceptions in a hierarchy."
+        }
+    ]
+},
+
     'templates': {
-        title: "Function and Class Templates",
-        description: "Explore the use of templates in C++ to create generic functions and classes that can operate on different data types.",
-        sections: [
-            {
-                title: "Understanding Function Templates",
-                content: "Function templates allow you to define a function without specifying the exact data type. The compiler generates the appropriate function when it is called with a specific type.",
-                code: `template <typename T>
-    T add(T a, T b) {
-        return a + b;
-    }`
-            },
-            {
-                title: "Creating Class Templates",
-                content: "Class templates enable you to define a class that can handle different data types. The type is specified when creating an object of the template class.",
-                code: `template <typename T>
-    class Box {
-    public:
-        T value;
-        Box(T v) : value(v) {}
-    };`
-            },
-            {
-                title: "Specializing Templates",
-                content: "You can provide a specific implementation for a template for a particular data type using template specialization.",
-                code: `template <>
-    class Box<int> {
-    public:
-        int value;
-        Box(int v) : value(v) {}
-    };`
-            }
-        ],
-        practiceQuestions: [
-            {
-                question: "Create a function template that swaps two variables of any type.",
-                hint: "Use a template parameter for the function."
-            },
-            {
-                question: "Define a class template for a simple stack that can hold any data type.",
-                hint: "Implement push and pop functions."
-            },
-            {
-                question: "Implement a function template that finds the maximum of three values of any type.",
-                hint: "Use conditional statements to compare the values."
-            }
-        ]
-    },
+    title: "Function and Class Templates",
+    description: "Learn about templates in C++, which allow you to create generic functions and classes that can operate on different data types. Templates enable code reuse and type safety, making them a powerful tool in generic programming.",
+    sections: [
+        {
+            title: "Understanding Function Templates",
+            content: "Function templates allow you to define a single function that works with different data types. The compiler generates the appropriate function definition based on the type of arguments passed when the function is called.",
+            code: `#include <iostream>
+using namespace std;
+
+// Template for a generic add function
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    cout << "Addition of integers: " << add(5, 10) << endl;    // Calls add<int>
+    cout << "Addition of doubles: " << add(5.5, 10.1) << endl; // Calls add<double>
+    return 0;
+}`
+        },
+        {
+            title: "Creating Class Templates",
+            content: "Class templates allow you to create a blueprint for classes that can work with any data type. The type is specified when an object of the template class is instantiated.",
+            code: `#include <iostream>
+using namespace std;
+
+// Template for a generic Box class
+template <typename T>
+class Box {
+public:
+    T value;
+
+    Box(T v) : value(v) {}
+
+    void display() {
+        cout << "Box value: " << value << endl;
+    }
+};
+
+int main() {
+    Box<int> intBox(10);      // Box for integers
+    Box<double> doubleBox(5.5); // Box for doubles
+
+    intBox.display();
+    doubleBox.display();
+
+    return 0;
+}`
+        },
+        {
+            title: "Specializing Templates",
+            content: "Template specialization allows you to provide a specific implementation of a template for a particular data type. This is useful when a type requires a behavior different from the generic implementation.",
+            code: `#include <iostream>
+using namespace std;
+
+// Generic Box template
+template <typename T>
+class Box {
+public:
+    T value;
+    Box(T v) : value(v) {}
+    void display() {
+        cout << "Box value: " << value << endl;
+    }
+};
+
+// Specialization for int type
+template <>
+class Box<int> {
+public:
+    int value;
+    Box(int v) : value(v) {}
+    void display() {
+        cout << "Specialized Box for int with value: " << value << endl;
+    }
+};
+
+int main() {
+    Box<string> stringBox("Hello");
+    Box<int> intBox(42); // Uses specialized implementation
+
+    stringBox.display();
+    intBox.display();
+
+    return 0;
+}`
+        },
+        {
+            title: "Template Functions with Multiple Parameters",
+            content: "You can define templates with multiple parameters to handle functions or classes requiring multiple types.",
+            code: `#include <iostream>
+using namespace std;
+
+// Template with two parameters
+template <typename T1, typename T2>
+void printPair(T1 first, T2 second) {
+    cout << "Pair: (" << first << ", " << second << ")" << endl;
+}
+
+int main() {
+    printPair(10, "Hello");       // T1 = int, T2 = const char*
+    printPair(3.14, true);        // T1 = double, T2 = bool
+    return 0;
+}`
+        }
+    ],
+    practiceQuestions: [
+        {
+            question: "Create a function template that swaps two variables of any type.",
+            hint: "Use a template parameter for the function."
+        },
+        {
+            question: "Define a class template for a simple stack that can hold any data type.",
+            hint: "Implement push and pop functions."
+        },
+        {
+            question: "Implement a function template that finds the maximum of three values of any type.",
+            hint: "Use conditional statements to compare the values."
+        },
+        {
+            question: "Write a program using a class template to represent a generic Pair, holding two values of potentially different types.",
+            hint: "Use two template parameters."
+        },
+        {
+            question: "Create a specialized implementation of a function template for the `string` type that reverses the string.",
+            hint: "Use `template<>` for specialization."
+        },
+        {
+            question: "Design a generic queue class using a class template. Implement enqueue and dequeue operations.",
+            hint: "Use an array or vector for internal storage."
+        },
+        {
+            question: "Write a program that demonstrates the use of template functions to perform mathematical operations like addition, subtraction, and multiplication.",
+            hint: "Define one template function with a parameter for the operation type."
+        }
+    ]
+},
     'stl_intro': {
         title: "Introduction to Standard Template Library",
         description: "Get introduced to the Standard Template Library (STL) in C++. Understand the components of STL and its advantages in programming.",
@@ -3185,5 +3429,159 @@ int main() {
                 hint: "Use unique() in combination with list::erase()."
             }
         ]
+    },
+    'stl_containers': {
+    title: "Using STL Containers - Vector, List, and Other Containers",
+    description: "Dive deep into the Standard Template Library (STL) by exploring vector, list, and other commonly used containers like deque, set, and map. Learn their features, use cases, and key operations for efficient data management.",
+    sections: [
+        {
+            title: "Working with Vectors",
+            content: "Vectors are dynamic arrays that can resize automatically. They provide random access to elements and efficient insertion and deletion at the end. Vectors are stored contiguously in memory, making them compatible with algorithms that require array-like structures.",
+            code: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> vec = {1, 2, 3}; // Initializing a vector
+    vec.push_back(4);           // Adding an element at the end
+    vec.pop_back();             // Removing the last element
+
+    cout << "Vector elements: ";
+    for (int val : vec) {
+        cout << val << " "; // Accessing elements
     }
+    cout << endl;
+
+    cout << "Size of vector: " << vec.size() << endl; // Getting size
+    return 0;
+}`
+        },
+        {
+            title: "Working with Lists",
+            content: "Lists in the STL are implemented as doubly linked lists, allowing efficient insertion and deletion at both ends and any position. However, they do not support random access, and accessing elements requires traversal.",
+            code: `#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+    list<int> lst = {1, 2, 3}; // Initializing a list
+    lst.push_back(4);          // Adding an element at the end
+    lst.push_front(0);         // Adding an element at the front
+    lst.pop_back();            // Removing the last element
+    lst.pop_front();           // Removing the first element
+
+    cout << "List elements: ";
+    for (int val : lst) {
+        cout << val << " ";
+    }
+    cout << endl;
+    return 0;
+}`
+        },
+        {
+            title: "Working with Deques",
+            content: "Deques (double-ended queues) allow fast insertion and deletion at both ends. They are a hybrid between vectors and lists, providing flexibility for both random access and dynamic resizing at either end.",
+            code: `#include <iostream>
+#include <deque>
+using namespace std;
+
+int main() {
+    deque<int> dq = {1, 2, 3}; // Initializing a deque
+    dq.push_back(4);           // Adding an element at the end
+    dq.push_front(0);          // Adding an element at the front
+    dq.pop_back();             // Removing the last element
+    dq.pop_front();            // Removing the first element
+
+    cout << "Deque elements: ";
+    for (int val : dq) {
+        cout << val << " ";
+    }
+    cout << endl;
+    return 0;
+}`
+        },
+        {
+            title: "Working with Sets",
+            content: "Sets store unique elements in sorted order. They provide efficient insertion, deletion, and lookup operations, making them suitable for maintaining collections of unique items.",
+            code: `#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {
+    set<int> s = {3, 1, 4, 1, 5}; // Initializing a set
+    s.insert(2);                  // Adding an element
+    s.erase(4);                   // Removing an element
+
+    cout << "Set elements: ";
+    for (int val : s) {
+        cout << val << " "; // Elements are stored in sorted order
+    }
+    cout << endl;
+
+    cout << "Does the set contain 3? " << (s.count(3) ? "Yes" : "No") << endl;
+    return 0;
+}`
+        },
+        {
+            title: "Working with Maps",
+            content: "Maps store key-value pairs, where keys are unique and values are associated with those keys. They are implemented as balanced binary search trees, providing efficient lookup, insertion, and deletion operations.",
+            code: `#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+    map<string, int> m; // Initializing a map
+    m["Alice"] = 25;    // Adding key-value pairs
+    m["Bob"] = 30;
+
+    m.insert({"Charlie", 35}); // Inserting another key-value pair
+
+    cout << "Map elements:" << endl;
+    for (const auto& pair : m) {
+        cout << pair.first << ": " << pair.second << endl; // Accessing keys and values
+    }
+
+    m.erase("Bob"); // Removing an element by key
+    cout << "After erasing Bob, map size: " << m.size() << endl;
+
+    return 0;
+}`
+        },
+        {
+            title: "Choosing Between Containers",
+            content: "Each STL container has its strengths and is suited for specific scenarios:\n- **Vector**: Use for random access and dynamic resizing at the end.\n- **List**: Use when frequent insertion and deletion in the middle are required.\n- **Deque**: Use when you need efficient insertion and deletion at both ends.\n- **Set**: Use for maintaining unique elements in sorted order.\n- **Map**: Use for key-value associations with unique keys."
+        }
+    ],
+    practiceQuestions: [
+        {
+            question: "Create a program that demonstrates adding and removing elements from a vector.",
+            hint: "Use push_back() and pop_back() methods."
+        },
+        {
+            question: "Implement a program that shows the differences in performance between vector and list when inserting elements.",
+            hint: "Measure time taken for various operations."
+        },
+        {
+            question: "Write a program that initializes a list with values and removes duplicates.",
+            hint: "Use unique() in combination with list::erase()."
+        },
+        {
+            question: "Write a program to manage a set of unique student IDs using a set. Demonstrate insertion and deletion of IDs.",
+            hint: "Use set::insert() and set::erase()."
+        },
+        {
+            question: "Create a map to store the names and scores of students. Add, modify, and delete entries.",
+            hint: "Use map::insert(), map::operator[], and map::erase()."
+        },
+        {
+            question: "Design a generic queue using a deque. Implement enqueue and dequeue operations.",
+            hint: "Use deque::push_back() and deque::pop_front()."
+        },
+        {
+            question: "Write a program that reads a sequence of numbers and counts their frequency using a map.",
+            hint: "Use map<int, int> to store the frequency of each number."
+        }
+    ]
+},
+
 };
